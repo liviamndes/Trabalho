@@ -22,10 +22,9 @@ class Personagem {
         int getAtaque() const;
         int getDefesa() const;
 };
-
 class Jogador : Personagem {
     protected:
-        int nivel, experiencia;
+        int nivel, experiencia, testee;
         Cenario* cenarioAtual;  // -> composição
         // vector<Missao*> missoesAtivas;
         // vector<Habilidade*> habilidadesAprendidas;
