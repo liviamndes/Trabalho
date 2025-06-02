@@ -2,6 +2,7 @@
 #define PERSONAGEM_H
 
 #include <iostream>
+#include "Cenario.h"
 using namespace std;
 
 class Personagem {
@@ -58,13 +59,60 @@ class Inimigo : public Personagem {
         // polimorfismo das funções de ataque e defesa
                 // ...
 };
-class MonstroChefe : public Inimigo {
+class Morcego : public Inimigo {
     protected:
         string tipo;
     public: 
         // construtor e destrutor
-        MonstroChefe(string t = "Monstro Chefe") : Inimigo{100, 50, 5}, tipo{t} { nome = tipo;}
-        ~MonstroChefe() { };
+        Morcego(string t = "Morcego") : Inimigo{25, 10, 1}, tipo{t} { nome = tipo;}
+        ~Morcego() { };
 };
-
+class Lobo : public Inimigo {
+    protected:
+        string tipo;
+    public: 
+        // construtor e destrutor
+        Lobo(string t = "Lobo") : Inimigo{50, 20, 5}, tipo{t} { nome = tipo;}
+        ~Lobo() { };
+};
+class FlorCarnivora : public Inimigo {
+    protected:
+        string tipo;
+    public: 
+        // construtor e destrutor
+        FlorCarnivora(string t = "Flor Carnivora") : Inimigo{75, 30, 10}, tipo{t} { nome = tipo;}
+        ~FlorCarnivora() { };
+};
+class Fungo : public Inimigo {
+    protected:
+        string tipo;
+    public: 
+        // construtor e destrutor
+        Fungo(string t = "Fungo") : Inimigo{100, 40, 15}, tipo{t} { nome = tipo;}
+        ~Fungo() { };
+};
+class MaquinaIndustrial : public Inimigo {
+    protected:
+        string tipo;
+    public: 
+        // construtor e destrutor
+        MaquinaIndustrial(string t = "Maquina Industrial") : Inimigo{125, 50, 20}, tipo{t} { nome = tipo;}
+        ~MaquinaIndustrial() { };
+};
+class General : public Inimigo {
+    protected:
+        string tipo;
+    public: 
+        // construtor e destrutor
+        General(string t = "General") : Inimigo{150, 60, 25}, tipo{t} { nome = tipo;}
+        ~General() { };
+};
+class RainhaDasCinzas : public Inimigo {
+    protected:
+        string tipo;
+    public: 
+    // construtor e destrutor
+    RainhaDasCinzas(string t = "Rainha Das Cinzas") : Inimigo{200, 100, 30}, tipo{t} { nome = tipo;}
+    ~RainhaDasCinzas() { };  
+};
 #endif
