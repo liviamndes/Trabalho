@@ -15,7 +15,6 @@ class Personagem {
 
         // métodos de ataque e defesa
                 // ...
-
         // getters
         string getNome() const;
         int getVida() const;
