@@ -1,0 +1,135 @@
+                     🌍 Mundo das Fadas
+                          │
+      ┌───────────────────┴────────────────────┐
+      │                                        │
+  1.🌿 Bosque das Fadas                    2.🌑 Clareira Corrompida
+  Inimigo: Morcego                        Inimigo: Lobo
+  Missão: Ajudar fada ferida              Missão: Purificar pontos de poluição
+  Desafio:                                Desafio:
+  Item necessário: Poção de Cura          Item necessário: Raiz Ancestral
+  Habilidade de Defesa: Escudo de Luz     Habilidade de Defesa: Rugido da Natureza
+  Habilidade de Ataque: Dardo Luminoso     Habilidade de Ataque: Garras da Terra
+      │                                        │
+  3.💧 Lago das Lágrimas                     4.🏛 Ruínas
+  Inimigo: Flor Carnívora                  Inimigo: Fungo
+  Missão: Descobrir por que o lago secou   Missão: Recuperar Semente Ancestral.
+  Desafio:                                 Desafio:
+  Item necessário: Cristal da Água         Item necessário: Fases anteriores.
+  Habilidade de Defesa: Chuva Purificadora Habilidade de Defesa: Visão do Passado
+  Habilidade de Ataque: Jorro Encantado    Habilidade de Ataque: Esporos Explosivos
+      |                                    Observação: como a semente a de ser usada no final do jogo, 
+      |                                    usariamos itens anteriores para derrotar o vilao
+      │                                        │
+  5.🔥 Caminho de Cinzas                     6.⚙️ Base Indústria Sombria
+  Inimigo: Máquina Desmatadora             Inimigo: General da Exploração
+  Missão: Criar barreiras naturais         Missão: Sabotar a máquina central
+  Desafio:                                 Desafio:
+  Item necessário: Coração de Madeira      Item necessário: Amuleto da Esperança
+  Habilidade de Defesa: Raízes Vivas       Habilidade de Defesa: Aura da Resistência
+  Habilidade de Ataque: Chicote de Cipós    Habilidade de Ataque: Rajada Energética
+      │                                        │
+  7.❤️‍🔥 Coração da Floresta
+  Inimigo: Rainha das Cinzas
+  Missão: Ativar pedestais de energia pura
+  Desafio:
+  Item necessário: Cristal da Vida
+  Habilidade de Defesa: Renascimento da Floresta
+  Habilidade de Ataque: Explosão Celestial
+      
+
+
+  🌱 Final Alternativo  --- carcaterisca de jogo rpg.
+  ├── 🟢 Salvar a Floresta → Usar a Semente Ancestral e restaurar o equilíbrio.
+  ├── 🔴 Tornar-se Humana → Renunciar à missão e perder sua conexão com a magia.
+
+
+
+
+Detalhamento::
+
+🌿 Bosque das Fadas → Inimigo: Morcego  
+Missão:** **"Retorno ao Santuário" → Ajudar uma fada ferida a voltar ao santuário.  
+Quebra-cabeça e armadilhas: O jogador precisa atravessar um campo de plantas venenosas e coletar ingredientes para criar a **Poção de Cura**, essencial para restaurar a fada e permitir que ela continue sua jornada.  
+Batalha contra o vilão: Com a poção em mãos, a fada enfrenta o **Morcego Gigante**, cujos ataques envenenam. A poção serve como antídoto contra seus golpes mais devastadores.  
+Habilidades conquistadas:  
+-Defesa: `Escudo de Luz` → Reduz 25% do dano recebido por um turno.  
+-Ataque: `Dardo Luminoso` → Dispara flechas de luz que causam dano adicional contra inimigos sombrios.  
+
+---
+
+🌑 Clareira Corrompida → Inimigo: Lobo
+Missão:"Purificação da Terra" → Limpar pontos de poluição na clareira.  
+Quebra-cabeça e armadilhas: O jogador precisa encontrar **sementes purificadoras** e plantá-las nos locais poluídos, resolvendo um sistema de **pedras místicas** que ativam a purificação do solo.  
+Batalha contra o vilão: Com a **Raiz Ancestral** plantada, o Lobo Sombrio perde parte de sua força. O jogador usa esse item para absorver seu veneno e reduzir o impacto dos ataques.  
+Habilidades conquistadas:  
+-Defesa: `Rugido da Natureza` → Diminui o ataque dos inimigos temporariamente.  
+-Ataque: `Garras da Terra` → Cria raízes espinhosas que prendem e causam dano aos inimigos terrestres.  
+
+---
+
+💧 Lago das Lágrimas → Inimigo: Flor Carnívora  
+Missão:"Segredo nas Águas" → Descobrir por que o lago está secando.  
+Quebra-cabeça e armadilhas: O jogador deve seguir rastros de energia e recuperar o **Cristal da Água**, que destrava as fontes bloqueadas pelo inimigo.  
+Batalha contra o vilão: A fada usa o **Cristal da Água** para liberar fluxos de água e impedir que a **Flor Carnívora** absorva energia da terra durante a luta.  
+Habilidades conquistadas:  
+-Defesa: `Chuva Purificadora` → Remove debuffs e aumenta regeneração em combate.  
+-Ataque: `Jorro Encantado` → Dispara esferas de água contra inimigos, causando dano e redução de velocidade.  
+
+---
+
+🏛 Ruínas → Inimigo: Fungo  
+Missão:"A Relíquia Esquecida" → Recuperar a **Semente Ancestral**.  
+Quebra-cabeça e armadilhas: O jogador deve decifrar **inscrições antigas** e evitar armadilhas ocultas para acessar a relíquia protegida por entidades mágicas.  
+Batalha contra o vilão: O **Fungo Ancestral** libera esporos tóxicos que obscurecem a visão. O jogador usa **itens de fases anteriores** como o **Cristal da Água** e a **Raiz Ancestral** para resistir ao veneno e sobreviver ao combate.  
+Habilidades conquistadas:**  
+Defesa: `Visão do Passado` → Revela armadilhas ocultas e elementos estratégicos em níveis futuros.  
+Ataque: `Esporos Explosivos` → Lança partículas mágicas que explodem ao contato, causando dano em área.  
+
+---
+
+🔥 Caminho de Cinzas → Inimigo: Máquina Desmatadora  
+Missão:"O Último Refúgio" → Criar barreiras naturais para impedir a destruição.  
+Quebra-cabeça e armadilhas: O jogador precisa recuperar **sementes resistentes ao fogo** e ativar um sistema de **raízes protetoras** que criam um escudo vegetal contra chamas.  
+Batalha contra o vilão: O **Coração de Madeira** permite que o jogador avance pelas áreas incendiadas e resista ao calor da **Máquina Desmatadora**, tornando o combate possível.  
+Habilidades conquistadas:  
+- Defesa: `Raízes Vivas` → Cria obstáculos naturais para retardar o avanço dos inimigos.  
+-Ataque: `Chicote de Cipós` → Permite que a fada ataque inimigos à distância e cause dano contínuo.  
+
+---
+
+⚙️ Base Indústria Sombria → Inimigo: General da Exploração 
+Missão: "Infiltração Rebelde" → Sabotar a máquina central e desestabilizar as forças inimigas.  
+Quebra-cabeça e armadilhas: O jogador deve hackear **sistemas de segurança mágicos**, desarmar dispositivos e manipular tecnologia para acessar a sala do General.  
+Batalha contra o vilão: O jogador usa o **Amuleto da Esperança** para anular a interferência mágica e restaurar sua força durante a batalha contra o **General da Exploração**.  
+Habilidades conquistadas:
+-Defesa: `Aura da Resistência` → Mitiga danos ambientais e tecnológicos.  
+-Ataque: `Rajada Energética` → Permite liberar uma onda de energia que atinge múltiplos inimigos ao redor.  
+
+---
+
+❤️‍🔥 Coração da Floresta → Inimigo: Rainha das Cinzas  
+Missão:"Renascer ou Cair" → Ativar pedestais de energia pura para salvar a floresta.  
+Quebra-cabeça e armadilhas:O jogador precisa ativar **pedestais mágicos**, combinando todas as habilidades adquiridas para desbloquear o último estágio.  
+Batalha contra o vilão: A fada usa **todos os itens desbloqueados** nas fases anteriores para resistir ao poder da **Rainha das Cinzas** e enfraquecê-la gradualmente.  
+Habilidades conquistadas:  
+- Defesa: `Renascimento da Floresta` → Cura total e reforço mágico.  
+- Ataque: `Explosão Celestial` → Um golpe definitivo que atinge todos os inimigos em campo.  
+
+---
+
+Final alternativo:
+
+Salvar a Floresta
+✅ Usar a **Semente Ancestral** e **todas as habilidades adquiridas** para restaurar o equilíbrio e renascer como guardiã definitiva da natureza.  
+
+Se Corromper e Se Tornar Humana  
+🔹 A Rainha das Cinzas oferece um novo caminho:  
+_"Deixe para trás sua missão. Os humanos não carregam fardos... Seja como eles."_  
+
+🔹 Se escolher essa opção:  
+✅ A fada se torna humana e experimenta **sede, fome, ambição, medo** pela primeira vez.  
+✅ Mas percebe tarde demais que se tornou parte da destruição, e **não há como voltar atrás**.  
+
+
+
+
