@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include "Cenario.h"
+#include"Inventario.h"   //adicionei o arq aq, e um obj de inventario em jogador, e os metados nas funções mebro do jogador
+                        //apaga esse comentario e o de cima quando vc ver kkkk
 using namespace std;
 
 class Personagem {
@@ -26,6 +28,7 @@ class Jogador : public Personagem {
     protected:
         int nivel, experiencia;
         Cenario* cenarioAtual;  // -> composição
+        Inventario inv;  // cada jogador tem inventario própio 
         // vector<Missao*> missoesAtivas;
         // vector<Habilidade*> habilidadesAprendidas;
     public:
@@ -37,6 +40,11 @@ class Jogador : public Personagem {
                 // ...
         // métodos para verificar missões
                 // ...
+
+        //métados do inventario
+        void adicionarItemAoInventario(Item* item) { inv.addItem(item); }
+        void listarItensDoInventario() { inv.listarItens(); }
+        void usarItemDoInventario(string nomeItem) { inv.usarItem(nomeItem); }
 
         void ganharExperiencia(int xp);
         void subirNivel();
