@@ -2,7 +2,9 @@
 #define CENARIO_H
 
 class Cenario{
-
+    protected:
+        
+    public:
 };
 class BosqueDasFadas : public Cenario {
 
