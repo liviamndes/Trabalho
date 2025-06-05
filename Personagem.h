@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include "Cenario.h"
-#include"Inventario.h"   //adicionei o arq aq, e um obj de inventario em jogador, e os metados nas funções mebro do jogador
-                        //apaga esse comentario e o de cima quando vc ver kkkk
+#include"Inventario.h" 
+
 using namespace std;
 
 class Personagem {

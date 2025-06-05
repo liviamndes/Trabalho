@@ -5,14 +5,41 @@
 
 #ifndef CENARIO_H
 #define CENARIO_H
+#include <iostream>
+using namespace std;
+#include "Personagem.h"
 
 class Cenario{
     protected:
-        
+        string nome;
+        string descricao;
+        vector<Inimigo*> inimigos;
+        vector<Armadilha*> armadilhas;
+        vector<Puzzle*> puzzles;
+        Missao* missao;
+        vector<Cenario*> conexoes;
+
     public:
+        // Construtor e destrutor
+        Cenario(string n, string d) : nome{n}, descricao{d}, { };
+        ~Cenario() { };
+
+        void explorar(Jogador*) = 0;
+        void adicionarInimigo(Inimigo *inimigo) { inimigos.push_back(inimigo); }
+        void adicionarArmadilha(Armadilha *armadilha) { armadilha.push_back(armadilha); }
+        void adicionarPuzzle(Puzzle *puzzle) { puzzles.push_back(puzzle); }
+        void adicionarConexao(Cenario *cenario) {conexoes.push_back(cenario); }
+
+        // getters
+        string getNome() { return nome; }
+        vector<Cenario*> getConexoes() {return conexoes; }
 };
 class BosqueDasFadas : public Cenario {
+    private:
 
+    public:
+        BosqueDasFadas() : Cenario("Bosque das fadas", "Voce entra em um lindo bosque que vivem centenas de fadas e diversas flores misticas. Ha uma fada ferida no chao") {};
+        void explorar(Jogador*);
 };
 class ClareiraCorrompida : public Cenario {
 
