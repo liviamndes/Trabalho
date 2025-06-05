@@ -1,0 +1,2 @@
+//Descrição: Controla as batalhas em que jogadores e inimigos se alternam realizando ações (ataques, habilidades, defesas). Cada participante age em seu turno.
+//Exemplos de classes: Batalha, Turno, Habilidade.

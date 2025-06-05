@@ -6,8 +6,13 @@
 #ifndef CENARIO_H
 #define CENARIO_H
 #include <iostream>
-using namespace std;
 #include "Personagem.h"
+#include"Missao.h"
+#include "Inventario.h"
+#include"Habilidade.h"
+
+using namespace std;
+
 
 class Cenario{
     protected:
@@ -16,12 +21,13 @@ class Cenario{
         vector<Inimigo*> inimigos;
         vector<Armadilha*> armadilhas;
         vector<Puzzle*> puzzles;
-        Missao* missao;
+        Missao* missaoAtual;
+        Item* item;
         vector<Cenario*> conexoes;
 
     public:
         // Construtor e destrutor
-        Cenario(string n, string d) : nome{n}, descricao{d}, { };
+        Cenario(string n, string d, Missao* m, Item* i, Inimigo* v) : nome{n}, descricao{d}, missaoAtual{m}, item{i}, /*aq falta o vilao*/{}
         ~Cenario() { };
 
         void explorar(Jogador*) = 0;
@@ -33,6 +39,14 @@ class Cenario{
         // getters
         string getNome() { return nome; }
         vector<Cenario*> getConexoes() {return conexoes; }
+
+        //metados de missao
+        void iniciarMissao(Jogador* jogador){
+            cout << "Voce chegou ao " << nome << "\n";
+            cout << descricao << "\n";
+            missaoAtual->iniciar();
+        } //vo esperar vc acabar os cenarios pra acabar de implementar.
+
 };
 class BosqueDasFadas : public Cenario {
     private:

@@ -3,6 +3,10 @@
 // Ao final de cada batalha eh desbloqueada duas novas habilidades, para defesa e ataque(progredindo o personagem),
 // e uma nova missao para o próximo cenário.
 
+
+//falta a interação com o inventario: Descrição: Gerencia os objetos coletados pelo jogador durante a aventura. Permite adicionar, remover e visualizar objetos, como armas, armaduras, itens, poções e outros objetos.
+
+
 #ifndef INVENTARIO_H
 #define INVENTARIO_H
 

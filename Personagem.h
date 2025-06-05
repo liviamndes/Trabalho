@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "Cenario.h"
-#include"Inventario.h" 
+#include "Inventario.h" 
 
 using namespace std;
 
