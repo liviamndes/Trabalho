@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Cenario.h"
 #include "Inventario.h" 
+#include "Habilidade.h"
 
 using namespace std;
 
@@ -27,10 +28,11 @@ class Personagem {
 class Jogador : public Personagem {
     protected:
         int nivel, experiencia;
-        Cenario* cenarioAtual;  // -> composição
+        Cenario* cenarioAtual; 
+        Item *itemAtual;
+        Missao* missaoAtual;
         Inventario inv;  // cada jogador tem inventario própio 
-        // vector<Missao*> missoesAtivas;
-        // vector<Habilidade*> habilidadesAprendidas;
+        vector<Habilidade*> habilidadesAprendidas;
     public:
         // construtor e destrutor
         Jogador(int vida) : Personagem{"Jogador", vida, 10, 5}, nivel{1}, experiencia{0}, cenarioAtual{nullptr} { };
@@ -41,13 +43,19 @@ class Jogador : public Personagem {
         // métodos para verificar missões
                 // ...
 
-        //métados do inventario
-        void adicionarItemAoInventario(Item* item) { inv.addItem(item); }
+        // métodos do inventario
+        void adicionarItemAoInventario(Item *item) { inv.addItem(item); }
         void listarItensDoInventario() { inv.listarItens(); }
         void usarItemDoInventario(string nomeItem) { inv.usarItem(nomeItem); }
 
+        // método de missao
+        void iniciarMissao(Missao *missao) { missaoAtual = missao; missao->iniciar(); }
+       
         void ganharExperiencia(int xp);
         void subirNivel();
+
+        // getters
+        Missao* getMissaoAtual() { return missaoAtual; }
 };
 class Fada : public Jogador {
     public:
@@ -119,8 +127,8 @@ class RainhaDasCinzas : public Inimigo {
     protected:
         string tipo;
     public: 
-    // construtor e destrutor
-    RainhaDasCinzas(string t = "Rainha Das Cinzas") : Inimigo{200, 100, 30}, tipo{t} { nome = tipo;}
-    ~RainhaDasCinzas() { };  
+        // construtor e destrutor
+        RainhaDasCinzas(string t = "Rainha Das Cinzas") : Inimigo{200, 100, 30}, tipo{t} { nome = tipo;}
+        ~RainhaDasCinzas() { };  
 };
 #endif

@@ -10,10 +10,10 @@
 #ifndef INVENTARIO_H
 #define INVENTARIO_H
 
-#include<string>
-#include<iostream>
-#include<vector>
-#include"Personagem.h"
+#include <string>
+#include <iostream>
+#include <vector>
+#include "Personagem.h"
 
 using namespace std;
 
@@ -54,16 +54,16 @@ class Inventario{
         // destrutor
         ~Inventario () {
             for (size_t i = 0; i < itens.size(); i++) {
-            delete itens[i];
-        }
-
+                delete itens[i];
+            }
         }
 
         void addItem(Item* item){
             if (!item->estaDesbloqueado()) {
                 cout << "Item " << item->getNome() << " ainda está bloqueado!\n";
-            return;
-        }
+                return;
+            }
+            
             itens.push_back(item); //insere o item no vetor, função da biblioteca padrao vector
             cout << "Item "<< item->getNome() << " adicionado ao inventário!\n";
         }

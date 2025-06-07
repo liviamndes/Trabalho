@@ -1,0 +1,54 @@
+#include <iostream>
+#include "Personagem.h"
+#include "Cenario.h"
+#include "Missao.h"
+#include "BatalhaPorTurnos.h"
+
+using namespace std;
+
+// deve ser virtual ?
+void Cenario::iniciarMissao(Jogador *jogador) {
+    cout << "Voce chegou ao " << nome << "\n";
+    cout << descricao << "\n";
+    missaoAtual->iniciar();
+}
+void BosqueDasFadas::explorar(Jogador* jogador) {
+    
+    // Inicia a fase
+    if (jogador->getMissaoAtual() == nullptr) {
+        // Caso a missão ainda não tenha sido iniciada, vamos iniciar a missão
+        jogador->iniciarMissao(missaoAtual);
+        cout << "Missao iniciada!\n";
+    }
+
+    // Enfrentando inimigo: morcego
+    cout << "De repente, um Morcego aparece e começa a te ataca!\n";
+    Morcego *morcego = new Morcego();
+    batalha(jogador, morcego); // ! ! Implementei aqui o de batalha, mas se precisar alterar pode mexer ! !
+    delete morcego;
+
+    // Coletar ingredientes da poção de cura
+    cout << "Deseja coletar ingredientes para a Poção de Cura? (S/N)" << endl;
+    char resposta;
+    cin >> resposta;
+    if(resposta == 'S' || resposta == 's') {
+        cout << "Voce coletou as folhas e flores necessarias para a Poção de Cura.\n";
+        if (item) {  // Verifica se o item foi criado corretamente
+            jogador->adicionarItemAoInventario(item);
+        }
+        cout << "A Poção de Cura esta agora no seu inventario!" << "\n";
+
+        cout << "Deseja curar a fada ferida?\n";
+        cin >> resposta;
+
+        if(resposta == 'S' || resposta == 's') {
+            missaoAtual->concluir();
+        }
+        else {
+            cout << "Você ainda precisa da Poção de Cura para ajudar a fada!\n";
+        }
+    }
+    else {
+        cout << "Voce precisa coletar ingredientes para concluir a missao!\n";
+    }
+}

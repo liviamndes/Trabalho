@@ -1,10 +1,10 @@
 #ifndef MISSAO_H
 #define MISSAO_H
 
-#include<iostream>
-#include<string>
-#include"Habilidade.h"
-#include"Personagem.h"
+#include <iostream>
+#include <string>
+#include "Habilidade.h"
+#include "Personagem.h"
 
 using namespace std;
 
@@ -16,36 +16,39 @@ class Missao{
         Habilidade* habilidadeDefesa;
         Habilidade* habilidadeAtaque;
     public:
-        Missao(string t, string d, Habilidade* def, Habilidade* atk) : titulo{t}, descrição{d}, habilidadeDefesa{def}, habilidadeAtaque{atk} {}
-        virtual ~Missao() {}
+        Missao(string t, string d, Habilidade* def, Habilidade* atk) 
+            : titulo{t}, descrição{d}, habilidadeDefesa{def}, habilidadeAtaque{atk}, concluida{false} {}
+        virtual ~Missao() { }
 
-        void iniciar(){
+        void iniciar() {
             cout << "Missao iniciada: " << titulo << "\n";
             cout << "Objetivo: " << descrição << "\n";
         }
+        virtual void concluir() { concluida = true; }
+        Habilidade* getHabilidadeDefesa() { return habilidadeDefesa; }
+        Habilidade* getHabilidadeAtaque() { return habilidadeAtaque; }
 
-        Habilidade* getHabilidadeDefesa() { return habilidadeDefesa;}
-        Habilidade* getHabilidadeAtaque() { return habilidadeAtaque;}
-
+        bool estaConcluida() const { return concluida; }
 };
 
-//Missoes especificas para cada cenario
+// Missões especificas para cada cenario
 
-//Bosque das Fadas
+// Bosque das Fadas
 class ResgatarFada : public Missao{
     public:
-        ResgatarFada() : Missao("Retorno ao Santuario", "Ajude a fada ferida a voltar para o santuario.", new EscudoDeLuz(), new DardoLuminoso()) {}
+        ResgatarFada() : Missao("Retorno ao Santuario", "Ajude a fada ferida a voltar para o santuario.", 
+            new EscudoDeLuz(), new DardoLuminoso()) {}
         
-        void concluir(){
+        void concluir() override {
             concluida = true;
-            cout << "ocê resgatou a fada ferida e garantiu sua segurança! Missão concluída.\n";
+            cout << "voce resgatou a fada ferida e garantiu sua segurança! Missao concluoda.\n";
             cout << "Habilidades desbloqueadas:\n";
             habilidadeDefesa->ativar();
             habilidadeAtaque->ativar();
         }
 };
 
-//Clareira Corrompida
+// Clareira Corrompida
 class PurificarTerra : public Missao {
     public:
         PurificarTerra() : Missao("Purificação da Clareira", "Use magia para restaurar a terra corrompida.", new RugidoDaNatureza(), new GarrasDaTerra()) {}
@@ -59,7 +62,7 @@ class PurificarTerra : public Missao {
         }
 };
 
-//Ruinas
+// Ruinas
 class CriarBarreiras : public Missao {
     public:
         CriarBarreiras() : Missao("Defesa Contra as Chamas", "Fortaleça a floresta contra o avanço do fogo.", new AuraDaResistencia(), new ChicoteDeCipos()) {}
@@ -74,7 +77,7 @@ class CriarBarreiras : public Missao {
 };
 
 
-//Base industrial
+// Base industrial
 class MissaoSabotarIndustria : public Missao {
     public:
         MissaoSabotarIndustria() : Missao("Contra a Exploração", "Infiltre-se e sabote máquinas destrutivas.", new AuraDaResistencia(), new RajadaEnergetica()) {}
@@ -89,7 +92,7 @@ class MissaoSabotarIndustria : public Missao {
 };
 
 
-//Coracao da floresta
+// Coração da floresta
 class MissaoFinal : public Missao {
         public:
         MissaoFinal() : Missao("O Destino da Floresta", "Ative os pedestais de energia pura para restaurar a floresta.", new RenascimentoDaFloresta(), new ExplosaoCelestial()) {}
