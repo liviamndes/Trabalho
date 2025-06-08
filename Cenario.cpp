@@ -3,17 +3,16 @@
 #include "Cenario.h"
 #include "Missao.h"
 #include "BatalhaPorTurnos.h"
+#include "QuebraCabeca.h"
 
 using namespace std;
 
-// deve ser virtual ?
 void Cenario::iniciarMissao(Jogador *jogador) {
     cout << "Voce chegou ao " << nome << "\n";
     cout << descricao << "\n";
     missaoAtual->iniciar();
 }
 void BosqueDasFadas::explorar(Jogador* jogador) {
-    
     // Inicia a fase
     if (jogador->getMissaoAtual() == nullptr) {
         // Caso a missão ainda não tenha sido iniciada, vamos iniciar a missão
@@ -43,6 +42,8 @@ void BosqueDasFadas::explorar(Jogador* jogador) {
 
         if(resposta == 'S' || resposta == 's') {
             missaoAtual->concluir();
+            jogador->ganharExperiencia(50);
+            jogador->subirNivel();
         }
         else {
             cout << "Você ainda precisa da Poção de Cura para ajudar a fada!\n";
@@ -51,4 +52,27 @@ void BosqueDasFadas::explorar(Jogador* jogador) {
     else {
         cout << "Voce precisa coletar ingredientes para concluir a missao!\n";
     }
+}
+
+void ClareiraCorrompida::explorar(Jogador *jogador) {
+    // Inicia a fase
+    if (jogador->getMissaoAtual() == nullptr) {
+        // Caso a missão ainda não tenha sido iniciada, vamos iniciar a missão
+        jogador->iniciarMissao(missaoAtual);
+        cout << "Missao iniciada!\n";
+    }
+
+    // Enfrentando inimigo: Lobo
+    cout << "Voce começa a sentir uma presenca...\n";
+    cout << "Um lobo vindo da escuridao aparece e voce precisa se defender!\n";
+    Lobo *lobo = new Lobo();
+    batalha(jogador, lobo);
+    delete lobo;
+
+    // Quebra cabeça
+    QuebraClareira *clareira = new QuebraClareira();
+    jogador->definirQuebraCabeca(clareira);
+    jogador->resolverQuebraCabecaAtual();
+    delete clareira;
+
 }

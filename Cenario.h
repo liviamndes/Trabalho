@@ -68,7 +68,7 @@ class ClareiraCorrompida : public Cenario {
             "Voce entra em uma clareira sombria onde a vegetação parece murchar. "
             "O chao esta coberto por uma neblina negra e as arvores tem uma aparencia retorcida. "
             "O ar esta pesado, e o ambiente parece pulsar com uma energia malignamente distorcida. "
-            "A corrupção da terra pode ser sentida a cada passo. Em meio a escuridão, um lobo aparece.",
+            "A corrupção da terra pode ser sentida a cada passo. ",
             m, i, v) { };
             void explorar(Jogador*);
 };

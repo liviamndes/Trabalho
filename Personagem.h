@@ -2,9 +2,11 @@
 #define PERSONAGEM_H
 
 #include <iostream>
+#include <vector>
 #include "Cenario.h"
 #include "Inventario.h" 
 #include "Habilidade.h"
+#include "QuebraCabeca.h"
 
 using namespace std;
 
@@ -28,9 +30,10 @@ class Personagem {
 class Jogador : public Personagem {
     protected:
         int nivel, experiencia;
-        Cenario* cenarioAtual; 
+        Cenario *cenarioAtual; 
         Item *itemAtual;
-        Missao* missaoAtual;
+        Missao *missaoAtual;
+        QuebraCabeca *quebraCabecaAtual;
         Inventario inv;  // cada jogador tem inventario própio 
         vector<Habilidade*> habilidadesAprendidas;
     public:
@@ -51,7 +54,11 @@ class Jogador : public Personagem {
         // método de missao
         void iniciarMissao(Missao *missao) { missaoAtual = missao; missao->iniciar(); }
        
-        void ganharExperiencia(int xp);
+        // método de quebra cabeça
+        void definirQuebraCabeca(QuebraCabeca *qc) { quebraCabecaAtual = qc; }
+        void resolverQuebraCabecaAtual();
+
+        void ganharExperiencia(int);
         void subirNivel();
 
         // getters
