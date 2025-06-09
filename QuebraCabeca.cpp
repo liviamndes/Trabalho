@@ -47,7 +47,8 @@ bool QuebraClareira::resolver() {
         }
 
         if(correta) {
-            cout << "\nSequência correta! A clareira começa a brilhar e a vida retorna à terra.\n";
+            cout << "\nSequência correta, a magia de restauracao foi desbloqueada!\n";
+            cout << "A clareira começa a brilhar e a vida retorna a terra.\n";
             return true;
         } else {
             cout << "Tente novamente.\n";

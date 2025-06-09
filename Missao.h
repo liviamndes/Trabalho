@@ -51,7 +51,7 @@ class ResgatarFada : public Missao{
 // Clareira Corrompida
 class PurificarTerra : public Missao {
     public:
-        PurificarTerra() : Missao("Purificação da Clareira", "Use magia para restaurar a terra corrompida.", new RugidoDaNatureza(), new GarrasDaTerra()) {}
+        PurificarTerra() : Missao("Purificação da Clareira", "Desbloqueie a magia para restaurar a terra corrompida.", new RugidoDaNatureza(), new GarrasDaTerra()) {}
 
         void concluir(){
             concluida = true;

@@ -32,9 +32,9 @@ void BosqueDasFadas::explorar(Jogador* jogador) {
     cin >> resposta;
     if(resposta == 'S' || resposta == 's') {
         cout << "Voce coletou as folhas e flores necessarias para a Poção de Cura.\n";
-        if (item) {  // Verifica se o item foi criado corretamente
-            jogador->adicionarItemAoInventario(item);
-        }
+        // Receber item Pocao Cura
+                // . . .
+
         cout << "A Poção de Cura esta agora no seu inventario!" << "\n";
 
         cout << "Deseja curar a fada ferida?\n";
@@ -63,7 +63,7 @@ void ClareiraCorrompida::explorar(Jogador *jogador) {
     }
 
     // Enfrentando inimigo: Lobo
-    cout << "Voce começa a sentir uma presenca...\n";
+    cout << "Voce comeca a sentir uma presenca...\n";
     cout << "Um lobo vindo da escuridao aparece e voce precisa se defender!\n";
     Lobo *lobo = new Lobo();
     batalha(jogador, lobo);
@@ -72,7 +72,27 @@ void ClareiraCorrompida::explorar(Jogador *jogador) {
     // Quebra cabeça
     QuebraClareira *clareira = new QuebraClareira();
     jogador->definirQuebraCabeca(clareira);
-    jogador->resolverQuebraCabecaAtual();
+    bool resolveu = jogador->resolverQuebraCabecaAtual();
     delete clareira;
+
+    // Receber item de recompensa
+    if(resolveu) {
+    
+    }
+}
+void Ruinas::explorar(Jogador *jogador) {
+     // Inicia a fase
+    if (jogador->getMissaoAtual() == nullptr) {
+        // Caso a missão ainda não tenha sido iniciada, vamos iniciar a missão
+        jogador->iniciarMissao(missaoAtual);
+        cout << "Missao iniciada!\n";
+    }
+
+    // Enfrentando inimigo: Fungo
+    cout << "Você adentra as ruínas antigas e sente um ar pesado e sombrio...\n";
+    cout << "De repente, uma criatura sinistra emerge das sombras: um Fungo Ancestral!\n";
+    Fungo *fungo = new Fungo();
+    batalha(jogador, fungo); 
+    delete fungo;
 
 }

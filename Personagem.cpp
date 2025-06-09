@@ -1,6 +1,6 @@
 #include "Personagem.h"
 
-void Jogador::resolverQuebraCabecaAtual() {
+bool Jogador::resolverQuebraCabecaAtual() {
     if (!quebraCabecaAtual) {
         cout << "Nenhum quebra-cabeça atribuído ao jogador.\n";
         return;
@@ -15,9 +15,12 @@ void Jogador::resolverQuebraCabecaAtual() {
         if (missaoAtual) {
             missaoAtual->concluir();
             cout << "Missão concluída!\n";
+            return true;
         }
+        
     } else {
         cout << "Você falhou em resolver o quebra-cabeça.\n";
+        return false;
     }
 }
 void Jogador::ganharExperiencia(int xp) {
