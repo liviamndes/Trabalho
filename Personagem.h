@@ -58,6 +58,7 @@ class Jogador : public Personagem {
         void definirQuebraCabeca(QuebraCabeca *qc) { quebraCabecaAtual = qc; }
         bool resolverQuebraCabecaAtual();
 
+        void sofrerDano(int);
         void ganharExperiencia(int);
         void subirNivel();
 
@@ -90,14 +91,6 @@ class Morcego : public Inimigo {
         Morcego(string t = "Morcego") : Inimigo{25, 10, 1}, tipo{t} { nome = tipo;}
         ~Morcego() { };
 };
-class Lobo : public Inimigo {
-    protected:
-        string tipo;
-    public: 
-        // construtor e destrutor
-        Lobo(string t = "Lobo") : Inimigo{50, 20, 5}, tipo{t} { nome = tipo;}
-        ~Lobo() { };
-};
 class Fungo : public Inimigo {
     protected:
         string tipo;
@@ -106,21 +99,13 @@ class Fungo : public Inimigo {
         Fungo(string t = "Fungo") : Inimigo{100, 40, 15}, tipo{t} { nome = tipo;}
         ~Fungo() { };
 };
-class FlorCarnivora : public Inimigo {
+class AlmasPerdidas : public Inimigo {
     protected:
         string tipo;
     public: 
         // construtor e destrutor
-        FlorCarnivora(string t = "Flor Carnivora") : Inimigo{75, 30, 10}, tipo{t} { nome = tipo;}
-        ~FlorCarnivora() { };
-};
-class MaquinaIndustrial : public Inimigo {
-    protected:
-        string tipo;
-    public: 
-        // construtor e destrutor
-        MaquinaIndustrial(string t = "Maquina Industrial") : Inimigo{125, 50, 20}, tipo{t} { nome = tipo;}
-        ~MaquinaIndustrial() { };
+        AlmasPerdidas(string t = "Almas Perdidas") : Inimigo{75, 30, 10}, tipo{t} { nome = tipo;}
+        ~AlmasPerdidas() { };
 };
 class General : public Inimigo {
     protected:

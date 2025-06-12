@@ -4,6 +4,7 @@
 #include "Missao.h"
 #include "BatalhaPorTurnos.h"
 #include "QuebraCabeca.h"
+#include "Armadilha.h"
 
 using namespace std;
 
@@ -64,10 +65,10 @@ void ClareiraCorrompida::explorar(Jogador *jogador) {
 
     // Enfrentando inimigo: Lobo
     cout << "Voce comeca a sentir uma presenca...\n";
-    cout << "Um lobo vindo da escuridao aparece e voce precisa se defender!\n";
-    Lobo *lobo = new Lobo();
-    batalha(jogador, lobo);
-    delete lobo;
+    cout << "Um fungo infectado começou a te consumir e voce precisa se defender!\n";
+    Fungo *fungo = new Fungo();
+    batalha(jogador, fungo);
+    delete fungo;
 
     // Quebra cabeça
     QuebraClareira *clareira = new QuebraClareira();
@@ -80,19 +81,58 @@ void ClareiraCorrompida::explorar(Jogador *jogador) {
     
     }
 }
-void Ruinas::explorar(Jogador *jogador) {
-     // Inicia a fase
+void LagodasLagrimas::explorar(Jogador *jogador) {
+    // Inicia a fase
     if (jogador->getMissaoAtual() == nullptr) {
         // Caso a missão ainda não tenha sido iniciada, vamos iniciar a missão
         jogador->iniciarMissao(missaoAtual);
         cout << "Missao iniciada!\n";
     }
 
-    // Enfrentando inimigo: Fungo
-    cout << "Você adentra as ruínas antigas e sente um ar pesado e sombrio...\n";
-    cout << "De repente, uma criatura sinistra emerge das sombras: um Fungo Ancestral!\n";
-    Fungo *fungo = new Fungo();
-    batalha(jogador, fungo); 
-    delete fungo;
+    // Enfrentando inimigo: Almas perdias
+    cout << "Você começa a sentir uma presença sombria...\n";
+    cout << "As Almas Perdidas surgem e começam a cercá-lo. Prepare-se para a batalha!\n";
+    AlmasPerdidas *almas = new AlmasPerdidas();
+    batalha(jogador, almas);
+    delete almas;
 
+    // Jogador recebe recompensa
+    string resposta, purificar;
+    Item* cristal = new Item("Cristal da Agua", 
+        "Um cristal que contem o poder de purificar a terra");
+
+    cout << "Apos derrotar o inimigo, voce encontra um brilho na agua...\n";
+    cout << "Você se aproxima e encontra o" << cristal->getNome() << "\n";
+    cout << cristal->getDescricao() << "\n";
+    cout << "Voce deseja colocar o item no seu inventario (S/N)?\n";
+
+    cin >> resposta;
+    while(resposta != "S" && resposta != "N") {
+        cout << "Insira uma resposta valida (S/N)\n";
+        cin >> resposta;
+    }
+    if(resposta == "S") {
+        cout << "Voce agora possui o Cristal da Agua!\n";
+        jogador->adicionarItemAoInventario(cristal);
+        cout << "Digite 'PURIFICAR' para salvar o solo!";
+        cin >> purificar;
+        while(purificar != "PURIFICAR") {
+            cout << "Algo esta errado, tente novamente para concluir a missao!\n";
+            cin >> purificar;
+        }
+        jogador->usarItemDoInventario(cristal->getNome());
+        cout << "Voce acabou de restaurar o solo e o lago das lagrimas brilha novamente!\n";
+    }
+
+    // Armadilha
+    cout << "Antes de sair do lago, voce precisa tomar a 'Pocao Misterio' para se fortalecer para o que vier, ou nao...\n";
+ 
+    LagoArmadilha *lagoArmadilha = new LagoArmadilha();
+    lagoArmadilha->ativar(jogador);
+    delete lagoArmadilha;
+
+    // Concluir missão
+    missaoAtual->concluir();
+    jogador->ganharExperiencia(50);
+    jogador->subirNivel();
 }

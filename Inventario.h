@@ -124,7 +124,7 @@ public:
 //(Lago das Lágrimas)
 class CristalDaAgua : public Item {
 public:
-    CristalDaAgua() : Item("Cristal da Água", "Libera fontes bloqueadas e remove efeitos negativos.") { }
+    CristalDaAgua() : Item("Cristal da Água", "Purifica a terra e remove efeitos negativos.") { }
 
     void usar(Jogador& jogador) {
         if (estaDesbloqueado()) {

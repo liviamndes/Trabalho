@@ -33,12 +33,6 @@ class Cenario{
         virtual ~Cenario() { };
 
         virtual void explorar(Jogador*) = 0;
-
-        // Métodos de adição
-        void adicionarInimigo(Inimigo *inimigo) { inimigos.push_back(inimigo); }
-        void adicionarArmadilha(Armadilha *armadilha) { armadilhas.push_back(armadilha); }
-        void adicionarPuzzle(Puzzle *puzzle) { puzzles.push_back(puzzle); }
-        void adicionarConexao(Cenario *cenario) {conexoes.push_back(cenario); }
         
         // Getters
         string getNome() const { return nome; }
@@ -72,17 +66,6 @@ class ClareiraCorrompida : public Cenario {
             m, i, v) { };
             void explorar(Jogador*);
 };
-class Ruinas : public Cenario {
-    public:
-        Ruinas(Missao *m, Item *i, Inimigo *v) : Cenario("Ruinas", 
-            "Você chega a uma antiga estrutura de pedra, com pilares quebrados e paredes cobertas por musgo. "
-            "O ambiente está imerso em sombras, e um ar de mistério e abandono envolve o local. "
-            "Inscrições antigas estão gravadas nas pedras, e o eco de passos distantes pode ser ouvido. "
-            "A entrada para a câmara secreta, onde a Relíquia Esquecida está guardada, está protegida por armadilhas mágicas e criaturas antigas. "
-            "Você sente a presença de algo ameaçador. Há uma sensação de que o tempo parou aqui, mas algo ainda vigia estas ruínas.",
-            m, i, v) { };
-            void explorar(Jogador*);
-};
 class LagodasLagrimas : public Cenario {
     public: 
         LagodasLagrimas(Missao *m, Item *i, Inimigo *v) : Cenario("Lago das Lagrimas", 
@@ -94,17 +77,6 @@ class LagodasLagrimas : public Cenario {
             "Mas o inimigo, uma flor carnivora, bloqueia o caminho, absorvendo a energia vital da terra e tornando-se mais forte.",
             m, i, v) { };
             void explorar(Jogador*);
-};
-class CaminhoSombrio : public Cenario {
-    public:
-        CaminhoSombrio(Missao *m, Item *i, Inimigo *v) : Cenario("Caminho Sombrio",
-        "Você chega a uma antiga estrutura de pedra, com pilares quebrados e paredes cobertas por musgo. "
-        "O ambiente está imerso em sombras, e um ar de mistério e abandono envolve o local. "
-        "Inscrições antigas estão gravadas nas pedras, e o eco de passos distantes pode ser ouvido. "
-        "A entrada para a câmara secreta, onde a Relíquia Esquecida está guardada, está protegida por armadilhas mágicas e criaturas antigas. "
-        "Você sente a presença de algo ameaçador. Há uma sensação de que o tempo parou aqui, mas algo ainda vigia estas ruínas.",
-        m, i, v) { };
-        void explorar(Jogador*);
 };
 class BaseIndustria : public Cenario {
     public:

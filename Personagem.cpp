@@ -23,6 +23,17 @@ bool Jogador::resolverQuebraCabecaAtual() {
         return false;
     }
 }
+void Jogador::sofrerDano(int perda) {
+    vida-= perda;
+    if(vida <= 0)
+        cout << "Você foi derrotado... Esta morto!\n";
+    else {
+        cout << "Você sofreu " << perda << " de dano!\n";
+        cout << "Vida restante: " << vida << "\n";
+    }
+    
+    
+}
 void Jogador::ganharExperiencia(int xp) {
     experiencia += xp;
     cout << "Você ganhou " << xp << " pontos de experiência. Total: " << experiencia << "\n";
@@ -34,5 +45,5 @@ void Jogador::ganharExperiencia(int xp) {
 }
 void Jogador::subirNivel() {
     nivel++;
-    cout << "Parabéns! Você chegou ao nível " << nivel << "!\n";
+    cout << "Parabéns! Você chegou ao nivel " << nivel << "!\n";
 }
