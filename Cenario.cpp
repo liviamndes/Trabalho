@@ -78,7 +78,7 @@ void ClareiraCorrompida::explorar(Jogador *jogador) {
 
     // Receber item de recompensa
     if(resolveu) {
-    
+        cout << "A clareira começa a brilhar e a vida retorna a terra.\n";
     }
 }
 void LagodasLagrimas::explorar(Jogador *jogador) {
@@ -126,7 +126,6 @@ void LagodasLagrimas::explorar(Jogador *jogador) {
 
     // Armadilha
     cout << "Antes de sair do lago, voce precisa tomar a 'Pocao Misterio' para se fortalecer para o que vier, ou nao...\n";
- 
     LagoArmadilha *lagoArmadilha = new LagoArmadilha();
     lagoArmadilha->ativar(jogador);
     delete lagoArmadilha;
@@ -134,5 +133,103 @@ void LagodasLagrimas::explorar(Jogador *jogador) {
     // Concluir missão
     missaoAtual->concluir();
     jogador->ganharExperiencia(50);
+    jogador->subirNivel();
+}
+void BaseIndustria::explorar(Jogador *jogador) {
+    // Inicia a fase
+    if (jogador->getMissaoAtual() == nullptr) {
+        // Caso a missão ainda não tenha sido iniciada, vamos iniciar a missão
+        jogador->iniciarMissao(missaoAtual);
+        cout << "Missao iniciada!\n";
+    }
+
+    // Infiltração e hackeamento dos sistemas de segurança mágicos
+    cout << "Você se aproxima do centro de controle da base...\n";
+    cout << "Para acessar a sala do General, você precisa desarmar os dispositivos de segurança para infiltrar-se com sucesso.\n";
+    
+    // O jogador precisa resolver quebra-cabeças para hackear e desarmar dispositivos
+    cout << "Desarmando os feitiços magicos e hackeando os sistemas de segurança...\n";
+    QuebraIndustria *industia = new QuebraIndustria();
+    jogador->definirQuebraCabeca(industia);
+    bool resolveu = jogador->resolverQuebraCabecaAtual();
+    delete industia;
+
+    if (resolveu) {
+        // Inimigo: general
+        cout << "Voce conseguiu hackear os sistemas e desativar os feitiços magicos! O caminho agora esta livre para a infiltracao.\n";
+        cout << "Mas, ao chegar mais perto do centro de controle, você percebe que algo está errado...\n";
+        cout << "O General da Base Indústria Sombria estava esperando por voce o tempo todo. Ele e o comandante das forças de segurança da base e possui grande poder, tanto tecnológico quanto magico.\n";
+        cout << "Com sua presenca imponente e sua tecnologia avancada, ele ira lutar até o fim para proteger os segredos da base.\n";
+        cout << "Voce precisa se preparar para uma batalha intensa contra ele, que usa feitiçarias e tecnologias para aumentar sua forca. Prepare-se!\n";
+    
+        cout << "O General usa sua magia para invocar um escudo impenetrável ao redor de si, e sistemas automaticos começam a atacar de todas as direções!\n";
+        cout << "Voce sente o peso da batalha, mas com a forca adquirida nas missoes anteriores, voce esta pronto para enfrenta-lo.\n";
+        cout << "A luta sera difícil, mas se voce usar todas as suas habilidades e itens, pode conseguir derrota-lo e destruir a ameaça da Base Industria Sombria.\n";
+        
+        
+        General *general= new General();
+        // Aqui é onde o jogador deve usar o Amuleto da Esperança para restaurar a força
+        // Implementação do uso de habilidades e itens
+            //...
+        batalha(jogador, general);
+        delete general;
+
+        // Concluir missão
+        missaoAtual->concluir();
+        jogador->ganharExperiencia(50);
+        jogador->subirNivel();
+        
+    }
+    else {
+        cout << "Tente novamente\n";
+    }
+}
+void CoracaoDaFloresta::explorar(Jogador *jogador) {
+      // Inicia a fase
+    if (jogador->getMissaoAtual() == nullptr) {
+        // Caso a missão ainda não tenha sido iniciada, vamos iniciar a missão
+        jogador->iniciarMissao(missaoAtual);
+        cout << "Missão 'Renascer ou Cair' iniciada!\n";
+    }
+
+    cout << "Você chega ao Coração da Floresta. O ar está pesado, e a energia da natureza está se esvaindo.\n";
+    cout << "A Rainha das Cinzas corrompeu a floresta e controla a terra com sua magia negra.\n";
+    cout << "Para restaurar a floresta, você precisa ativar os pedestais mágicos espalhados pela região.\n";
+    cout << "Cada pedestal exige que você use as habilidades adquiridas nas fases anteriores.\n";
+
+    RainhaDasCinzas *rainha = new RainhaDasCinzas();
+    // pensei em fazer aqui uma batalha mais complexa
+    batalha(jogador, rainha);
+    deleete rainha;
+
+    cout << "\nAgora, com a Rainha das Cinzas derrotada, você enfrenta uma escolha dificil...\n";
+    cout << "A Rainha das Cinzas, antes de morrer, sussurra: 'Deixe para tras sua missão. Os humanos não carregam fardos... Seja como eles.'\n";
+    cout << "Você pode escolher: \n";
+    cout << "1. **Salvar a floresta** - Usar a **Semente Ancestral** e **todas as habilidades adquiridas** para restaurar o equilíbrio e renascer como guardiã definitiva da natureza.\n";
+    cout << "2. **Se corromper e se tornar humana** - Deixar para trás a missão e seguir a Rainha das Cinzas, tornando-se humana e abandonando seu papel como guardiã da natureza.\n";
+    
+    // Receber a escolha do jogador
+    string escolha;
+    cout << "Escolha 1 ou 2: ";
+    cin >> escolha;
+
+    if (escolha == "1") {
+        cout << "\nVocê decide salvar a floresta. Usando a **Semente Ancestral** e todas as habilidades adquiridas, você restaura o equilíbrio da natureza.\n";
+        cout << "Como guardiã definitiva da natureza, você vê a floresta florescer completamente, e a paz retorna ao mundo.\n";
+        cout << "A energia da floresta flui através de você, tornando-se um ser imortal, um símbolo da restauração e da força da natureza.\n";
+        cout << "A missão 'Renascer ou Cair' foi completada com sucesso. A floresta está salva e sua jornada como guardiã continua.\n";
+    } else if (escolha == "2") {
+        cout << "\nVocê decide seguir o caminho da Rainha das Cinzas, se tornando humana e abandonando sua missão como guardiã da natureza.\n";
+        cout << "Agora, você sente **sede, fome, ambição, medo** pela primeira vez, e o peso da humanidade se instala em seu coração.\n";
+        cout << "Mas, ao perceber tarde demais que se tornou parte da destruição, você entende que **não há como voltar atrás**.\n";
+        cout << "Você se torna parte da escuridão que corrompeu o mundo, e a natureza paga o preço pela sua escolha.\n";
+        cout << "A missão 'Renascer ou Cair' termina em tragédia. A floresta morreu, e você é agora parte do mal que ela produziu.\n";
+    } else {
+        cout << "\nEscolha inválida. A missão falhou. A floresta permanece em ruínas.\n";
+    }
+
+    // Conclusão da missão
+    missaoAtual->concluir();
+    jogador->ganharExperiencia(100);
     jogador->subirNivel();
 }

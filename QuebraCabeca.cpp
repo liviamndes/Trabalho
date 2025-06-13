@@ -1,6 +1,8 @@
 #include <iostream>
 #include <algorithm>
 #include <cctype>
+#include <vector>
+#include <string>
 #include "QuebraCabeca.h"
 
 using namespace std;
@@ -14,8 +16,8 @@ string QuebraCabeca::normalizar(string str) {
 
     return str;
 }
-bool QuebraClareira::resolver() {
-    cout << descricao << "\n\n";
+bool QuebraCabeca::resolver() {
+    cout << getDescricao() << "\n\n";
     cout << "Sequencia Inicial:\n";
     for(const auto& item : itens) {
         cout << "- " << item << "\n";
@@ -28,7 +30,7 @@ bool QuebraClareira::resolver() {
         vector<string> resposta;
         string entrada;
 
-        cout << "Digite a sequencia de pedras (quatro nomes separados por ENTER):\n";
+        cout << "Digite a sequencia correta (quatro nomes separados por ENTER):\n";
 
         for(int i = 0; i < 4; i++) {
             getline(cin, entrada);
@@ -47,8 +49,6 @@ bool QuebraClareira::resolver() {
         }
 
         if(correta) {
-            cout << "\nSequência correta, a magia de restauracao foi desbloqueada!\n";
-            cout << "A clareira começa a brilhar e a vida retorna a terra.\n";
             return true;
         } else {
             cout << "Tente novamente.\n";
