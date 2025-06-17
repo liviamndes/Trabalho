@@ -17,6 +17,13 @@
 
 using namespace std;
 
+class ItemBloqueadoException : public std::exception {
+public:
+    const char* what() const noexcept override {
+        return "Erro: O item esta bloqueado e não pode ser adicionado ao inventario. Resolva o desafio da fase para acessar";
+    }
+};
+
 class Item {
     protected: 
         string nome;
@@ -28,28 +35,22 @@ class Item {
             virtual ~Item() {}
 
 
-            string getNome() const {return nome;}
-            string getDescricao() const {return descricao;}
-            bool estaDesbloqueado() const {return desbloqueado;}
+            virtual string getNome() const {return nome;}
+            virtual string getDescricao() const {return descricao;}
+            virtual bool estaDesbloqueado() const {return desbloqueado;}
 
-            void desbloquear(){
+            virtual void desbloquear(){
                 desbloqueado = true;
                 cout << "Item:" << nome << " desbloqueado!\n";
             }
 
-            void usar(){
-                if(desbloqueado){
-                    cout << "Usou" << nome << "\n";
-                }else{
-                    cout << "Ainda não pode ser usado. Resolva o desafio da fase para acessar.\n";
-                }
-            }
+            virtual void usar() = 0;
 
 };
-
+template <typename T>
 class Inventario{
     private: 
-        vector<Item*> itens;   //"construtor":inicializa o vetor de itens, automaticamente ao criar um objeto da classe
+        vector<T*> itens;   //"construtor":inicializa o vetor de itens, automaticamente ao criar um objeto da classe
     public:
         // destrutor
         ~Inventario () {
@@ -58,10 +59,11 @@ class Inventario{
             }
         }
 
-        void addItem(Item* item){
+        void addItem(T* item){
             if (!item->estaDesbloqueado()) {
-                cout << "Item " << item->getNome() << " ainda está bloqueado!\n";
-                return;
+                 if (!item->estaDesbloqueado()) {
+                    throw ItemBloqueadoException(); 
+                }
             }
             
             itens.push_back(item); //insere o item no vetor, função da biblioteca padrao vector
@@ -78,7 +80,7 @@ class Inventario{
                 cout << item->getNome() << "-" << item->getDescricao() <<"\n";
         }
 
-        void usarItem(string nomeItem){
+        void usarItem(string &nomeItem){
             for(auto item : itens){
                 if(item->getNome() == nomeItem){
                     item->usar();
@@ -111,7 +113,7 @@ public:
     
     void usar(Jogador& jogador) {
         if (estaDesbloqueado()) {
-            jogador.aumentarDefesa(10); // Ex: aumenta defesa em 10 pontos //aqui ainda tenho que implementar a função. -- e o obj, defesa magica
+            jogador.recuperarVida(10); 
             cout << "A Raiz Ancestral fortaleceu sua resistência!\n";
         } else {
             cout << "A Raiz Ancestral ainda está bloqueada!\n";
@@ -120,24 +122,7 @@ public:
 
 };
 
-
-//(Lago das Lágrimas)
-class CristalDaAgua : public Item {
-public:
-    CristalDaAgua() : Item("Cristal da Água", "Purifica a terra e remove efeitos negativos.") { }
-
-    void usar(Jogador& jogador) {
-        if (estaDesbloqueado()) {
-            jogador.removerDanos(); //aqui ainda tenho que implementar a função. 
-            cout << "O Cristal da Água purificou sua energia!\n";
-        } else {
-            cout << "O Cristal da Água ainda está bloqueado!\n";
-        }
-    }
-
-};
-
-//(Ruínas)
+//(Clareira corrompida)
 class SementeAncestral : public Item {
 public:
     SementeAncestral() : Item("Semente Ancestral", "Fonte de energia pura, essencial para restaurar o mundo.") { }
@@ -152,17 +137,18 @@ public:
 
 };
 
-//(Caminho de Cinzas)
-class CoracaoDeMadeira : public Item {
+
+//(Lago das Lágrimas)
+class CristalDaAgua : public Item {
 public:
-    CoracaoDeMadeira() : Item("Coração de Madeira", "Protege contra chamas e ambientes hostis.") { }
+    CristalDaAgua() : Item("Cristal da Água", "Purifica a terra e remove efeitos negativos.") { }
 
     void usar(Jogador& jogador) {
         if (estaDesbloqueado()) {
-            jogador.reduzirDanoPorFogo(50); //aqui ainda tenho que implementar a função. -- escudo
-            cout << "O Coração de Madeira protegeu você contra queimaduras!\n";
+            jogador.recuperarVida(20); 
+            cout << "O Cristal da Água purificou sua energia!\n";
         } else {
-            cout << "O Coração de Madeira ainda está bloqueado!\n";
+            cout << "O Cristal da Água ainda está bloqueado!\n";
         }
     }
 
@@ -175,7 +161,7 @@ public:
 
      void usar(Jogador& jogador) {
         if (estaDesbloqueado()) {
-            jogador.aumentarDefesaMagica(15); //aqui ainda tenho que implementar a função. 
+            jogador.recuperarVida(15);  
             cout << "O Amuleto da Esperança fortaleceu sua resistência mágica!\n";
         } else {
             cout << "O Amuleto da Esperança ainda está bloqueado!\n";
@@ -191,8 +177,8 @@ public:
 
     void usar(Jogador& jogador) {
         if (estaDesbloqueado()) {
-            jogador.recuperarVidaTotal(); //aqui ainda tenho que implementar a função.
-            jogador.aumentarExperiencia(30); //aqui ainda tenho que implementar a função
+            jogador.recuperarVida(100); 
+            jogador.ganharExperiencia(30); 
             cout << "O Cristal da Vida restaurou toda sua energia e fortaleceu sua magia!\n";
         } else {
             cout << "O Cristal da Vida ainda está bloqueado!\n";

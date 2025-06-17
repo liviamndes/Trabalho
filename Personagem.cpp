@@ -32,6 +32,10 @@ void Jogador::sofrerDano(int perda) {
         cout << "Vida restante: " << vida << "\n";
     }
 }
+void Jogador:: atacar(Inimigo& inimigo){
+    cout << nome << "ataca" << inimigo.getNome() << "causando" << ataque << "de dano!";
+    inimigo.sofrerDano(ataque);
+}
 void Jogador::ganharExperiencia(int xp) {
     experiencia += xp;
     cout << "Você ganhou " << xp << " pontos de experiência. Total: " << experiencia << "\n";
@@ -44,4 +48,21 @@ void Jogador::ganharExperiencia(int xp) {
 void Jogador::subirNivel() {
     nivel++;
     cout << "Parabéns! Você chegou ao nivel " << nivel << "!\n";
+}
+void Jogador:: recuperarVida(int quant){
+    vida += quant;
+    cout << "Voce recuperou" << quant << " de vida. Vida total: " << vida << "\n";
+}
+void Inimigo::sofrerDano(int perda) {
+    vida-= perda;
+    if(vida <= 0)
+        cout << "Inimigo foi derrotado... Esta morto!\n";
+    else {
+        cout << nome <<" sofreu " << perda << " de dano!\n";
+        cout << "Vida restante: " << vida << "\n";
+    }
+}
+void Inimigo:: atacar(Jogador& jogador){
+    cout << nome << "ataca" << jogador.getNome() << "causando" << ataque << "de dano!";
+    jogador.sofrerDano(ataque);
 }

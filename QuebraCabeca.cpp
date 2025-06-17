@@ -51,8 +51,8 @@ bool QuebraCabeca::resolver() {
         if(correta) {
             return true;
         } else {
-            cout << "Tente novamente.\n";
             tentativaAtual++;
+            throw QuebraCabecaNaoResolvidoException();
         }
     }
 }

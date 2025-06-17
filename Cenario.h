@@ -40,7 +40,10 @@ class Cenario{
         vector<Cenario*> getConexoes() {return conexoes; }
 
         // Método de missao
-        void iniciarMissao(Jogador*);
+        void iniciarMissao(Jogador* jogador);
+
+        //metado batalha
+        void iniciarBatalha(Jogador& jogador, Inimigo& inimigo);
 };
 class BosqueDasFadas : public Cenario {
     private:
@@ -55,6 +58,8 @@ class BosqueDasFadas : public Cenario {
             "Voce deve reunir ingredientes para a Poção de Cura antes que seja tarde demais.",
             m, i, v) { };
             void explorar(Jogador*);
+
+            void iniciarBatalha(Jogador& jogador, Inimigo& inimigo);
 };
 class ClareiraCorrompida : public Cenario {
     public:
@@ -65,8 +70,10 @@ class ClareiraCorrompida : public Cenario {
             "A corrupção da terra pode ser sentida a cada passo. ",
             m, i, v) { };
             void explorar(Jogador*);
+
+            void iniciarBatalha(Jogador& jogador, Inimigo& inimigo);
 };
-class LagodasLagrimas : public Cenario {
+class LagodasLagrimas : public Cenario {  // como assim flor carnivora? o vilao nao era almas perdidas?
     public: 
         LagodasLagrimas(Missao *m, Item *i, Inimigo *v) : Cenario("Lago das Lagrimas", 
             "O Lago das Lágrimas, normalmente uma fonte de beleza serena, agora está secando e sua água parece desaparecer lentamente. "
@@ -77,6 +84,8 @@ class LagodasLagrimas : public Cenario {
             "Mas o inimigo, uma flor carnivora, bloqueia o caminho, absorvendo a energia vital da terra e tornando-se mais forte.",
             m, i, v) { };
             void explorar(Jogador*);
+
+            void iniciarBatalha(Jogador& jogador, Inimigo& inimigo);
 };
 class BaseIndustria : public Cenario {
     public:
@@ -89,6 +98,8 @@ class BaseIndustria : public Cenario {
         "A única esperança é o Amuleto da Esperança, que pode reverter os danos causados por essa interferência.",
         m, i, v) { };
         void explorar(Jogador*);
+
+        void iniciarBatalha(Jogador& jogador, Inimigo& inimigo);
 };
 class CoracaoDaFloresta : public Cenario {
     public:
@@ -101,5 +112,7 @@ class CoracaoDaFloresta : public Cenario {
             "Ao enfrentar a Rainha, você deve usar todo o poder acumulado para resistir à sua força destrutiva e restaurar o equilíbrio natural.",
             m, i, v) { };
         void explorar(Jogador*);
+
+        void iniciarBatalha(Jogador& jogador, Inimigo& inimigo);
 };
 #endif

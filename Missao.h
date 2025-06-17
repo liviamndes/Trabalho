@@ -27,6 +27,7 @@ class Missao{
         virtual void concluir() { concluida = true; }
         Habilidade* getHabilidadeDefesa() { return habilidadeDefesa; }
         Habilidade* getHabilidadeAtaque() { return habilidadeAtaque; }
+        
 
         bool estaConcluida() const { return concluida; }
 };
@@ -61,21 +62,6 @@ class PurificarTerra : public Missao {
             habilidadeAtaque->ativar();
         }
 };
-
-// Ruinas
-class CriarBarreiras : public Missao {
-    public:
-        CriarBarreiras() : Missao("Defesa Contra as Chamas", "Fortaleça a floresta contra o avanço do fogo.", new AuraDaResistencia(), new ChicoteDeCipos()) {}
-
-        void concluir(){
-            concluida = true;
-            cout << "Novas barreiras naturais contra incêndios! Missão concluída.\n";
-            cout << "Habilidades desbloqueadas:\n";
-            habilidadeDefesa->ativar();
-            habilidadeAtaque->ativar();
-        }
-};
-
 
 // Base industrial
 class MissaoSabotarIndustria : public Missao {

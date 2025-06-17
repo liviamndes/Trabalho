@@ -33,7 +33,7 @@ class Jogador : public Personagem {
         Missao *missaoAtual;
         QuebraCabeca *quebraCabecaAtual;
         Inventario inv;  // cada jogador tem inventario própio 
-        vector<Habilidade*> habilidadesAprendidas;
+        vector<Habilidade*> habilidades;
     public:
         // construtor e destrutor
         Jogador(int vida) : Personagem{"Jogador", vida, 10, 5}, nivel{1}, experiencia{0}, cenarioAtual{nullptr} { };
@@ -44,6 +44,12 @@ class Jogador : public Personagem {
         void listarItensDoInventario() { inv.listarItens(); }
         void usarItemDoInventario(string nomeItem) { inv.usarItem(nomeItem); }
 
+        //metado de habilidade
+        void adicionarHabilidade(Habilidade* habilidade) {
+            habilidades.push_back(habilidade);
+            cout << "Habilidade " << habilidade->getNome() << " adicionada ao jogador!\n";
+        }
+
         // método de missao
         void iniciarMissao(Missao *missao) { missaoAtual = missao; missao->iniciar(); }
        
@@ -51,9 +57,13 @@ class Jogador : public Personagem {
         void definirQuebraCabeca(QuebraCabeca *qc) { quebraCabecaAtual = qc; }
         bool resolverQuebraCabecaAtual();
 
+        //metados batalha
+        void atacar(Inimigo& inimigo);
+
         void sofrerDano(int);
         void ganharExperiencia(int);
         void subirNivel();
+        void recuperarVida(int);
 
         // getters
         Missao* getMissaoAtual() { return missaoAtual; }
@@ -64,11 +74,15 @@ class Fada : public Jogador {
         Fada() : Jogador{120} { };
         ~Fada() { };
 };
-class Inimigo : public Personagem {
+class Inimigo : public Personagem {  
     public: 
         // construtor e destrutor
         Inimigo(int v, int a, int d) : Personagem{"Inimigo", v, a, d} { };
         ~Inimigo() { };
+
+        void sofrerDano(int);
+        void atacar(Jogador& jogador);
+
 };
 class Morcego : public Inimigo {
     protected:
