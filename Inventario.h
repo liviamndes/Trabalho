@@ -111,7 +111,7 @@ public:
     
     void usar(Jogador& jogador) {
         if (estaDesbloqueado()) {
-            jogador.aumentarDefesa(10); // Ex: aumenta defesa em 10 pontos //aqui ainda tenho que implementar a função. -- e o obj, defesa magica
+            jogador.recuperarVida(10); 
             cout << "A Raiz Ancestral fortaleceu sua resistência!\n";
         } else {
             cout << "A Raiz Ancestral ainda está bloqueada!\n";
@@ -120,24 +120,7 @@ public:
 
 };
 
-
-//(Lago das Lágrimas)
-class CristalDaAgua : public Item {
-public:
-    CristalDaAgua() : Item("Cristal da Água", "Purifica a terra e remove efeitos negativos.") { }
-
-    void usar(Jogador& jogador) {
-        if (estaDesbloqueado()) {
-            jogador.removerDanos(); //aqui ainda tenho que implementar a função. 
-            cout << "O Cristal da Água purificou sua energia!\n";
-        } else {
-            cout << "O Cristal da Água ainda está bloqueado!\n";
-        }
-    }
-
-};
-
-//(Ruínas)
+//(Clareira corrompida)
 class SementeAncestral : public Item {
 public:
     SementeAncestral() : Item("Semente Ancestral", "Fonte de energia pura, essencial para restaurar o mundo.") { }
@@ -152,17 +135,18 @@ public:
 
 };
 
-//(Caminho de Cinzas)
-class CoracaoDeMadeira : public Item {
+
+//(Lago das Lágrimas)
+class CristalDaAgua : public Item {
 public:
-    CoracaoDeMadeira() : Item("Coração de Madeira", "Protege contra chamas e ambientes hostis.") { }
+    CristalDaAgua() : Item("Cristal da Água", "Purifica a terra e remove efeitos negativos.") { }
 
     void usar(Jogador& jogador) {
         if (estaDesbloqueado()) {
-            jogador.reduzirDanoPorFogo(50); //aqui ainda tenho que implementar a função. -- escudo
-            cout << "O Coração de Madeira protegeu você contra queimaduras!\n";
+            jogador.recuperarVida(20); 
+            cout << "O Cristal da Água purificou sua energia!\n";
         } else {
-            cout << "O Coração de Madeira ainda está bloqueado!\n";
+            cout << "O Cristal da Água ainda está bloqueado!\n";
         }
     }
 
@@ -175,7 +159,7 @@ public:
 
      void usar(Jogador& jogador) {
         if (estaDesbloqueado()) {
-            jogador.aumentarDefesaMagica(15); //aqui ainda tenho que implementar a função. 
+            jogador.recuperarVida(15);  
             cout << "O Amuleto da Esperança fortaleceu sua resistência mágica!\n";
         } else {
             cout << "O Amuleto da Esperança ainda está bloqueado!\n";
@@ -191,8 +175,8 @@ public:
 
     void usar(Jogador& jogador) {
         if (estaDesbloqueado()) {
-            jogador.recuperarVidaTotal(); //aqui ainda tenho que implementar a função.
-            jogador.aumentarExperiencia(30); //aqui ainda tenho que implementar a função
+            jogador.recuperarVida(100); 
+            jogador.ganharExperiencia(30); 
             cout << "O Cristal da Vida restaurou toda sua energia e fortaleceu sua magia!\n";
         } else {
             cout << "O Cristal da Vida ainda está bloqueado!\n";

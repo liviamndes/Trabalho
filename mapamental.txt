@@ -4,7 +4,7 @@
       │                                        │
   1.🌿 Bosque das Fadas                    2.🌑 Clareira Corrompida
   Inimigo: Morcego                        Inimigo: Lobo
-  Missão: Ajudar fada ferida              Missão: Purificar pontos de poluição
+  Missão: Ajudar fada ferida              Missão: Purificar pontos de poluição e recuperar a semente ancestral.
   Desafio:                                Desafio:
   Item necessário: Poção de Cura          Item necessário: Raiz Ancestral
   Habilidade de Defesa: Escudo de Luz     Habilidade de Defesa: Rugido da Natureza

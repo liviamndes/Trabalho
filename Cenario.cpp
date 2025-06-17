@@ -21,54 +21,48 @@ void BosqueDasFadas::explorar(Jogador* jogador) {
         cout << "Missao iniciada!\n";
     }
 
-    // Enfrentando inimigo: morcego
-    cout << "De repente, um Morcego aparece e começa a te ataca!\n";
-    Morcego *morcego = new Morcego();
-    batalha(jogador, morcego); // ! ! Implementei aqui o de batalha, mas se precisar alterar pode mexer ! !
-    delete morcego;
-
     // Coletar ingredientes da poção de cura
     cout << "Deseja coletar ingredientes para a Poção de Cura? (S/N)" << endl;
     char resposta;
     cin >> resposta;
     if(resposta == 'S' || resposta == 's') {
         cout << "Voce coletou as folhas e flores necessarias para a Poção de Cura.\n";
-        // Receber item Pocao Cura
-                // . . .
-
-        cout << "A Poção de Cura esta agora no seu inventario!" << "\n";
+        Item* pocao = new PocaoCura();
+        pocao->desbloquear();
+        jogador->adicionarItemAoInventario(pocao);
 
         cout << "Deseja curar a fada ferida?\n";
         cin >> resposta;
 
         if(resposta == 'S' || resposta == 's') {
+            jogador->usarItemDoInventario("Poção de cura");
             missaoAtual->concluir();
             jogador->ganharExperiencia(50);
             jogador->subirNivel();
         }
         else {
-            cout << "Você ainda precisa da Poção de Cura para ajudar a fada!\n";
+            cout << "Você ainda precisa da Poção de Cura para ajudar a fada!\n"; // nao entendi esse texto
         }
     }
     else {
         cout << "Voce precisa coletar ingredientes para concluir a missao!\n";
-    }
+    } // aqui nao teria que voltar na pergunta se quer coletar itens?
+    
+    // Enfrentando inimigo: morcego
+    cout << "De repente, um Morcego aparece e começa a te ataca!\n";
+    Morcego *morcego = new Morcego();
+    iniciarBatalha(jogador, morcego); 
+    delete morcego;
+
 }
 
 void ClareiraCorrompida::explorar(Jogador *jogador) {
     // Inicia a fase
-    if (jogador->getMissaoAtual() == nullptr) {
+    if (jogador->getMissaoAtual() == nullptr) { //eu tenho que implementar isso ou ta em algm lugar q eu n achei?
         // Caso a missão ainda não tenha sido iniciada, vamos iniciar a missão
         jogador->iniciarMissao(missaoAtual);
         cout << "Missao iniciada!\n";
     }
-
-    // Enfrentando inimigo: Lobo
-    cout << "Voce comeca a sentir uma presenca...\n";
-    cout << "Um fungo infectado começou a te consumir e voce precisa se defender!\n";
-    Fungo *fungo = new Fungo();
-    batalha(jogador, fungo);
-    delete fungo;
 
     // Quebra cabeça
     QuebraClareira *clareira = new QuebraClareira();
@@ -78,8 +72,17 @@ void ClareiraCorrompida::explorar(Jogador *jogador) {
 
     // Receber item de recompensa
     if(resolveu) {
-        cout << "A clareira começa a brilhar e a vida retorna a terra.\n";
+        Item* semente = new SementeAncestral();
+        semente->desbloquear();
+        jogador->adicionarItemAoInventario(semente);
     }
+
+    // Enfrentando inimigo: Fungo
+    cout << "Voce comeca a sentir uma presenca...\n";
+    cout << "Um fungo infectado começou a te consumir e voce precisa se defender!\n";
+    Fungo *fungo = new Fungo();
+    iniciarBatalha(jogador, fungo);
+    delete fungo;
 }
 void LagodasLagrimas::explorar(Jogador *jogador) {
     // Inicia a fase
@@ -93,12 +96,12 @@ void LagodasLagrimas::explorar(Jogador *jogador) {
     cout << "Você começa a sentir uma presença sombria...\n";
     cout << "As Almas Perdidas surgem e começam a cercá-lo. Prepare-se para a batalha!\n";
     AlmasPerdidas *almas = new AlmasPerdidas();
-    batalha(jogador, almas);
+    iniciarBatalha(jogador, almas);
     delete almas;
 
     // Jogador recebe recompensa
     string resposta, purificar;
-    Item* cristal = new Item("Cristal da Agua", 
+    Item* cristal = new Item("Cristal da Agua", // aq vc ta criando o item?
         "Um cristal que contem o poder de purificar a terra");
 
     cout << "Apos derrotar o inimigo, voce encontra um brilho na agua...\n";
@@ -124,7 +127,7 @@ void LagodasLagrimas::explorar(Jogador *jogador) {
         cout << "Voce acabou de restaurar o solo e o lago das lagrimas brilha novamente!\n";
     }
 
-    // Armadilha
+    // Armadilha --- nao entendi essa pocao misterio. eu tenho que fazer esse item?
     cout << "Antes de sair do lago, voce precisa tomar a 'Pocao Misterio' para se fortalecer para o que vier, ou nao...\n";
     LagoArmadilha *lagoArmadilha = new LagoArmadilha();
     lagoArmadilha->ativar(jogador);
@@ -155,6 +158,11 @@ void BaseIndustria::explorar(Jogador *jogador) {
     delete industia;
 
     if (resolveu) {
+
+        Item* amuleto = new AmuletoDaEsperanca();
+        amuleto->desbloquear();
+        jogador->adicionarItemAoInventario(amuleto);
+
         // Inimigo: general
         cout << "Voce conseguiu hackear os sistemas e desativar os feitiços magicos! O caminho agora esta livre para a infiltracao.\n";
         cout << "Mas, ao chegar mais perto do centro de controle, você percebe que algo está errado...\n";
@@ -171,7 +179,7 @@ void BaseIndustria::explorar(Jogador *jogador) {
         // Aqui é onde o jogador deve usar o Amuleto da Esperança para restaurar a força
         // Implementação do uso de habilidades e itens
             //...
-        batalha(jogador, general);
+        iniciarBatalha(jogador, general);
         delete general;
 
         // Concluir missão
@@ -199,8 +207,8 @@ void CoracaoDaFloresta::explorar(Jogador *jogador) {
 
     RainhaDasCinzas *rainha = new RainhaDasCinzas();
     // pensei em fazer aqui uma batalha mais complexa
-    batalha(jogador, rainha);
-    deleete rainha;
+    iniciarBatalha(jogador, rainha);
+    delete rainha;
 
     cout << "\nAgora, com a Rainha das Cinzas derrotada, você enfrenta uma escolha dificil...\n";
     cout << "A Rainha das Cinzas, antes de morrer, sussurra: 'Deixe para tras sua missão. Os humanos não carregam fardos... Seja como eles.'\n";

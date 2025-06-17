@@ -58,9 +58,13 @@ class Jogador : public Personagem {
         void definirQuebraCabeca(QuebraCabeca *qc) { quebraCabecaAtual = qc; }
         bool resolverQuebraCabecaAtual();
 
+        //metados batalha
+        void atacar(Inimigo& inimigo);
+
         void sofrerDano(int);
         void ganharExperiencia(int);
         void subirNivel();
+        void recuperarVida(int);
 
         // getters
         Missao* getMissaoAtual() { return missaoAtual; }
@@ -74,14 +78,15 @@ class Fada : public Jogador {
         // polimorfismo das funções de ataque e defesa
                 // ...
 };
-class Inimigo : public Personagem {
+class Inimigo : public Personagem {  
     public: 
         // construtor e destrutor
         Inimigo(int v, int a, int d) : Personagem{"Inimigo", v, a, d} { };
         ~Inimigo() { };
 
-        // polimorfismo das funções de ataque e defesa
-                // ...
+        void sofrerDano(int);
+        void atacar(Jogador& jogador);
+
 };
 class Morcego : public Inimigo {
     protected:
