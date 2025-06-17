@@ -225,7 +225,7 @@ void CoracaoDaFloresta::explorar(Jogador *jogador) {
         cout << "Você se torna parte da escuridão que corrompeu o mundo, e a natureza paga o preço pela sua escolha.\n";
         cout << "A missão 'Renascer ou Cair' termina em tragédia. A floresta morreu, e você é agora parte do mal que ela produziu.\n";
     } else {
-        cout << "\nEscolha inválida. A missão falhou. A floresta permanece em ruínas.\n";
+        cout << "\nEscolha invalida. A missao falhou. A floresta permanece em ruínas.\n";
     }
 
     // Conclusão da missão

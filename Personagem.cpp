@@ -31,8 +31,6 @@ void Jogador::sofrerDano(int perda) {
         cout << "Você sofreu " << perda << " de dano!\n";
         cout << "Vida restante: " << vida << "\n";
     }
-    
-    
 }
 void Jogador::ganharExperiencia(int xp) {
     experiencia += xp;

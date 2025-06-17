@@ -19,8 +19,6 @@ class Personagem {
         Personagem(string n, int v, int a, int d) : nome{n}, vida{v}, ataque{a}, dano{d} { };
         virtual ~Personagem() { };
 
-        // métodos de ataque e defesa, virtuais
-                // ...
         // getters
         string getNome() const { return nome; }
         int getVida() const { return vida; }
@@ -40,11 +38,6 @@ class Jogador : public Personagem {
         // construtor e destrutor
         Jogador(int vida) : Personagem{"Jogador", vida, 10, 5}, nivel{1}, experiencia{0}, cenarioAtual{nullptr} { };
         virtual ~Jogador() { };
-
-        // métodos para se mover por cenários
-                // ...
-        // métodos para verificar missões
-                // ...
 
         // métodos do inventario
         void adicionarItemAoInventario(Item *item) { inv.addItem(item); }
@@ -70,18 +63,12 @@ class Fada : public Jogador {
         // construtor e destrutor
         Fada() : Jogador{120} { };
         ~Fada() { };
-
-        // polimorfismo das funções de ataque e defesa
-                // ...
 };
 class Inimigo : public Personagem {
     public: 
         // construtor e destrutor
         Inimigo(int v, int a, int d) : Personagem{"Inimigo", v, a, d} { };
         ~Inimigo() { };
-
-        // polimorfismo das funções de ataque e defesa
-                // ...
 };
 class Morcego : public Inimigo {
     protected:
