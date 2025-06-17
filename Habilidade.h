@@ -44,17 +44,6 @@ class ChuvaPurificadora : public Habilidade {
         ChuvaPurificadora() : Habilidade("Chuva Purificadora", "Remove efeitos negativos e restaura 10% da vida.") {}
 };
 
-//Ruinas
-class VisaoDoPassado : public Habilidade{
-    public:
-        VisaoDoPassado() : Habilidade("Visão do Passado", "Revela armadilhas ocultas e elementos estratégicos em níveis futuros.") {}
-};
-
-// Caminho de Cinzas 
-class RaizesVivas : public Habilidade {
-    public:
-     RaizesVivas() : Habilidade("Raízes Vivas", "Enraíza o jogador no chão, reduzindo o impacto de golpes pesados.") {}
-};
 
 //Base Industrial
 class AuraDaResistencia : public Habilidade {
@@ -86,19 +75,6 @@ public:
 class JorroEncantado : public Habilidade {
 public:
     JorroEncantado() : Habilidade("Jorro Encantado", "Desencadeia um poderoso fluxo de água purificada.") {}
-};
-
-//Ruinas
-class EsporosExplosivos : public Habilidade {
-public:
-    EsporosExplosivos() : Habilidade("Esporos Explosivos", "Lança esporos venenosos que enfraquecem o inimigo por dois turnos.") {}
-};
-
-
-//Caminho das Cinzas
-class ChicoteDeCipos : public Habilidade {
-public:
-    ChicoteDeCipos() : Habilidade("Chicote de Cipós", "Golpeia o inimigo rapidamente com cipós encantados.") {}
 };
 
 //Base Industrial

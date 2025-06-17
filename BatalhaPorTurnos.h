@@ -4,8 +4,9 @@
 #ifndef BATALHAPORTURNOS_H
 #define BATALHAPORTURNOS_H
 
+#include"Habilidade.h"
 #include<iostream>
-#include<personagem.h>
+#include"Personagem.h"
 
 using namespace std;
 
@@ -24,7 +25,8 @@ class BatalhaPorTurnos{
             cout << "Escolha sua acao: \n";
             cout << "1 - Atacar\n";
             cout << "2 - Usar Item\n";
-            cout << "3 - Fugir\n";
+            cout << "3 - Usar habilidade(defesa ou ataque)\n";
+            cout << "4 - Fugir\n";
             int escolha;
             cin >> escolha;
 
@@ -42,7 +44,9 @@ class BatalhaPorTurnos{
                     jogador.usarItemDoInventario(nomeItem);
                 }
                 break;
-            case 3:
+            //case 3:
+            // aqui tenho que descobrir como fazer isso de usar a habilidade na batalha
+            case 3: //trocar 3 p 4, so ta assim p compilar se precisar.
                 cout << "Você fugiu da batalha!\n";
                 batalhaEmAndamento = false;
                 break;

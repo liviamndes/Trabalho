@@ -40,10 +40,10 @@ class Cenario{
         vector<Cenario*> getConexoes() {return conexoes; }
 
         // Método de missao
-        void iniciarMissao(Jogador*);
+        void iniciarMissao(Jogador* jogador);
 
         //metado batalha
-        virtual void iniciarBatalha(Jogador& jogador, Inimigo& inimigo);
+        void iniciarBatalha(Jogador& jogador, Inimigo& inimigo);
 };
 class BosqueDasFadas : public Cenario {
     private:

@@ -13,6 +13,45 @@ void Cenario::iniciarMissao(Jogador *jogador) {
     cout << descricao << "\n";
     missaoAtual->iniciar();
 }
+
+void Cenario :: iniciarBatalha(Jogador& jogador, Inimigo& inimigo){
+    BatalhaPorTurnos batalha(jogador, inimigo);
+    batalha.iniciar();
+
+    if (inimigo.getVida() <= 0) {
+        Habilidade* novaHabilidadeDefesa = nullptr;
+        Habilidade* novaHabilidadeAtaque = nullptr;
+
+        if (nome == "Bosque das Fadas") {
+            novaHabilidadeDefesa = new EscudoDeLuz();
+            novaHabilidadeAtaque = new DardoLuminoso();
+        }
+        else if (nome == "Clareira Corrompida") {
+            novaHabilidadeDefesa = new RugidoDaNatureza();
+            novaHabilidadeAtaque = new GarrasDaTerra();
+        }
+        else if (nome == "Lago das Lagrimas") {
+            novaHabilidadeDefesa = new ChuvaPurificadora();
+            novaHabilidadeAtaque = new JorroEncantado();
+        }
+        else if (nome == "Base da Industria") {
+            novaHabilidadeDefesa = new AuraDaResistencia();
+            novaHabilidadeAtaque = new RajadaEnergetica();
+        }
+        else if (nome == "Coracao da Floresta") {
+            novaHabilidadeDefesa = new RenascimentoDaFloresta();
+            novaHabilidadeAtaque = new ExplosaoCelestial();
+        }
+
+        if (novaHabilidadeDefesa != nullptr && novaHabilidadeAtaque != nullptr ) {
+            cout << "\nParabéns! Você desbloqueou a habilidade de defesa: " << novaHabilidadeDefesa->getNome() << "!\n";
+            cout << "\nParabéns! Você desbloqueou a habilidade de ataque: " << novaHabilidadeAtaque->getNome() << "!\n";
+            jogador.adicionarHabilidade(novaHabilidadeDefesa);
+            jogador.adicionarHabilidade(novaHabilidadeAtaque);
+        }
+    }
+}
+
 void BosqueDasFadas::explorar(Jogador* jogador) {
     // Inicia a fase
     if (jogador->getMissaoAtual() == nullptr) {
@@ -51,7 +90,7 @@ void BosqueDasFadas::explorar(Jogador* jogador) {
     // Enfrentando inimigo: morcego
     cout << "De repente, um Morcego aparece e começa a te ataca!\n";
     Morcego *morcego = new Morcego();
-    iniciarBatalha(jogador, morcego); 
+    iniciarBatalha(*jogador, *morcego); 
     delete morcego;
 
 }
@@ -81,7 +120,7 @@ void ClareiraCorrompida::explorar(Jogador *jogador) {
     cout << "Voce comeca a sentir uma presenca...\n";
     cout << "Um fungo infectado começou a te consumir e voce precisa se defender!\n";
     Fungo *fungo = new Fungo();
-    iniciarBatalha(jogador, fungo);
+    iniciarBatalha(*jogador, *fungo);
     delete fungo;
 }
 void LagodasLagrimas::explorar(Jogador *jogador) {
@@ -96,7 +135,7 @@ void LagodasLagrimas::explorar(Jogador *jogador) {
     cout << "Você começa a sentir uma presença sombria...\n";
     cout << "As Almas Perdidas surgem e começam a cercá-lo. Prepare-se para a batalha!\n";
     AlmasPerdidas *almas = new AlmasPerdidas();
-    iniciarBatalha(jogador, almas);
+    iniciarBatalha(*jogador, *almas);
     delete almas;
 
     // Jogador recebe recompensa
@@ -179,7 +218,7 @@ void BaseIndustria::explorar(Jogador *jogador) {
         // Aqui é onde o jogador deve usar o Amuleto da Esperança para restaurar a força
         // Implementação do uso de habilidades e itens
             //...
-        iniciarBatalha(jogador, general);
+        iniciarBatalha(*jogador, *general);
         delete general;
 
         // Concluir missão
@@ -207,7 +246,7 @@ void CoracaoDaFloresta::explorar(Jogador *jogador) {
 
     RainhaDasCinzas *rainha = new RainhaDasCinzas();
     // pensei em fazer aqui uma batalha mais complexa
-    iniciarBatalha(jogador, rainha);
+    iniciarBatalha(*jogador, *rainha);
     delete rainha;
 
     cout << "\nAgora, com a Rainha das Cinzas derrotada, você enfrenta uma escolha dificil...\n";
