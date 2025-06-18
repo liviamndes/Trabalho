@@ -140,8 +140,8 @@ void LagodasLagrimas::explorar(Jogador *jogador) {
 
     // Jogador recebe recompensa
     string resposta, purificar;
-    Item* cristal = new Item("Cristal da Agua", // aq vc ta criando o item?
-        "Um cristal que contem o poder de purificar a terra");
+    Item* cristal = new CristalDaAgua();
+    cristal->desbloquear();        
 
     cout << "Apos derrotar o inimigo, voce encontra um brilho na agua...\n";
     cout << "Você se aproxima e encontra o" << cristal->getNome() << "\n";
@@ -156,7 +156,7 @@ void LagodasLagrimas::explorar(Jogador *jogador) {
     if(resposta == "S") {
         cout << "Voce agora possui o Cristal da Agua!\n";
         jogador->adicionarItemAoInventario(cristal);
-        cout << "Digite 'PURIFICAR' para salvar o solo!";
+        cout << "Digite 'PURIFICAR' para salvar o lago!";
         cin >> purificar;
         while(purificar != "PURIFICAR") {
             cout << "Algo esta errado, tente novamente para concluir a missao!\n";
