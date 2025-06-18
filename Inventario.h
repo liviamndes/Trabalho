@@ -17,6 +17,13 @@
 
 using namespace std;
 
+class ItemBloqueadoException : public std::exception {
+public:
+    const char* what() const noexcept override {
+        return "Erro: O item esta bloqueado e não pode ser adicionado ao inventario. Resolva o desafio da fase para acessar";
+    }
+};
+
 class Item {
     protected: 
         string nome;
@@ -28,28 +35,22 @@ class Item {
             virtual ~Item() {}
 
 
-            string getNome() const {return nome;}
-            string getDescricao() const {return descricao;}
-            bool estaDesbloqueado() const {return desbloqueado;}
+            virtual string getNome() const {return nome;}
+            virtual string getDescricao() const {return descricao;}
+            virtual bool estaDesbloqueado() const {return desbloqueado;}
 
-            void desbloquear(){
+            virtual void desbloquear(){
                 desbloqueado = true;
                 cout << "Item:" << nome << " desbloqueado!\n";
             }
 
-            void usar(){
-                if(desbloqueado){
-                    cout << "Usou" << nome << "\n";
-                }else{
-                    cout << "Ainda não pode ser usado. Resolva o desafio da fase para acessar.\n";
-                }
-            }
+            virtual void usar() = 0;
 
 };
-
+template <typename T>
 class Inventario{
     private: 
-        vector<Item*> itens;   //"construtor":inicializa o vetor de itens, automaticamente ao criar um objeto da classe
+        vector<T*> itens;   //"construtor":inicializa o vetor de itens, automaticamente ao criar um objeto da classe
     public:
         // destrutor
         ~Inventario () {
@@ -58,10 +59,11 @@ class Inventario{
             }
         }
 
-        void addItem(Item* item){
+        void addItem(T* item){
             if (!item->estaDesbloqueado()) {
-                cout << "Item " << item->getNome() << " ainda está bloqueado!\n";
-                return;
+                 if (!item->estaDesbloqueado()) {
+                    throw ItemBloqueadoException(); 
+                }
             }
             
             itens.push_back(item); //insere o item no vetor, função da biblioteca padrao vector
@@ -78,7 +80,7 @@ class Inventario{
                 cout << item->getNome() << "-" << item->getDescricao() <<"\n";
         }
 
-        void usarItem(string nomeItem){
+        void usarItem(string &nomeItem){
             for(auto item : itens){
                 if(item->getNome() == nomeItem){
                     item->usar();

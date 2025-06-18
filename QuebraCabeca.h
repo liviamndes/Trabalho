@@ -5,6 +5,13 @@
 #include <vector>
 using namespace std;
 
+class QuebraCabecaNaoResolvidoException : public std::exception {
+public:
+    const char* what() const noexcept override {
+        return "Erro: O quebra-cabeca nao foi resolvido corretamente.";
+    }
+};
+
 class QuebraCabeca {
     protected:
         vector<string> itens;
@@ -17,7 +24,7 @@ class QuebraCabeca {
 
         string getDescricao() { return descricao; }
         static string normalizar(string);
-        bool resolver() = 0;
+        virtual bool resolver() = 0;
 };
 
 // Resolver as pedras místicas

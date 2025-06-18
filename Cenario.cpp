@@ -44,8 +44,8 @@ void Cenario :: iniciarBatalha(Jogador& jogador, Inimigo& inimigo){
         }
 
         if (novaHabilidadeDefesa != nullptr && novaHabilidadeAtaque != nullptr ) {
-            cout << "\nParabéns! Você desbloqueou a habilidade de defesa: " << novaHabilidadeDefesa->getNome() << "!\n";
-            cout << "\nParabéns! Você desbloqueou a habilidade de ataque: " << novaHabilidadeAtaque->getNome() << "!\n";
+            cout << "\nParabens! Você desbloqueou a habilidade de defesa: " << novaHabilidadeDefesa->getNome() << "!\n";
+            cout << "\nParabens! Você desbloqueou a habilidade de ataque: " << novaHabilidadeAtaque->getNome() << "!\n";
             jogador.adicionarHabilidade(novaHabilidadeDefesa);
             jogador.adicionarHabilidade(novaHabilidadeAtaque);
         }
@@ -69,7 +69,7 @@ void BosqueDasFadas::explorar(Jogador* jogador) {
         Item* pocao = new PocaoCura();
         pocao->desbloquear();
         jogador->adicionarItemAoInventario(pocao);
-
+        
         cout << "Deseja curar a fada ferida?\n";
         cin >> resposta;
 
@@ -201,6 +201,7 @@ void BaseIndustria::explorar(Jogador *jogador) {
         Item* amuleto = new AmuletoDaEsperanca();
         amuleto->desbloquear();
         jogador->adicionarItemAoInventario(amuleto);
+        delete amuleto;
 
         // Inimigo: general
         cout << "Voce conseguiu hackear os sistemas e desativar os feitiços magicos! O caminho agora esta livre para a infiltracao.\n";
@@ -272,7 +273,7 @@ void CoracaoDaFloresta::explorar(Jogador *jogador) {
         cout << "Você se torna parte da escuridão que corrompeu o mundo, e a natureza paga o preço pela sua escolha.\n";
         cout << "A missão 'Renascer ou Cair' termina em tragédia. A floresta morreu, e você é agora parte do mal que ela produziu.\n";
     } else {
-        cout << "\nEscolha inválida. A missão falhou. A floresta permanece em ruínas.\n";
+        cout << "\nEscolha invalida. A missao falhou. A floresta permanece em ruínas.\n";
     }
 
     // Conclusão da missão
