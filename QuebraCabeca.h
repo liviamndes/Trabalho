@@ -36,6 +36,7 @@ class QuebraClareira : public QuebraCabeca {
         "se conseguir ativar as pedras na sequência correta, pode purificar a terra e restaurar a clareira. "
         "As pedras estão dispostas em um círculo perfeito, e há uma pedra central que brilha com uma luz intensa. "
         "Mas a chave para a purificação está em acertar a sequência correta de pedras que devem ser ativadas.") { };
+        bool resolver() override;
 };
 
 class QuebraIndustria : public QuebraCabeca {
@@ -46,5 +47,6 @@ class QuebraIndustria : public QuebraCabeca {
         "Cada circuito precisa ser ativado na sequência correta para desativar as defesas e permitir a infiltração. "
         "Existem quatro circuitos com cores distintas dispostos em um painel eletrônico. "
         "A chave para o sucesso está em acertar a ordem correta de ativação dos circuitos.") { };
+        bool resolver() override;
 };
 #endif

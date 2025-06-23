@@ -53,12 +53,11 @@ void Cenario :: iniciarBatalha(Jogador& jogador, Inimigo& inimigo){
 }
 
 void BosqueDasFadas::explorar(Jogador* jogador) {
-    Missao* missaoBosque = new ResgatarFada();
     // Inicia a fase
     if (jogador->getMissaoAtual() == nullptr) {
-        // Caso a missão ainda não tenha sido iniciada, vamos iniciar a missão
-        jogador->iniciarMissao(missaoBosque);
-        cout << "Missao iniciada!\n";
+        // Caso a missão ainda nao tenha sido iniciada, vamos iniciar a missão
+        jogador->iniciarMissao(missaoAtual);
+        cout << "Missao iniciada: " << missaoAtual->getTitulo() << endl;
     }
 
     // Coletar ingredientes da poção de cura
@@ -67,9 +66,8 @@ void BosqueDasFadas::explorar(Jogador* jogador) {
     cin >> resposta;
     if(resposta == 'S' || resposta == 's') {
         cout << "Voce coletou as folhas e flores necessarias para a Poção de Cura.\n";
-        PocaoCura* pocao = new PocaoCura();
         pocao->desbloquear();
-        pocao->aplicarNoJogador(*jogador);
+        pocao->usar(*jogador);
         jogador->adicionarItemAoInventario(pocao);
         
         cout << "Deseja curar a fada ferida?\n";
@@ -91,9 +89,7 @@ void BosqueDasFadas::explorar(Jogador* jogador) {
     
     // Enfrentando inimigo: morcego
     cout << "De repente, um Morcego aparece e começa a te ataca!\n";
-    Morcego *morcego = new Morcego();
     iniciarBatalha(*jogador, *morcego); 
-    delete morcego;
 }
 
 void ClareiraCorrompida::explorar(Jogador *jogador) {
@@ -112,7 +108,7 @@ void ClareiraCorrompida::explorar(Jogador *jogador) {
 
     // Receber item de recompensa
     if(resolveu) {
-        Item* semente = new SementeAncestral();
+        Item *semente = new SementeAncestral();
         semente->desbloquear();
         jogador->adicionarItemAoInventario(semente);
     }

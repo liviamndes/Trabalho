@@ -11,24 +11,23 @@ using namespace std;
 class Missao{
     protected:
         string titulo;
-        string descrição;
+        string descricao;
         bool concluida;
         Habilidade* habilidadeDefesa;
         Habilidade* habilidadeAtaque;
     public:
         Missao(string t, string d, Habilidade* def, Habilidade* atk) 
-            : titulo{t}, descrição{d}, habilidadeDefesa{def}, habilidadeAtaque{atk}, concluida{false} {}
+            : titulo{t}, descricao{d}, habilidadeDefesa{def}, habilidadeAtaque{atk}, concluida{false} {}
         virtual ~Missao() { }
 
         void iniciar() {
             cout << "Missao iniciada: " << titulo << "\n";
-            cout << "Objetivo: " << descrição << "\n";
+            cout << "Objetivo: " << descricao << "\n";
         }
         virtual void concluir() { concluida = true; }
         Habilidade* getHabilidadeDefesa() { return habilidadeDefesa; }
         Habilidade* getHabilidadeAtaque() { return habilidadeAtaque; }
-        
-
+        string getTitulo() { return titulo; }
         bool estaConcluida() const { return concluida; }
 };
 

@@ -30,22 +30,20 @@ class Item {
         string descricao;
         bool desbloqueado;
     public:
-            //Construtor e destrutor
-            Item(string n, string d) : nome{n}, descricao{d}, desbloqueado{false} {}
-            virtual ~Item() {}
+        //Construtor e destrutor
+        Item(string n, string d) : nome{n}, descricao{d}, desbloqueado{false} {}
+        virtual ~Item() {}
 
 
-            string getNome() const {return nome;}
-            string getDescricao() const {return descricao;}
-            bool estaDesbloqueado() const {return desbloqueado;}
+        string getNome() const {return nome;}
+        string getDescricao() const {return descricao;}
+        bool estaDesbloqueado() const {return desbloqueado;}
 
-            void desbloquear(){
-                desbloqueado = true;
-                cout << "Item:" << nome << " desbloqueado!\n";
-            }
-
-            virtual void usar() = 0;
-
+        void desbloquear(){
+            desbloqueado = true;
+            cout << "Item:" << nome << " desbloqueado!\n";
+        }
+        virtual void usar(Jogador& jogador) = 0;
 };
 template <typename T>
 class Inventario{
@@ -95,58 +93,34 @@ class Inventario{
 class PocaoCura : public Item{
     public:
         PocaoCura() : Item("Pocao de Cura", "Recupera X HP e neutraliza venenos"){}
-
-
-        // precisa de aplicar isso nas outras classes
-        void usar() override{
-            cout << "Voce usou a " << getNome() << " e recuperou 50 de HP!\n"; 
-        }
-        void aplicarNoJogador(Jogador& jogador) {
+        void usar(Jogador& jogador) {
             if (estaDesbloqueado()) {
-                jogador.recuperarVida(50);  //aqui ainda tenho que implementar a função.
-            } else {
-                cout << "A Pocao de Cura ainda esta bloqueada!\n";
-            }
-        }
-};
-
-//(Clareira Corrompida)
-class RaizAncestral : public Item {
-public:
-    RaizAncestral() : Item("Raiz Ancestral", "Fortalece resistência contra venenos e ataques físicos.") { }
-    
-    void usar(Jogador& jogador) {
-        if (estaDesbloqueado()) {
-            jogador.recuperarVida(10); 
-            cout << "A Raiz Ancestral fortaleceu sua resistência!\n";
+            jogador.recuperarVida(50);  // Recupera 50 de vida no jogador
+            cout << "Voce usou a " << getNome() << endl; 
         } else {
-            cout << "A Raiz Ancestral ainda está bloqueada!\n";
+            cout << "A " << getNome() << " ainda está bloqueada!\n";
         }
     }
-
 };
 
 //(Clareira corrompida)
 class SementeAncestral : public Item {
-public:
-    SementeAncestral() : Item("Semente Ancestral", "Fonte de energia pura, essencial para restaurar o mundo.") { }
-
-    void usar(Jogador& jogador) {
-        if (estaDesbloqueado()) {
-            cout << "A Semente Ancestral brilha com energia pura...\n"; // ai salva o mundo kkkk 
+    public:
+        SementeAncestral() : Item("Semente Ancestral", "Fonte de energia pura, essencial para restaurar o mundo.") { }    
+        void usar(Jogador& jogador) {
+            if (estaDesbloqueado()) {
+            jogador.recuperarVida(50);  // Recupera 50 de vida no jogador
+            cout << "Voce usou a " << getNome() << endl; 
         } else {
-            cout << "A Semente Ancestral ainda está bloqueada!\n";
+            cout << "A " << getNome() << " ainda está bloqueada!\n";
         }
     }
-
 };
-
 
 //(Lago das Lágrimas)
 class CristalDaAgua : public Item {
 public:
-    CristalDaAgua() : Item("Cristal da Água", "Um cristal que contem o poder de purificar a terra") { }
-
+    CristalDaAgua() : Item("Cristal da Água", "Um cristal que contem o poder de purificar a terra") { };
     void usar(Jogador& jogador) {
         if (estaDesbloqueado()) {
             jogador.recuperarVida(20); 
@@ -190,6 +164,4 @@ public:
     }
 
 };
-
-
 #endif

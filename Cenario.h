@@ -5,8 +5,10 @@
 
 #ifndef CENARIO_H
 #define CENARIO_H
-#include <iostream>
+
+class Jogador;
 #include "Personagem.h"
+#include <iostream>
 #include "Missao.h"
 #include "Inventario.h"
 #include "Habilidade.h"
@@ -18,17 +20,16 @@ class Cenario{
     protected:
         string nome;
         string descricao;
-        vector<Inimigo*> inimigos;
-        vector<Armadilha*> armadilhas;
+        Inimigo *inimigo;
+        Armadilha *armadilha;
+        QuebraCabeca *quebra;
         Missao *missaoAtual;
         Item *item;
-        Inimigo *vilao;
-        vector<Cenario*> conexoes;
 
     public:
         // Construtor e destrutor
-        Cenario(string n, string d, Missao* m, Item* i, Inimigo* v) 
-            : nome{n}, descricao{d}, missaoAtual{m}, item{i}, vilao{v}, conexoes{} {};  
+        Cenario(string n, string d, Missao* m, Item* i, Inimigo* v, Armadilha* a, QuebraCabeca* q) 
+            : nome{n}, descricao{d}, missaoAtual{m}, item{i}, inimigo{v}, armadilha{a}, quebra{q} {};  
         virtual ~Cenario() { };
 
         virtual void explorar(Jogador*) = 0;
@@ -36,7 +37,6 @@ class Cenario{
         // Getters
         string getNome() const { return nome; }
         string getDescricao() const { return descricao; }
-        vector<Cenario*> getConexoes() {return conexoes; }
 
         // Método de missao
         void iniciarMissao(Jogador* jogador);
@@ -45,23 +45,22 @@ class Cenario{
         void iniciarBatalha(Jogador& jogador, Inimigo& inimigo);
 };
 class BosqueDasFadas : public Cenario {
-
     public:
-        BosqueDasFadas(Missao *m = nullptr, Item *i = nullptr, Inimigo *v = nullptr) : Cenario("Bosque das Fadas",
+        BosqueDasFadas(Missao *m, Item *i, Inimigo *v) : Cenario("Bosque das Fadas",
             "Você entra em um bosque iluminado por fadas e flores místicas. "
             "As árvores altas formam um teto natural que filtra a luz, criando uma atmosfera etérea. "
             "No centro do bosque, uma fada ferida repousa, suas asas estao danificadas. "
             "O ar ao redor é fresco e a fragrancia das flores torna o ambiente tranquilo, mas voce sente que ha algo urgente a ser feito. "
             "A estrada até o Santuário das Fadas está bloqueada por um campo de plantas venenosas, que ameaça qualquer um que tente atravessar. " 
             "Voce deve reunir ingredientes para a Poção de Cura antes que seja tarde demais.",
-            m, i, v) { };
+            m, i, v, nullptr, nullptr) { };
             void explorar(Jogador*);
 
             void iniciarBatalha(Jogador& jogador, Inimigo& inimigo);
 };
 class ClareiraCorrompida : public Cenario {
     public:
-        ClareiraCorrompida(Missao *m = nullptr, Item *i = nullptr, Inimigo *v = nullptr) : Cenario("Clareira Corrompida", 
+        ClareiraCorrompida(Missao *m, Item *i, Inimigo *v) : Cenario("Clareira Corrompida", 
             "Voce entra em uma clareira sombria onde a vegetação parece murchar. "
             "O chao esta coberto por uma neblina negra e as arvores tem uma aparencia retorcida. "
             "O ar esta pesado, e o ambiente parece pulsar com uma energia malignamente distorcida. "

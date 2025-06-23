@@ -14,6 +14,17 @@ int main() {
     Jogador jogador{"FadaGuardiana", 100};
 
     // 2. Definir Cenário Bosque das Fadas (FASE 1)
-    BosqueDasFadas bosque;
+    Missao* missaoBosque = new ResgatarFada();
+    Item* pocao = new PocaoCura();
+    Inimigo* morcego = new Morcego();
+
+    BosqueDasFadas bosque{missaoBosque, pocao, morcego};
+    jogador.setCenario(&bosque);
+    bosque.explorar(&jogador);
+
+    delete missaoBosque;
+    delete pocao;
+    delete morcego;
+    
     return 0;
 }

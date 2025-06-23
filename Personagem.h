@@ -86,7 +86,6 @@ class Inimigo : public Personagem {
 
         void sofrerDano(int);
         void atacar(Jogador& jogador);
-
 };
 class Morcego : public Inimigo {
     protected:
