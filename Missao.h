@@ -63,6 +63,21 @@ class PurificarTerra : public Missao {
         }
 };
 
+//Lago das lagrimas
+class PurificarTerra : public Missao {
+    public:
+        PurificarTerra() : Missao("Cure o Lago das Lagrimas", "Afaste as almas perdidas para encontrar o cristal da água e curar o lago.", new ChuvaPurificadora(), new JorroEncantado()) {}
+
+        void concluir(){
+            concluida = true;
+            cout << "Você curou o lago!As almas perdidas encontram paz no renascimento do lago, sendo libertas enfim da dor.\nMissão concluída.\n";
+            cout << "Habilidades desbloqueadas:\n";
+            habilidadeDefesa->ativar();
+            habilidadeAtaque->ativar();
+        }
+};
+
+
 // Base industrial
 class MissaoSabotarIndustria : public Missao {
     public:
@@ -70,7 +85,7 @@ class MissaoSabotarIndustria : public Missao {
 
         void concluir(){
             concluida = true;
-            cout << "Você sabotou os sistemas industriais! Missão concluída.\n";
+            cout << "Você sabotou os sistemas industriais e derrotou o general! Missão concluída.\n";
             cout << "Habilidades desbloqueadas:\n";
             habilidadeDefesa->ativar();
             habilidadeAtaque->ativar();

@@ -78,8 +78,7 @@ class LagodasLagrimas : public Cenario {  // como assim flor carnivora? o vilao 
             "A água do lago, que costumava brilhar com um tom azul etéreo, agora está turva e opaca. " 
             "A natureza ao redor também sofre, com as plantas murchando e os animais fugindo. "
             "Você sente que há algo errado com o coração do lago. "
-            "Seguindo rastros de energia, você encontra um Cristal da Agua, que pode ser a chave para restaurar o lago. "
-            "Mas o inimigo, uma flor carnivora, bloqueia o caminho, absorvendo a energia vital da terra e tornando-se mais forte.",
+            "Mas o inimigo, almas perdidas, bloqueiam o caminho, alimentando-se da fraqueza do lago para se tornarem mais fortes.",
             m, i, v) { };
             void explorar(Jogador*);
 
