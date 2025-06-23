@@ -35,11 +35,11 @@ class Item {
             virtual ~Item() {}
 
 
-            virtual string getNome() const {return nome;}
-            virtual string getDescricao() const {return descricao;}
-            virtual bool estaDesbloqueado() const {return desbloqueado;}
+            string getNome() const {return nome;}
+            string getDescricao() const {return descricao;}
+            bool estaDesbloqueado() const {return desbloqueado;}
 
-            virtual void desbloquear(){
+            void desbloquear(){
                 desbloqueado = true;
                 cout << "Item:" << nome << " desbloqueado!\n";
             }
@@ -94,16 +94,20 @@ class Inventario{
 //(Bosque das fadas)
 class PocaoCura : public Item{
     public:
-        PocaoCura() : Item("Poção de Cura", "Recupera X HP e neutraliza venenos"){}
+        PocaoCura() : Item("Pocao de Cura", "Recupera X HP e neutraliza venenos"){}
 
-        void usar(Jogador& jogador) {
-        if (estaDesbloqueado()) {
-            jogador.recuperarVida(50);  //aqui ainda tenho que implementar a função.
-            cout << "Você usou a Poção de Cura e recuperou X HP!\n";
-        } else {
-            cout << "A Poção de Cura ainda está bloqueada!\n";
+
+        // precisa de aplicar isso nas outras classes
+        void usar() override{
+            cout << "Voce usou a " << getNome() << " e recuperou 50 de HP!\n"; 
         }
-    }
+        void aplicarNoJogador(Jogador& jogador) {
+            if (estaDesbloqueado()) {
+                jogador.recuperarVida(50);  //aqui ainda tenho que implementar a função.
+            } else {
+                cout << "A Pocao de Cura ainda esta bloqueada!\n";
+            }
+        }
 };
 
 //(Clareira Corrompida)

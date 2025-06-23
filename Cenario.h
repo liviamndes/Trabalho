@@ -20,7 +20,6 @@ class Cenario{
         string descricao;
         vector<Inimigo*> inimigos;
         vector<Armadilha*> armadilhas;
-        vector<Puzzle*> puzzles;
         Missao *missaoAtual;
         Item *item;
         Inimigo *vilao;
@@ -46,10 +45,9 @@ class Cenario{
         void iniciarBatalha(Jogador& jogador, Inimigo& inimigo);
 };
 class BosqueDasFadas : public Cenario {
-    private:
 
     public:
-        BosqueDasFadas(Missao *m, Item *i, Inimigo *v) : Cenario("Bosque das Fadas",
+        BosqueDasFadas(Missao *m = nullptr, Item *i = nullptr, Inimigo *v = nullptr) : Cenario("Bosque das Fadas",
             "Você entra em um bosque iluminado por fadas e flores místicas. "
             "As árvores altas formam um teto natural que filtra a luz, criando uma atmosfera etérea. "
             "No centro do bosque, uma fada ferida repousa, suas asas estao danificadas. "
@@ -63,7 +61,7 @@ class BosqueDasFadas : public Cenario {
 };
 class ClareiraCorrompida : public Cenario {
     public:
-        ClareiraCorrompida(Missao *m, Item *i, Inimigo *v) : Cenario("Clareira Corrompida", 
+        ClareiraCorrompida(Missao *m = nullptr, Item *i = nullptr, Inimigo *v = nullptr) : Cenario("Clareira Corrompida", 
             "Voce entra em uma clareira sombria onde a vegetação parece murchar. "
             "O chao esta coberto por uma neblina negra e as arvores tem uma aparencia retorcida. "
             "O ar esta pesado, e o ambiente parece pulsar com uma energia malignamente distorcida. "
@@ -75,7 +73,7 @@ class ClareiraCorrompida : public Cenario {
 };
 class LagodasLagrimas : public Cenario {  // como assim flor carnivora? o vilao nao era almas perdidas?
     public: 
-        LagodasLagrimas(Missao *m, Item *i, Inimigo *v) : Cenario("Lago das Lagrimas", 
+        LagodasLagrimas(Missao *m = nullptr, Item *i = nullptr, Inimigo *v = nullptr) : Cenario("Lago das Lagrimas", 
             "O Lago das Lágrimas, normalmente uma fonte de beleza serena, agora está secando e sua água parece desaparecer lentamente. "
             "A água do lago, que costumava brilhar com um tom azul etéreo, agora está turva e opaca. " 
             "A natureza ao redor também sofre, com as plantas murchando e os animais fugindo. "
@@ -89,7 +87,7 @@ class LagodasLagrimas : public Cenario {  // como assim flor carnivora? o vilao 
 };
 class BaseIndustria : public Cenario {
     public:
-        BaseIndustria(Missao *m, Item *i, Inimigo *v) : Cenario("Base da Industria", 
+        BaseIndustria(Missao *m = nullptr, Item *i = nullptr, Inimigo *v = nullptr) : Cenario("Base da Industria", 
         "Você entra em uma imensa base industrial, onde máquinas gigantescas e tecnologia arcana estão em pleno funcionamento. "
         "O som de engrenagens e tubos de vapor ecoa por toda a instalação, criando uma atmosfera de total mecanização. "
         "O General da Exploração controla a área e está atrás de manipular a magia e a tecnologia para seus próprios fins. "
@@ -103,7 +101,7 @@ class BaseIndustria : public Cenario {
 };
 class CoracaoDaFloresta : public Cenario {
     public:
-        CoracaoDaFloresta(Missao *m, Item *i, Inimigo *v) : Cenario("Coracao da Floresta",
+        CoracaoDaFloresta(Missao *m = nullptr, Item *i = nullptr, Inimigo *v = nullptr) : Cenario("Coracao da Floresta",
             "Você chega ao centro da floresta, onde a natureza é mais vibrante e poderosa. "
             "O ar aqui parece mais fresco, e a luz solar brilha diretamente através das copas das árvores, criando um campo de luz dourada. "
             "No entanto, algo está prestes a mudar. "

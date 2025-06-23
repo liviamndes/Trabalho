@@ -32,11 +32,11 @@ class Jogador : public Personagem {
         Item *itemAtual;
         Missao *missaoAtual;
         QuebraCabeca *quebraCabecaAtual;
-        Inventario inv;  // cada jogador tem inventario própio 
+        Inventario<Item> inv;  // cada jogador tem inventario própio 
         vector<Habilidade*> habilidades;
     public:
         // construtor e destrutor
-        Jogador(int vida) : Personagem{"Jogador", vida, 10, 5}, nivel{1}, experiencia{0}, cenarioAtual{nullptr} { };
+        Jogador(string nome, int vida) : Personagem{nome, vida, 10, 5}, nivel{1}, experiencia{0}, cenarioAtual{nullptr} { };
         virtual ~Jogador() { };
 
         // métodos do inventario
@@ -57,8 +57,12 @@ class Jogador : public Personagem {
         void definirQuebraCabeca(QuebraCabeca *qc) { quebraCabecaAtual = qc; }
         bool resolverQuebraCabecaAtual();
 
-        //metados batalha
+        //metado batalha
         void atacar(Inimigo& inimigo);
+
+        // método cenário
+        void setCenario(Cenario* cenario) { cenarioAtual = cenario; }
+        Cenario* getCenario() { return cenarioAtual; }
 
         void sofrerDano(int);
         void ganharExperiencia(int);
