@@ -1,11 +1,13 @@
 #ifndef HABILIDADE_H 
 #define HABILIDADE_H
 
-#include "Personagem.h"
 #include<iostream>
 #include<string>
 
 using namespace std;
+
+class Jogador;
+class Inimigo;
 
 class Habilidade{
     protected:

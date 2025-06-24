@@ -4,9 +4,10 @@
 #include <iostream>
 #include <string>
 #include "Habilidade.h"
-#include "Personagem.h"
 
 using namespace std;
+
+class Jogador;
 
 class Missao{
     protected:

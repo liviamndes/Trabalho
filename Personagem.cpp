@@ -1,4 +1,11 @@
 #include "Personagem.h"
+#include "Personagem.h"
+#include "Item.h"
+#include "Habilidade.h"
+#include "Missao.h"
+#include "Cenario.h"
+#include "QuebraCabeca.h"
+#include "Armadilha.h"
 
 bool Jogador::resolverQuebraCabecaAtual() {
     if (!quebraCabecaAtual) {

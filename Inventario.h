@@ -43,7 +43,7 @@ class Item {
             desbloqueado = true;
             cout << "Item:" << nome << " desbloqueado!\n";
         }
-        virtual void usar(Jogador& jogador) = 0;
+        virtual void usar(Jogador* jogador) = 0;
 };
 template <typename T>
 class Inventario{
@@ -93,9 +93,9 @@ class Inventario{
 class PocaoCura : public Item{
     public:
         PocaoCura() : Item("Pocao de Cura", "Recupera X HP e neutraliza venenos"){}
-        void usar(Jogador& jogador) {
+        void usar(Jogador* jogador) {
             if (estaDesbloqueado()) {
-            jogador.recuperarVida(50);  // Recupera 50 de vida no jogador
+            jogador->recuperarVida(50);  // Recupera 50 de vida no jogador
             cout << "Voce usou a " << getNome() << endl; 
         } else {
             cout << "A " << getNome() << " ainda está bloqueada!\n";
@@ -107,9 +107,9 @@ class PocaoCura : public Item{
 class SementeAncestral : public Item {
     public:
         SementeAncestral() : Item("Semente Ancestral", "Fonte de energia pura, essencial para restaurar o mundo.") { }    
-        void usar(Jogador& jogador) {
+        void usar(Jogador* jogador) {
             if (estaDesbloqueado()) {
-            jogador.recuperarVida(50);  // Recupera 50 de vida no jogador
+            jogador->recuperarVida(50);  // Recupera 50 de vida no jogador
             cout << "Voce usou a " << getNome() << endl; 
         } else {
             cout << "A " << getNome() << " ainda está bloqueada!\n";
@@ -121,9 +121,9 @@ class SementeAncestral : public Item {
 class CristalDaAgua : public Item {
 public:
     CristalDaAgua() : Item("Cristal da Água", "Um cristal que contem o poder de purificar a terra") { };
-    void usar(Jogador& jogador) {
+    void usar(Jogador* jogador) {
         if (estaDesbloqueado()) {
-            jogador.recuperarVida(20); 
+            jogador->recuperarVida(20); 
             cout << "O Cristal da Água purificou sua energia!\n";
         } else {
             cout << "O Cristal da Água ainda está bloqueado!\n";
@@ -137,9 +137,9 @@ class AmuletoDaEsperanca : public Item {
 public:
     AmuletoDaEsperanca() : Item("Amuleto da Esperança", "Aumenta defesa mágica e resiste a interferências tecnológicas.") { }
 
-     void usar(Jogador& jogador) {
+     void usar(Jogador* jogador) {
         if (estaDesbloqueado()) {
-            jogador.recuperarVida(15);  
+            jogador->recuperarVida(15);  
             cout << "O Amuleto da Esperança fortaleceu sua resistência mágica!\n";
         } else {
             cout << "O Amuleto da Esperança ainda está bloqueado!\n";
@@ -153,15 +153,14 @@ class CristalDaVida : public Item {
 public:
     CristalDaVida() : Item("Cristal da Vida", "Potencializa magia e restaura energia máxima.") { }
 
-    void usar(Jogador& jogador) {
+    void usar(Jogador* jogador) {
         if (estaDesbloqueado()) {
-            jogador.recuperarVida(100); 
-            jogador.ganharExperiencia(30); 
+            jogador->recuperarVida(100); 
+            jogador->ganharExperiencia(30); 
             cout << "O Cristal da Vida restaurou toda sua energia e fortaleceu sua magia!\n";
         } else {
             cout << "O Cristal da Vida ainda está bloqueado!\n";
         }
     }
-
 };
 #endif

@@ -1,10 +1,5 @@
 #ifndef PERSONAGEM_H
 #define PERSONAGEM_H
-
-#include "Missao.h"
-#include "Inventario.h"
-#include "Habilidade.h"
-#include "QuebraCabeca.h"
 #include <iostream>
 #include <vector>
 
@@ -12,7 +7,13 @@ using namespace std;
 
 class Cenario;
 class Inimigo;
-class Jogador;
+class Item;
+class Missao;
+class QuebraCabeca;
+class Habilidade;
+
+template <typename T>
+class Inventario;
 
 class Personagem {
     protected:
