@@ -24,7 +24,15 @@ class Missao{
             cout << "Missao iniciada: " << titulo << "\n";
             cout << "Objetivo: " << descricao << "\n";
         }
-        virtual void concluir() { concluida = true; }
+
+        virtual void concluir(Jogador& jogador) { 
+            concluida = true; 
+            cout << "\nMissão concluída: " << titulo << "\n";
+            cout << "Habilidades desbloqueadas:\n";
+            jogador.adicionarHabilidade(habilidadeDefesa);
+            jogador.adicionarHabilidade(habilidadeAtaque);
+        }
+
         Habilidade* getHabilidadeDefesa() { return habilidadeDefesa; }
         Habilidade* getHabilidadeAtaque() { return habilidadeAtaque; }
         string getTitulo() { return titulo; }
@@ -39,12 +47,9 @@ class ResgatarFada : public Missao{
         ResgatarFada() : Missao("Retorno ao Santuario", "Ajude a fada ferida a voltar para o santuario.", 
             new EscudoDeLuz(), new DardoLuminoso()) {}
         
-        void concluir() override {
-            concluida = true;
-            cout << "voce resgatou a fada ferida e garantiu sua segurança! Missao concluoda.\n";
-            cout << "Habilidades desbloqueadas:\n";
-            habilidadeDefesa->ativar();
-            habilidadeAtaque->ativar();
+        void concluir(Jogador& jogador) override {
+            Missao::concluir(jogador);
+            cout << "Voce resgatou a fada ferida e garantiu sua segurança!";
         }
 };
 
@@ -53,12 +58,9 @@ class PurificarTerra : public Missao {
     public:
         PurificarTerra() : Missao("Purificação da Clareira", "Desbloqueie a magia para restaurar a terra corrompida.", new RugidoDaNatureza(), new GarrasDaTerra()) {}
 
-        void concluir(){
-            concluida = true;
-            cout << "Você restaurou a clareira! A natureza agradece. Missão concluída.\n";
-            cout << "Habilidades desbloqueadas:\n";
-            habilidadeDefesa->ativar();
-            habilidadeAtaque->ativar();
+        void concluir(Jogador& jogador) override {
+            Missao::concluir(jogador);
+            cout << "Você restaurou a clareira! A natureza agradece.\n";
         }
 };
 
@@ -67,12 +69,9 @@ class PurificarTerra : public Missao {
     public:
         PurificarTerra() : Missao("Cure o Lago das Lagrimas", "Afaste as almas perdidas para encontrar o cristal da água e curar o lago.", new ChuvaPurificadora(), new JorroEncantado()) {}
 
-        void concluir(){
-            concluida = true;
-            cout << "Você curou o lago!As almas perdidas encontram paz no renascimento do lago, sendo libertas enfim da dor.\nMissão concluída.\n";
-            cout << "Habilidades desbloqueadas:\n";
-            habilidadeDefesa->ativar();
-            habilidadeAtaque->ativar();
+        void concluir(Jogador& jogador) override {
+            Missao::concluir(jogador);
+            cout << "Você curou o lago!As almas perdidas encontram paz no renascimento do lago, sendo libertas enfim da dor.\n";
         }
 };
 
@@ -82,12 +81,9 @@ class MissaoSabotarIndustria : public Missao {
     public:
         MissaoSabotarIndustria() : Missao("Contra a Exploração", "Infiltre-se e sabote máquinas destrutivas.", new AuraDaResistencia(), new RajadaEnergetica()) {}
 
-        void concluir(){
-            concluida = true;
-            cout << "Você sabotou os sistemas industriais e derrotou o general! Missão concluída.\n";
-            cout << "Habilidades desbloqueadas:\n";
-            habilidadeDefesa->ativar();
-            habilidadeAtaque->ativar();
+        void concluir(Jogador& jogador) override {
+            Missao::concluir(jogador);
+            cout << "Você sabotou os sistemas industriais e derrotou o general!\n";
         }
 };
 
@@ -95,9 +91,10 @@ class MissaoSabotarIndustria : public Missao {
 // Coração da floresta
 class MissaoFinal : public Missao {
         public:
-        MissaoFinal() : Missao("O Destino da Floresta", "Ative os pedestais de energia pura para restaurar a floresta.", new RenascimentoDaFloresta(), new ExplosaoCelestial()) {}
+        MissaoFinal() : Missao("O Destino da Floresta", "Ative os pedestais de energia pura para restaurar a floresta.", 
+            new RenascimentoDaFloresta(), new ExplosaoCelestial()) {}
 
-        void Dialogo(Jogador& jogador){
+        void Dialogo(Jogador& jogador) {
             cout << "\n A Rainha das Cinzas está bem diante de você..\n\n";
             cout << "\nVocê lutou tanto pequena fada.. mas por quê?";
             cout << "\nSerá que não vê eles iram destruir a floresta novamente. Tudo será em vão";
@@ -136,8 +133,8 @@ class MissaoFinal : public Missao {
             concluida = true;
             cout << "Você salvou a floresta e restaurou o equilíbrio do mundo! Missão concluída.\n";
             cout << "Habilidades desbloqueadas:\n";
-            habilidadeDefesa->ativar();
-            habilidadeAtaque->ativar();
+            jogador.adicionarHabilidade(habilidadeDefesa);
+            jogador.adicionarHabilidade(habilidadeAtaque);
         }
 
         void concluirHumanidade(Jogador& jogador){

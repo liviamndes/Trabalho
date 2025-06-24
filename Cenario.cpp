@@ -66,6 +66,7 @@ void BosqueDasFadas::explorar(Jogador* jogador) {
     cin >> resposta;
     if(resposta == 'S' || resposta == 's') {
         cout << "Voce coletou as folhas e flores necessarias para a Poção de Cura.\n";
+        Item *pocao = new PocaoCura();
         pocao->desbloquear();
         pocao->usar(*jogador);
         jogador->adicionarItemAoInventario(pocao);
@@ -75,7 +76,7 @@ void BosqueDasFadas::explorar(Jogador* jogador) {
 
         if(resposta == 'S' || resposta == 's') {
             jogador->usarItemDoInventario("Poção de cura");
-            missaoAtual->concluir();
+            missaoAtual->concluir(*jogador);
             jogador->ganharExperiencia(50);
             jogador->subirNivel();
         }
@@ -89,6 +90,7 @@ void BosqueDasFadas::explorar(Jogador* jogador) {
     
     // Enfrentando inimigo: morcego
     cout << "De repente, um Morcego aparece e começa a te ataca!\n";
+    Morcego *morcego = new Morcego();
     iniciarBatalha(*jogador, *morcego); 
 }
 
@@ -170,7 +172,7 @@ void LagodasLagrimas::explorar(Jogador *jogador) {
     delete lagoArmadilha;
 
     // Concluir missão
-    missaoAtual->concluir();
+    missaoAtual->concluir(*jogador);
     jogador->ganharExperiencia(50);
     jogador->subirNivel();
 }
@@ -220,7 +222,7 @@ void BaseIndustria::explorar(Jogador *jogador) {
         delete general;
 
         // Concluir missão
-        missaoAtual->concluir();
+        missaoAtual->concluir(*jogador);
         jogador->ganharExperiencia(50);
         jogador->subirNivel();
         
@@ -274,7 +276,7 @@ void CoracaoDaFloresta::explorar(Jogador *jogador) {
     }
 
     // Conclusão da missão
-    missaoAtual->concluir();
+    missaoAtual->concluir(*jogador);
     jogador->ganharExperiencia(100);
     jogador->subirNivel();
 }

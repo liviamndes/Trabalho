@@ -1,6 +1,7 @@
 #ifndef HABILIDADE_H 
 #define HABILIDADE_H
 
+#include "Personagem.h"
 #include<iostream>
 #include<string>
 
@@ -17,7 +18,7 @@ class Habilidade{
         virtual string getNome() const {return nome;}
         virtual string getDescricao() const {return descricao;}
 
-        virtual void usar() = 0;
+        virtual void ativar(Jogador* jogador, Inimigo* inimigo) = 0;
 };
 
 
@@ -28,8 +29,11 @@ class EscudoDeLuz : public Habilidade{
     public:
         EscudoDeLuz() : Habilidade("Escudo de Luz", "Cria uma barreira mágica que reduz 25% do dano recebido por um turno."){}
        
-        void usar() override {
+        void ativar(Jogador* jogador, Inimigo* inimigo) override {
+            if(jogador!= nullptr){
             cout << "Voce usou o Escudo de Luz! Dano reduzido em 25% neste turno." << endl;
+            jogador->setModificadorDano(0.75);
+            }
         }
 
 };
@@ -38,8 +42,11 @@ class EscudoDeLuz : public Habilidade{
 class RugidoDaNatureza : public Habilidade {
     public:
         RugidoDaNatureza() : Habilidade("Rugido da Natureza", "Garante resistência contra ataques fisicos e magicos por um turno.") {}
-        void usar() override {
-            cout << "Você usou o Rugido da Natureza! Resistência aumentada contra ataques físicos e mágicos." << endl;
+        void ativar(Jogador* jogador, Inimigo* inimigo) override {
+            if(jogador != nullptr){
+                cout << "Você usou o Rugido da Natureza! Resistência aumentada contra ataques físicos e mágicos." << endl;   
+                jogador->setModificadorDano(0.3);
+            }
         }
 };
 
@@ -47,9 +54,13 @@ class RugidoDaNatureza : public Habilidade {
 class ChuvaPurificadora : public Habilidade {
     public:
         ChuvaPurificadora() : Habilidade("Chuva Purificadora", "Remove efeitos negativos e restaura 10% da vida.") {}
-        void usar() override {
-            cout << "Voce usou a Chuva Purificadora! Efeitos negativos removidos e 10% da vida restaurada." << endl;
-        }
+        void ativar(Jogador* jogador, Inimigo* inimigo) override {
+            if (jogador != nullptr) {
+                int cura = jogador->getMaxVida() * 0.1;
+                cout << "Voce usou a Chuva Purificadora! Efeitos negativos removidos e 10% da vida restaurada." << endl;
+                jogador->recuperarVida(cura);
+            }
+        }   
 };
 
 
@@ -57,8 +68,11 @@ class ChuvaPurificadora : public Habilidade {
 class AuraDaResistencia : public Habilidade {
     public:
         AuraDaResistencia() : Habilidade("Aura da Resistência", "Aumenta defesa contra habilidades tecnológicas.") {}
-        void usar() override {
+        void ativar(Jogador* jogador, Inimigo* inimigo) override {
+             if (jogador != nullptr) {
             cout << "Você usou a Aura da Resistencia! Defesa aumentada contra habilidades tecnológicas." << endl;
+            jogador->setModificadorDano(0.7);
+            }
         }
 };
 
@@ -66,8 +80,12 @@ class AuraDaResistencia : public Habilidade {
 class RenascimentoDaFloresta : public Habilidade {
     public:
         RenascimentoDaFloresta() : Habilidade("Renascimento da Floresta", "Regenera 30% da vida ao longo de três turnos.") {}
-        void usar() override {
-            cout << "Voce usou o Renascimento da Floresta! 30% da vida regenerada ao longo de 3 turnos." << endl;
+        void ativar(Jogador* jogador, Inimigo* inimigo) override {
+            if (jogador != nullptr) {
+                int cura = jogador->getMaxVida() * 0.1;
+                cout << "Voce usou o Renascimento da Floresta! 30% da vida regenerada ao longo de 3 turnos." << endl;
+                jogador->iniciarEfeitoRegeneracao(cura, 3);
+            }
         }
 };
 
@@ -77,8 +95,12 @@ class RenascimentoDaFloresta : public Habilidade {
 class DardoLuminoso : public Habilidade {
 public:
     DardoLuminoso() : Habilidade("Dardo Luminoso", "Dispara flechas de luz contra inimigos sombrios.") {}
-    void usar() override {
-        cout << "Voce usou o Dardo Luminoso! Flechas de luz atingem o inimigo!" << endl;
+    void ativar(Jogador* jogador, Inimigo* inimigo) override {
+        if (inimigo != nullptr) {
+            int dano = 30;
+            cout << "Voce usou o Dardo Luminoso! Flechas de luz atingem o inimigo!" << endl;
+            inimigo->sofrerDano(dano);
+        }
     }
 };
 
@@ -86,8 +108,12 @@ public:
 class GarrasDaTerra : public Habilidade {
 public:
     GarrasDaTerra() : Habilidade("Garras da Terra", "Ataca o inimigo com espinhos mágicos que causam dano terrestre.") {}
-    void usar() override {
-        cout << "Voce usou as Garras da Terra! Espinhos mágicos causam dano no inimigo!" << endl;
+    void ativar(Jogador* jogador, Inimigo* inimigo) override {
+        if (inimigo != nullptr) {
+            int dano = 25;
+            cout << "Voce usou as Garras da Terra! Espinhos mágicos causam dano >>"<< dano <<"<< no inimigo!" << endl;
+            inimigo->sofrerDano(dano);
+        }
     }
 };
 
@@ -95,8 +121,12 @@ public:
 class JorroEncantado : public Habilidade {
 public:
     JorroEncantado() : Habilidade("Jorro Encantado", "Desencadeia um poderoso fluxo de água purificada.") {}
-    void usar() override {
-        cout << "Voce usou o Jorro Encantado! Um poderoso fluxo de água purificada atinge o inimigo!" << endl;
+    void ativar(Jogador* jogador, Inimigo* inimigo) override {
+        if (inimigo != nullptr) {
+            int dano = 35;
+            cout << "Voce usou o Jorro Encantado! Um poderoso fluxo de água purificada atinge o inimigo!" << endl;
+            inimigo->sofrerDano(dano);
+        }
     }
 };
 
@@ -104,8 +134,12 @@ public:
 class RajadaEnergetica : public Habilidade {
 public:
     RajadaEnergetica() : Habilidade("Rajada Energética", "Dispara um feixe de energia concentrada.") {}
-    void usar() override {
-        cout << "Voce usou a Rajada Energética! Um feixe de energia concentrada atinge o inimigo!" << endl;
+    void ativar(Jogador* jogador, Inimigo* inimigo) override {
+        if (inimigo != nullptr) {
+            int dano = 40;
+            cout << "Voce usou a Rajada Energética! Um feixe de energia concentrada atinge o inimigo!" << endl;
+            inimigo->sofrerDano(dano);
+        }
     }
 };
 
@@ -113,8 +147,12 @@ public:
 class ExplosaoCelestial : public Habilidade {
 public:
     ExplosaoCelestial() : Habilidade("Explosao Celestial", "Libera uma onda de luz divina que causa grande dano em inimigos.") {}
-    void usar() override {
-        cout << "Você usou a Explosão Celestial! Uma onda de luz divina causa grande dano no inimigo!" << endl;
+    void ativar(Jogador* jogador, Inimigo* inimigo) override {
+        if (inimigo != nullptr) {
+            int dano = 50;
+            cout << "Você usou a Explosão Celestial! Uma onda de luz divina causa grande dano no inimigo!" << endl;
+            inimigo->sofrerDano(dano);
+        }
     }
 
 };

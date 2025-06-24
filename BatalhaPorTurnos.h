@@ -19,6 +19,8 @@ class BatalhaPorTurnos{
         BatalhaPorTurnos(Jogador& j, Inimigo& i) : jogador(j), inimigo(i), batalhaEmAndamento(true){}
 
         void turnoJogador(){
+            jogador.aplicarRegeneracaoPorTurno();
+
             cout << "Sua vez!\nVida do jogador:" << jogador.getVida() << "\n";
             cout << "Vida do" << inimigo.getNome() << ":" << inimigo.getVida() << "\n";
             
@@ -44,15 +46,22 @@ class BatalhaPorTurnos{
                     jogador.usarItemDoInventario(nomeItem);
                 }
                 break;
-            //case 3:
-            // aqui tenho que descobrir como fazer isso de usar a habilidade na batalha
-            case 3: //trocar 3 p 4, so ta assim p compilar se precisar.
+            case 3:
+                jogador.listarHabilidades();
+                cout << "Escolha a habilidade para usar: ";
+                int habilidadeEscolha;
+                cin >> habilidadeEscolha;
+                jogador.usarHabilidade(habilidadeEscolha, &jogador, &inimigo);
+                break;
+            case 4: 
                 cout << "Você fugiu da batalha!\n";
                 batalhaEmAndamento = false;
                 break;
             default:
                 cout << "Escolha inválida!\n";
             }
+
+            jogador.resetarModificadorDano();
         }
 
         void turnoInimigo() {

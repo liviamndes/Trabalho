@@ -28,7 +28,7 @@ class Cenario{
 
     public:
         // Construtor e destrutor
-        Cenario(string n, string d, Missao* m, Item* i, Inimigo* v, Armadilha* a, QuebraCabeca* q) 
+        Cenario(string n, string d, Missao* m, Item* i, Inimigo* v, Armadilha* a = nullptr, QuebraCabeca* q = nullptr) 
             : nome{n}, descricao{d}, missaoAtual{m}, item{i}, inimigo{v}, armadilha{a}, quebra{q} {};  
         virtual ~Cenario() { };
 
@@ -53,7 +53,7 @@ class BosqueDasFadas : public Cenario {
             "O ar ao redor é fresco e a fragrancia das flores torna o ambiente tranquilo, mas voce sente que ha algo urgente a ser feito. "
             "A estrada até o Santuário das Fadas está bloqueada por um campo de plantas venenosas, que ameaça qualquer um que tente atravessar. " 
             "Voce deve reunir ingredientes para a Poção de Cura antes que seja tarde demais.",
-            m, i, v, nullptr, nullptr) { };
+            m, i, v) { };
             void explorar(Jogador*);
 
             void iniciarBatalha(Jogador& jogador, Inimigo& inimigo);

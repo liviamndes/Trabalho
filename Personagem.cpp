@@ -13,8 +13,7 @@ bool Jogador::resolverQuebraCabecaAtual() {
         ganharExperiencia(25); 
 
         if (missaoAtual) {
-            missaoAtual->concluir();
-            cout << "Missão concluída!\n";
+            missaoAtual->concluir(*this);
             return true;
         }
         
@@ -24,6 +23,7 @@ bool Jogador::resolverQuebraCabecaAtual() {
     }
 }
 void Jogador::sofrerDano(int perda) {
+    perda = perda * modificadorDano;
     vida-= perda;
     if(vida <= 0)
         cout << "Você foi derrotado... Esta morto!\n";
@@ -51,7 +51,29 @@ void Jogador::subirNivel() {
 }
 void Jogador:: recuperarVida(int quant){
     vida += quant;
+    if (vida > vidaMaxima) vida = vidaMaxima;
     cout << "Voce recuperou" << quant << " de vida. Vida total: " << vida << "\n";
+}
+int Jogador::getMaxVida() const {
+    return vidaMaxima;
+}
+void Jogador::setModificadorDano(float modificador) {
+    modificadorDano = modificador;
+}
+void Jogador::resetarModificadorDano() {
+    modificadorDano = 1.0;
+}
+void Jogador::iniciarEfeitoRegeneracao(int vidaPorTurno_, int duracaoTurnos) {
+    vidaPorTurno = vidaPorTurno_;
+    turnosRegenerando = duracaoTurnos;
+    cout << "Você começará a recuperar " << vidaPorTurno << " de vida pelos próximos " << turnosRegenerando << " turnos.\n";
+}
+void Jogador::aplicarRegeneracaoPorTurno() {
+    if (turnosRegenerando > 0) {
+        cout << "Regeneração ativa: + " << vidaPorTurno << " de vida!\n";
+        recuperarVida(vidaPorTurno);
+        turnosRegenerando--;
+    }
 }
 void Inimigo::sofrerDano(int perda) {
     vida-= perda;

@@ -34,9 +34,15 @@ class Jogador : public Personagem {
         QuebraCabeca *quebraCabecaAtual;
         Inventario<Item> inv;  // cada jogador tem inventario própio 
         vector<Habilidade*> habilidades;
+        int vidaMaxima;
+        float modificadorDano = 1.0;
+        int turnosRegenerando = 0;
+        int vidaPorTurno = 0;
     public:
         // construtor e destrutor
-        Jogador(string nome, int vida) : Personagem{nome, vida, 10, 5}, nivel{1}, experiencia{0}, cenarioAtual{nullptr} { };
+        Jogador(string nome, int vida) : Personagem{nome, vida, 10, 5}, nivel{1}, experiencia{0}, cenarioAtual{nullptr} { 
+            vidaMaxima = vida;
+        }
         virtual ~Jogador() { };
 
         // métodos do inventario
@@ -49,33 +55,49 @@ class Jogador : public Personagem {
             habilidades.push_back(habilidade);
             cout << "Habilidade " << habilidade->getNome() << " adicionada ao jogador!\n";
         }
+        void listarHabilidades() {
+            cout << "\nHabilidades disponíveis:\n";
+            for (size_t i = 0; i < habilidades.size(); i++) {
+                cout << i+1 << " - " << habilidades[i]->getNome() << ": " << habilidades[i]->getDescricao() << endl;
+            }
+        }
+        void usarHabilidade(int escolha, Jogador* jogador, Inimigo* inimigo) {
+            if (escolha >= 1 && escolha <= habilidades.size()) {
+                cout << "\nUsando habilidade: " << habilidades[escolha-1]->getNome() << endl;
+                habilidades[escolha-1]->ativar(jogador, inimigo);
+            } else {
+                cout << "Escolha inválida.\n";
+            }
+        }
 
         // método de missao
         void iniciarMissao(Missao *missao) { missaoAtual = missao; missao->iniciar(); }
-       
+        Missao* getMissaoAtual() {return missaoAtual;}
+
         // método de quebra cabeça
         void definirQuebraCabeca(QuebraCabeca *qc) { quebraCabecaAtual = qc; }
         bool resolverQuebraCabecaAtual();
-
-        //metado batalha
-        void atacar(Inimigo& inimigo);
 
         // método cenário
         void setCenario(Cenario* cenario) { cenarioAtual = cenario; }
         Cenario* getCenario() { return cenarioAtual; }
 
+        //metado batalha
+        void atacar(Inimigo& inimigo);
         void sofrerDano(int);
         void ganharExperiencia(int);
         void subirNivel();
         void recuperarVida(int);
-
-        // getters
-        Missao* getMissaoAtual() { return missaoAtual; }
+        int getMaxVida() const;
+        void setModificadorDano(float modificador);
+        void resetarModificadorDano();
+        void iniciarEfeitoRegeneracao(int vidaPorTurno_, int duracaoTurnos);
+        void aplicarRegeneracaoPorTurno();
 };
 class Fada : public Jogador {
     public:
         // construtor e destrutor
-        Fada() : Jogador{120} { };
+        Fada() : Jogador{"Fada", 120} { };
         ~Fada() { };
 };
 class Inimigo : public Personagem {  
