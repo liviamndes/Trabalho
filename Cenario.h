@@ -7,11 +7,14 @@
 #define CENARIO_H
 
 class Jogador;
+class Inimigo;
+class Armadilha;
+class QuebraCabeca;
+class Item;
+class Missao;
+
 #include "Personagem.h"
 #include <iostream>
-#include "Missao.h"
-#include "Inventario.h"
-#include "Habilidade.h"
 
 using namespace std;
 

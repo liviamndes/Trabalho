@@ -3,7 +3,7 @@
 bool Jogador::resolverQuebraCabecaAtual() {
     if (!quebraCabecaAtual) {
         cout << "Nenhum quebra-cabeça atribuído ao jogador.\n";
-        return;
+        return false;
     }
 
     bool resolveu = quebraCabecaAtual->resolver();
