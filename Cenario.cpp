@@ -5,6 +5,7 @@
 #include "BatalhaPorTurnos.h"
 #include "QuebraCabeca.h"
 #include "Armadilha.h"
+#include "Inventario.h"
 
 using namespace std;
 
@@ -66,10 +67,9 @@ void BosqueDasFadas::explorar(Jogador* jogador) {
     cin >> resposta;
     if(resposta == 'S' || resposta == 's') {
         cout << "Voce coletou as folhas e flores necessarias para a Poção de Cura.\n";
-        Item *pocao = new PocaoCura();
-        pocao->desbloquear();
-        pocao->usar(*jogador);
-        jogador->adicionarItemAoInventario(pocao);
+        item->desbloquear();
+        item->usar(*jogador);
+        jogador->adicionarItemAoInventario(item);
         
         cout << "Deseja curar a fada ferida?\n";
         cin >> resposta;
@@ -90,8 +90,7 @@ void BosqueDasFadas::explorar(Jogador* jogador) {
     
     // Enfrentando inimigo: morcego
     cout << "De repente, um Morcego aparece e começa a te ataca!\n";
-    Morcego *morcego = new Morcego();
-    iniciarBatalha(*jogador, *morcego); 
+    iniciarBatalha(*jogador, *inimigo); 
 }
 
 void ClareiraCorrompida::explorar(Jogador *jogador) {

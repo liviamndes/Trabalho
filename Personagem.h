@@ -1,14 +1,18 @@
 #ifndef PERSONAGEM_H
 #define PERSONAGEM_H
 
-#include <iostream>
-#include <vector>
-#include "Cenario.h"
-#include "Inventario.h" 
+#include "Missao.h"
+#include "Inventario.h"
 #include "Habilidade.h"
 #include "QuebraCabeca.h"
+#include <iostream>
+#include <vector>
 
 using namespace std;
+
+class Cenario;
+class Inimigo;
+class Jogador;
 
 class Personagem {
     protected:
@@ -97,7 +101,7 @@ class Jogador : public Personagem {
 class Fada : public Jogador {
     public:
         // construtor e destrutor
-        Fada() : Jogador{"Fada", 120} { };
+        Fada() : Jogador{"FadaGuardiana", 120} { };
         ~Fada() { };
 };
 class Inimigo : public Personagem {  
