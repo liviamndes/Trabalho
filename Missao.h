@@ -65,9 +65,9 @@ class PurificarTerra : public Missao {
 };
 
 //Lago das lagrimas
-class PurificarTerra : public Missao {
+class CurarLago : public Missao {
     public:
-        PurificarTerra() : Missao("Cure o Lago das Lagrimas", "Afaste as almas perdidas para encontrar o cristal da água e curar o lago.", new ChuvaPurificadora(), new JorroEncantado()) {}
+        CurarLago() : Missao("Cure o Lago das Lagrimas", "Afaste as almas perdidas para encontrar o cristal da água e curar o lago.", new ChuvaPurificadora(), new JorroEncantado()) {}
 
         void concluir(Jogador& jogador) override {
             Missao::concluir(jogador);
@@ -77,9 +77,9 @@ class PurificarTerra : public Missao {
 
 
 // Base industrial
-class MissaoSabotarIndustria : public Missao {
+class SabotarIndustria : public Missao {
     public:
-        MissaoSabotarIndustria() : Missao("Contra a Exploração", "Infiltre-se e sabote máquinas destrutivas.", new AuraDaResistencia(), new RajadaEnergetica()) {}
+        SabotarIndustria() : Missao("Contra a Exploração", "Infiltre-se e sabote máquinas destrutivas.", new AuraDaResistencia(), new RajadaEnergetica()) {}
 
         void concluir(Jogador& jogador) override {
             Missao::concluir(jogador);
