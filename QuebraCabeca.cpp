@@ -31,13 +31,13 @@ bool QuebraCabeca::executarQuebraCabeca() {
         string entrada;
 
         cout << "Digite a sequencia correta (quatro nomes separados por ENTER):\n";
-
         for(int i = 0; i < 4; i++) {
             getline(cin, entrada);
             resposta.push_back(entrada);
         }
 
         bool correta = true;
+        cout << endl;
         for(int i = 0; i < 4; i++) {
             if(QuebraCabeca::normalizar(resposta[i]) == QuebraCabeca::normalizar(sequencia[i])) {
                 cout << "Posicao " << (i + 1) << ": " << resposta[i] << " esta correta!\n";

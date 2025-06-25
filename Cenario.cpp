@@ -6,7 +6,8 @@
 #include "QuebraCabeca.h"
 #include "Armadilha.h"
 #include "Inventario.h"
-
+#include <string>
+#include <algorithm>
 using namespace std;
 
 void Cenario::iniciarMissao(Jogador *jogador) {
@@ -148,14 +149,16 @@ void ClareiraCorrompida::explorar(Jogador *jogador) {
     // Quebra cabeça
     jogador->definirQuebraCabeca(quebra);
     bool resolveu = false;
-
-    try {
-        resolveu = jogador->resolverQuebraCabecaAtual();
-    } catch (QuebraCabecaNaoResolvidoException& e) {
-        cout << e.what() << "\n";
-        cout << "Tente novamente.\n";
+    while(resolveu == false) {
+        try {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            resolveu = jogador->resolverQuebraCabecaAtual();
+        } catch (QuebraCabecaNaoResolvidoException& e) {
+            cout << e.what() << "\n";
+            cout << "Tente novamente.\n";
+        }
     }
-    // tem que ver quando que ele vai usar esses itens 
+
     // Receber item de recompensa
     if(resolveu) {
         item->desbloquear();
@@ -164,7 +167,7 @@ void ClareiraCorrompida::explorar(Jogador *jogador) {
 
     // Enfrentando inimigo: Fungo
     cout << "Voce comeca a sentir uma presenca...\n";
-    cout << "Um fungo infectado começou a te consumir e voce precisa se defender!\n";
+    cout << "Um fungo infectado comecou a te consumir e voce precisa se defender!\n";
     iniciarBatalha(*jogador, *inimigo);
     jogador->concluirMissao(missaoAtual);
 }
