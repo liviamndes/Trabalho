@@ -85,7 +85,7 @@ int main() {
 
     //5.Definir Cenario Base Industrial(FASE 4)
     cout << "\n=============================================\n";
-    cout << "             Fase 4: Base da Industria          ";
+    cout << "             Fase 4: Base da Industria          \n";
     cout << "=============================================\n\n";
     Missao* missaoIndustria = new SabotarIndustria();
     Item* amuleto = new AmuletoDaEsperanca();
@@ -101,7 +101,7 @@ int main() {
 
     //Definir Cenario Coração da Floresta (FASE 5 - final)
     cout << "\n=============================================\n";
-    cout << "             Fase 5: Coracao da Floresta         ";
+    cout << "             Fase 5: Coracao da Floresta         \n";
     cout << "=============================================\n\n";
     Missao* missaoFinal = new MissaoFinal();
     Item* cristalVida = new CristalDaVida();

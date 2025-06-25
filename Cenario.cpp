@@ -246,6 +246,7 @@ void ClareiraCorrompida::explorar(Jogador *jogador)
         }
     } while (!resultado.venceu);
 
+    jogador->subirNivel();
     jogador->concluirMissao(missaoAtual);
     cout << "\nPressione ENTER para avancar...\n";
     cin.ignore();
@@ -265,7 +266,6 @@ void LagodasLagrimas::explorar(Jogador *jogador)
     cout << "De repente, uma presenca gelada o envolve...\n";
     
     cout << "\n\nPressione ENTER para continuar...\n\n";
-    cin.ignore();
     cin.get();
 
     // Enfrentando inimigo: Almas perdias
@@ -293,13 +293,13 @@ void LagodasLagrimas::explorar(Jogador *jogador)
     string resposta, purificar;
     item->desbloquear();
 
-    cout << "Apos derrotar o inimigo, voce encontra um brilho na agua...\n";
+    cout << "Voce encontra um brilho na agua...\n";
     cout << "Voce se aproxima e encontra o" << item->getNome() << "\n";
     cout << item->getDescricao() << "\n";
     cout << "Voce deseja colocar o item no seu inventario? (S/N): ";
 
     cin >> resposta;
-    while (resposta != "S" && resposta != "N")
+    while (resposta != "S" && resposta != "s")
     {
         cout << "Insira uma resposta valida. Deseja pegar o item? (S/N):";
         cin >> resposta;
@@ -308,7 +308,7 @@ void LagodasLagrimas::explorar(Jogador *jogador)
     {
         cout << "Voce agora possui o Cristal da Agua!\n";
         jogador->adicionarItemAoInventario(item);
-        cout << "Digite 'PURIFICAR' para salvar o lago!";
+        cout << "\nDigite 'PURIFICAR' para salvar o lago: ";
         cin >> purificar;
         while (purificar != "PURIFICAR")
         {
@@ -327,12 +327,11 @@ void LagodasLagrimas::explorar(Jogador *jogador)
 
     // Armadilha final
     cout << "\nAntes de sair do lago, voce encontra uma 'Pocao Misterio' flutuando na margem...\n";
-    cout << "Talvez ela te fortaleça... ou nao.\n";
-    cout << "Você a toma, mesmo sem saber o efeito.\n";
+    cout << "Talvez ela te fortaleca... ou nao.\n";
+    cout << "Voce a toma, mesmo sem saber o efeito.\n";
     armadilha->ativar(jogador);
 
     cout << "\n\nPressione ENTER para continuar...\n\n";
-    cin.ignore();
     cin.get();
 
     // Concluir missão
@@ -421,6 +420,7 @@ void CoracaoDaFloresta::explorar(Jogador *jogador)
     cout << "A Rainha das Cinzas corrompeu a floresta e controla a terra com sua magia negra.\n";
     cout << "Para restaurar a floresta, voce precisa ativar os pedestais magicos espalhados pela regiao.\n";
     cout << "Cada pedestal exige que voce use as habilidades adquiridas nas fases anteriores.\n";
+
 
     ResultadoBatalha resultado;
     do
