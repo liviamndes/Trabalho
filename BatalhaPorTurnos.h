@@ -23,10 +23,10 @@ class BatalhaPorTurnos{
         void turnoJogador(){
             jogador.aplicarRegeneracaoPorTurno();
 
-            cout << "Sua vez!\nVida do jogador:" << jogador.getVida() << "\n";
+            cout << "\n\n---Sua vez!---\nVida do jogador:" << jogador.getVida() << "\n";
             cout << "Vida do " << inimigo.getNome() << ": " << inimigo.getVida() << "\n";
             
-            cout << "\n\n\n\n\n\n\n\n\nEscolha sua acao: \n";
+            cout << "\n\n\nEscolha sua acao: \n";
             cout << "1 - Atacar\n";
             cout << "2 - Usar Item\n";
             cout << "3 - Usar habilidade(defesa ou ataque)\n";
@@ -78,7 +78,7 @@ class BatalhaPorTurnos{
 
         void turnoInimigo() {
         if (batalhaEmAndamento && inimigo.getVida()>0) {
-            cout << "\n--- Turno do " << inimigo.getNome() << " ---\n";
+            cout << "\n\n--- Turno do " << inimigo.getNome() << " ---\n";
             inimigo.atacar(jogador);
         }
         }
@@ -110,7 +110,6 @@ class BatalhaPorTurnos{
                 }
             }
 
-            cout << "\n----Fim da Batalha---\n";
             return false;
         }
 };

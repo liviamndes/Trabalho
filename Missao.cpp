@@ -4,7 +4,7 @@
 void MissaoFinal::concluirSalvacao(Jogador &jogador)
 {
     concluida = true;
-    cout << "Você salvou a floresta e restaurou o equilíbrio do mundo! Missão concluída.\n";
+    cout << "Voce salvou a floresta e restaurou o equilibrio do mundo! Missao concluida.\n";
     cout << "Habilidades desbloqueadas:\n";
     jogador.adicionarHabilidade(habilidadeDefesa);
     jogador.adicionarHabilidade(habilidadeAtaque);
@@ -14,8 +14,8 @@ void MissaoFinal::concluirHumanidade(Jogador &jogador)
     concluida = true;
     cout << "\nVoce escolheu abandonar sua missao...\n";
     cout << "A Rainha sorri. \"Muito bem... bem-vinda ao mundo real.\"\n";
-    cout << "Voce agora sente sede, fome, ambição e medo pela primeira vez.\n";
-    cout << "Mas agora é tarde. Voce faz parte da destruição.\n";
+    cout << "Voce agora sente sede, fome, ambicao e medo pela primeira vez.\n";
+    cout << "Mas agora eh tarde. Voce faz parte da destruicao.\n";
 }
 void MissaoFinal::escolha(Jogador &jogador)
 {

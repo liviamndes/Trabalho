@@ -9,14 +9,14 @@
 
 bool Jogador::resolverQuebraCabecaAtual() {
     if (!quebraCabecaAtual) {
-        cout << "Nenhum quebra-cabeça atribuído ao jogador.\n";
+        cout << "Nenhum quebra-cabeca atribuido ao jogador.\n";
         return false;
     }
 
     bool resolveu = quebraCabecaAtual->resolver();
 
     if(resolveu) {
-        cout << "Voce resolveu o quebra-cabeça com sucesso!\n";
+        cout << "Voce resolveu o quebra-cabeca com sucesso!\n";
         ganharExperiencia(25); 
 
         if (missaoAtual) {
@@ -25,7 +25,7 @@ bool Jogador::resolverQuebraCabecaAtual() {
         }
         
     } else {
-        cout << "Você falhou em resolver o quebra-cabeça.\n";
+        cout << "Você falhou em resolver o quebra-cabeca.\n";
         return false;
     }
 }
@@ -40,7 +40,7 @@ void Jogador::sofrerDano(int perda) {
     }
 }
 void Jogador:: atacar(Inimigo& inimigo){
-    cout << nome << " ataca " << inimigo.getNome() << " causando " << ataque << " de dano!";
+    cout << "\n" << nome << " ataca " << inimigo.getNome() << " causando " << ataque << " de dano!";
     inimigo.sofrerDano(ataque);
 }
 void Jogador::ganharExperiencia(int xp) {
@@ -73,11 +73,11 @@ void Jogador::resetarModificadorDano() {
 void Jogador::iniciarEfeitoRegeneracao(int vidaPorTurno_, int duracaoTurnos) {
     vidaPorTurno = vidaPorTurno_;
     turnosRegenerando = duracaoTurnos;
-    cout << "Voce começara a recuperar " << vidaPorTurno << " de vida pelos proximos " << turnosRegenerando << " turnos.\n";
+    cout << "Voce comecra a recuperar " << vidaPorTurno << " de vida pelos proximos " << turnosRegenerando << " turnos.\n";
 }
 void Jogador::aplicarRegeneracaoPorTurno() {
     if (turnosRegenerando > 0) {
-        cout << "Regeneração ativa: + " << vidaPorTurno << " de vida!\n";
+        cout << "Regeneracao ativa: + " << vidaPorTurno << " de vida!\n";
         recuperarVida(vidaPorTurno);
         turnosRegenerando--;
     }

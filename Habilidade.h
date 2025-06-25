@@ -37,7 +37,6 @@ class Habilidade{
 class EscudoDeLuz : public Habilidade{
     public:
         EscudoDeLuz() : Habilidade("Escudo de Luz", "Cria uma barreira magica que reduz 25% do dano recebido por um turno."){}
-       
         void ativar(Jogador* jogador, Inimigo* inimigo) override;
 };
 
@@ -59,14 +58,14 @@ class ChuvaPurificadora : public Habilidade {
 //Base Industrial
 class AuraDaResistencia : public Habilidade {
     public:
-        AuraDaResistencia() : Habilidade("Aura da Resistência", "Aumenta defesa contra habilidades tecnológicas.") {}
+        AuraDaResistencia() : Habilidade("Aura da Resistencia", "Aumenta defesa contra habilidades tecnologicas.") {}
         void ativar(Jogador* jogador, Inimigo* inimigo) override ;
 };
 
 //Coracao da floresta
 class RenascimentoDaFloresta : public Habilidade {
     public:
-        RenascimentoDaFloresta() : Habilidade("Renascimento da Floresta", "Regenera 30% da vida ao longo de três turnos.") {}
+        RenascimentoDaFloresta() : Habilidade("Renascimento da Floresta", "Regenera 30% da vida ao longo de tres turnos.") {}
         void ativar(Jogador* jogador, Inimigo* inimigo) override;
 };
 
@@ -82,7 +81,7 @@ public:
 //Clareira Corrompida
 class GarrasDaTerra : public Habilidade {
 public:
-    GarrasDaTerra() : Habilidade("Garras da Terra", "Ataca o inimigo com espinhos mágicos que causam dano terrestre.") {}
+    GarrasDaTerra() : Habilidade("Garras da Terra", "Ataca o inimigo com espinhos magicos que causam dano terrestre.") {}
     void ativar(Jogador* jogador, Inimigo* inimigo) override;
 };
 

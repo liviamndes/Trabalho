@@ -49,7 +49,9 @@ int main() {
     delete morcego;
     
     //3.Definir Cenário Clareira Corrompida(FASE 2)
-    cout << "\n--- Fase 2: Clareira Corrompida ---\n";
+    cout << "\n=============================================\n";
+    cout << "            Fase 2: Clareira Corrompida          \n";
+    cout << "=============================================\n\n";
     Missao* missaoClareira = new PurificarTerra();
     Item* semente = new SementeAncestral();
     Inimigo* fungo = new Fungo();

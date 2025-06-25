@@ -46,7 +46,7 @@ class SementeAncestral : public Item {
 //(Lago das Lágrimas)
 class CristalDaAgua : public Item {
 public:
-    CristalDaAgua() : Item("Cristal da Água", "Um cristal que contem o poder de purificar a terra") { };
+    CristalDaAgua() : Item("Cristal da Agua", "Um cristal que contem o poder de purificar a terra") { };
     void usar(Jogador* jogador) override;
 
 };
@@ -54,7 +54,7 @@ public:
 //(Base Indústria Sombria)
 class AmuletoDaEsperanca : public Item {
 public:
-    AmuletoDaEsperanca() : Item("Amuleto da Esperança", "Aumenta defesa mágica e resiste a interferências tecnológicas.") { }
+    AmuletoDaEsperanca() : Item("Amuleto da Esperanca", "Aumenta defesa magica e resiste a interferencias tecnologicas.") { }
 
      void usar(Jogador* jogador) override;
 };
@@ -62,7 +62,7 @@ public:
 //(Coração da Floresta)
 class CristalDaVida : public Item {
 public:
-    CristalDaVida() : Item("Cristal da Vida", "Potencializa magia e restaura energia máxima.") { }
+    CristalDaVida() : Item("Cristal da Vida", "Potencializa magia e restaura energia maxima.") { }
 
     void usar(Jogador* jogador) override;
 };

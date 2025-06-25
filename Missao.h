@@ -69,7 +69,7 @@ class PurificarTerra : public Missao {
 //Lago das lagrimas
 class CurarLago : public Missao {
     public:
-        CurarLago() : Missao("Cure o Lago das Lagrimas", "Afaste as almas perdidas para encontrar o cristal da água e curar o lago.", new ChuvaPurificadora(), new JorroEncantado()) {}
+        CurarLago() : Missao("Cure o Lago das Lagrimas", "Afaste as almas perdidas para encontrar o cristal da agua e curar o lago.", new ChuvaPurificadora(), new JorroEncantado()) {}
 
         void concluir() override {
             Missao::concluir();
@@ -81,11 +81,11 @@ class CurarLago : public Missao {
 // Base industrial
 class SabotarIndustria : public Missao {
     public:
-        SabotarIndustria() : Missao("Contra a Exploração", "Infiltre-se e sabote máquinas destrutivas.", new AuraDaResistencia(), new RajadaEnergetica()) {}
+        SabotarIndustria() : Missao("Contra a Exploração", "Infiltre-se e sabote maquinas destrutivas.", new AuraDaResistencia(), new RajadaEnergetica()) {}
 
         void concluir() override {
             Missao::concluir();
-            cout << "Você sabotou os sistemas industriais e derrotou o general!\n";
+            cout << "Voce sabotou os sistemas industriais e derrotou o general!\n";
         }
 };
 
@@ -100,19 +100,19 @@ class MissaoFinal : public Missao {
             new RenascimentoDaFloresta(), new ExplosaoCelestial()) {}
 
         void Dialogo() {
-            cout << "\n A Rainha das Cinzas está bem diante de você..\n\n";
-            cout << "\nVocê lutou tanto pequena fada.. mas por quê?";
-            cout << "\nSerá que não vê eles iram destruir a floresta novamente. Tudo será em vão";
-            cout << "\nE os humanos? Ah, os humanos... eles não carregam fardos como você. Eles vivem... livres.";
+            cout << "\n A Rainha das Cinzas esta bem diante de voce..\n\n";
+            cout << "\nVoce lutou tanto pequena fada.. mas por quê?";
+            cout << "\nSera que não ve eles iram destruir a floresta novamente. Tudo sera em vao";
+            cout << "\nE os humanos? Ah, os humanos... eles nao carregam fardos como você. Eles vivem... livres.";
             cout << "\nOlhe para si mesma... ferida, cansada, sempre lutando por um mundo que nunca te deu escolha.";
-            cout << "\nVocê realmente quer ser escrava dessa floresta para sempre?";
+            cout << "\nVoce realmente quer ser escrava dessa floresta para sempre?";
 
-            cout<<"\n\nA rainha se aproxima, sua voz é calma mas afiada. Sua olhar expressa conforto.\n\n";
+            cout<<"\n\nA rainha se aproxima, sua voz eh calma mas afiada. Sua olhar expressa conforto.\n\n";
 
-            cout<<"\nJá imaginou sentir o calor do sol semprecisar protegê-lo? Comer sem precisar buscar sustento para todos?";
-            cout<<"\nVocê realmente quer ser escrava dessa floresta para sempre?";
-            cout<<"\nE se eu te dissesse que há outro caminho? Um onde você não precisa carregar esse fardo";
-            cout <<"\nVenha comigo. Seja como eles.Você nunca teve escolha antes... mas agora tem.";
+            cout<<"\nJa imaginou sentir o calor do sol semprecisar protege-lo? Comer sem precisar buscar sustento para todos?";
+            cout<<"\nVoce realmente quer ser escrava dessa floresta para sempre?";
+            cout<<"\nE se eu te dissesse que há outro caminho? Um onde voce nao precisa carregar esse fardo";
+            cout <<"\nVenha comigo. Seja como eles.Voce nunca teve escolha antes... mas agora tem.";
         }
 
         void escolha(Jogador& jogador);

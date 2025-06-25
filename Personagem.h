@@ -79,7 +79,7 @@ class Jogador : public Personagem {
                 cout << "\nUsando habilidade: " << habilidades[escolha-1]->getNome() << endl;
                 habilidades[escolha-1]->ativar(jogador, inimigo);
             } else {
-                cout << "Escolha inválida.\n";
+                cout << "Escolha invalida.\n";
             }
         }
 
