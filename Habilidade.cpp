@@ -14,7 +14,7 @@ void EscudoDeLuz :: ativar(Jogador* jogador, Inimigo* inimigo){
 //Clareira Corrompida
 void RugidoDaNatureza :: ativar(Jogador* jogador, Inimigo* inimigo){
     if(jogador != nullptr){
-        cout << "Você usou o Rugido da Natureza! Resistência aumentada contra ataques físicos e mágicos." << endl;   
+        cout << "Voce usou o Rugido da Natureza! Resistência aumentada contra ataques físicos e mágicos." << endl;   
         jogador->setModificadorDano(0.3);
     }
 }
@@ -84,10 +84,10 @@ void RajadaEnergetica :: ativar(Jogador* jogador, Inimigo* inimigo){
 }
 
 //Coração da Floresta
-void ExplosãoCelestial :: ativar(Jogador* jogador, Inimigo* inimigo){
+void ExplosaoCelestial :: ativar(Jogador* jogador, Inimigo* inimigo){
    if (inimigo != nullptr) {
         int dano = 50;
-        cout << "Você usou a Explosão Celestial! Uma onda de luz divina causa grande dano no inimigo!" << endl;
+        cout << "Voce usou a Explosão Celestial! Uma onda de luz divina causa grande dano no inimigo!" << endl;
         inimigo->sofrerDano(dano);
     } 
 }

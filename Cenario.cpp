@@ -45,8 +45,11 @@ void Cenario :: iniciarBatalha(Jogador& jogador, Inimigo& inimigo){
         }
 
         if (novaHabilidadeDefesa != nullptr && novaHabilidadeAtaque != nullptr ) {
-            cout << "\nParabens! Você desbloqueou a habilidade de defesa: " << novaHabilidadeDefesa->getNome() << "!\n";
-            cout << "\nParabens! Você desbloqueou a habilidade de ataque: " << novaHabilidadeAtaque->getNome() << "!\n";
+            novaHabilidadeDefesa->desbloquear();
+            novaHabilidadeAtaque->desbloquear();
+            
+            cout << "\nParabens! Voce desbloqueou a habilidade de defesa: " << novaHabilidadeDefesa->getNome() << "!\n";
+            cout << "Parabens! Voce desbloqueou a habilidade de ataque: " << novaHabilidadeAtaque->getNome() << "!\n";
             jogador.adicionarHabilidade(novaHabilidadeDefesa);
             jogador.adicionarHabilidade(novaHabilidadeAtaque);
         }
@@ -58,39 +61,74 @@ void BosqueDasFadas::explorar(Jogador* jogador) {
     if (jogador->getMissaoAtual() == nullptr) {
         // Caso a missão ainda nao tenha sido iniciada, vamos iniciar a missão
         jogador->iniciarMissao(missaoAtual);
-        cout << "Missao iniciada: " << missaoAtual->getTitulo() << endl;
     }
+    cout << "\nVoce avanca pelo Bosque das Fadas.\n";
+    cout << "Entre as arvores magicas, voce encontra uma pequena fada ferida.\n";
+    cout << "As asas dela estao danificadas e ela precisa de sua ajuda.\n";
+    cout << "Para curar a fada, voce precisara preparar uma Pocao de Cura.\n";
 
-    // Coletar ingredientes da poção de cura
-    cout << "Deseja coletar ingredientes para a Pocao de Cura? (S/N)" << endl;
-    char resposta;
-    cin >> resposta;
-    if(resposta == 'S' || resposta == 's') {
-        cout << "Voce coletou as folhas e flores necessarias para a Poção de Cura.\n";
-        item->desbloquear();
-        item->usar(*jogador);
-        jogador->adicionarItemAoInventario(item);
-        
-        cout << "Deseja curar a fada ferida?\n";
+    cout << "\nPressione Enter para continuar...\n";
+    cin.get();
+
+    char resposta = 'N';
+
+    // Loop para garantir a coleta de ingredientes
+    while (resposta != 'S' && resposta != 's') {
+        cout << "\nDeseja coletar ingredientes para a Pocao de Cura? (S/N)" << endl;
         cin >> resposta;
 
         if(resposta == 'S' || resposta == 's') {
-            jogador->usarItemDoInventario("Poção de cura");
-            missaoAtual->concluir(*jogador);
-            jogador->ganharExperiencia(50);
-            jogador->subirNivel();
+            cout << "\nVoce percorre o bosque em busca de folhas e flores encantadas...\n";
+            cout << "Voce coletou os ingredientes necessarios para preparar a Pocao de Cura.\n";
+            item->desbloquear();
+            jogador->adicionarItemAoInventario(item);
+            break;
         }
         else {
-            cout << "Você ainda precisa da Poção de Cura para ajudar a fada!\n"; // nao entendi esse texto
+            cout << "\nSem a pocao, voce nao conseguira ajudar a fada.\n";
+            cout << "Tente novamente apos refletir sobre sua decisao.\n";
+        }
+    } 
+    cout << "\nPressione Enter para continuar...\n";
+    cin.ignore();
+    cin.get();
+
+    // Ajudar a fada ferida
+    bool fadaCurada = false;
+    while(!fadaCurada) {
+        cout << "\nDeseja curar a fada ferida? (S/N)\n";
+        cin >> resposta;
+
+        if(resposta == 'S' || resposta == 's') {
+            jogador->usarItemDoInventario("Pocao de Cura");
+            jogador->concluirMissao(missaoAtual);
+            jogador->ganharExperiencia(50);
+            jogador->subirNivel();
+            fadaCurada = true;
+        }
+        else {
+            cout << "Voce ainda precisa usar a Pocao de Cura para ajudar a fada!\n";
         }
     }
-    else {
-        cout << "Voce precisa coletar ingredientes para concluir a missao!\n";
-    } // aqui nao teria que voltar na pergunta se quer coletar itens?
-    
+
+    cout << "\nPressione Enter para continuar...\n";
+    cin.ignore();
+    cin.get();
+
     // Enfrentando inimigo: morcego
-    cout << "De repente, um Morcego aparece e começa a te ataca!\n";
-    iniciarBatalha(*jogador, *inimigo); 
+    cout << "\n----------------------------------------------------------------------\n";
+    cout << "De repente, um Morcego emerge das copas das arvores e avanca sobre voce!\n";
+    cout << "As suas asas batem com furia enquanto ele tenta te atacar.\n";
+    cout << "Prepare se para a batalha!\n";
+    cout << "------------------------------------------------------------------------\n\n";
+    
+    bool venceu = false;   
+    while(!venceu) {
+        iniciarBatalha(*jogador, *inimigo);  
+        if(jogador->getVida() >= 0 && inimigo->getVida() <= 0) {
+            venceu = true;
+        }
+    }
 }
 
 void ClareiraCorrompida::explorar(Jogador *jogador) {
@@ -102,24 +140,21 @@ void ClareiraCorrompida::explorar(Jogador *jogador) {
     }
 
     // Quebra cabeça
-    QuebraClareira *clareira = new QuebraClareira();
-    jogador->definirQuebraCabeca(clareira);
+    jogador->definirQuebraCabeca(quebra);
     bool resolveu = jogador->resolverQuebraCabecaAtual();
-    delete clareira;
 
+    // tem que ver quando que ele vai usar esses itens 
     // Receber item de recompensa
     if(resolveu) {
-        Item *semente = new SementeAncestral();
-        semente->desbloquear();
-        jogador->adicionarItemAoInventario(semente);
+        item->desbloquear();
+        jogador->adicionarItemAoInventario(item);
     }
 
     // Enfrentando inimigo: Fungo
     cout << "Voce comeca a sentir uma presenca...\n";
     cout << "Um fungo infectado começou a te consumir e voce precisa se defender!\n";
-    Fungo *fungo = new Fungo();
-    iniciarBatalha(*jogador, *fungo);
-    delete fungo;
+    iniciarBatalha(*jogador, *inimigo);
+    jogador->concluirMissao(missaoAtual);
 }
 void LagodasLagrimas::explorar(Jogador *jogador) {
     // Inicia a fase
@@ -130,20 +165,17 @@ void LagodasLagrimas::explorar(Jogador *jogador) {
     }
 
     // Enfrentando inimigo: Almas perdias
-    cout << "Você começa a sentir uma presença sombria...\n";
+    cout << "Voce começa a sentir uma presença sombria...\n";
     cout << "As Almas Perdidas surgem e começam a cercá-lo. Prepare-se para a batalha!\n";
-    AlmasPerdidas *almas = new AlmasPerdidas();
-    iniciarBatalha(*jogador, *almas);
-    delete almas;
+    iniciarBatalha(*jogador, *inimigo);
 
     // Jogador recebe recompensa
     string resposta, purificar;
-    Item* cristal = new CristalDaAgua();
-    cristal->desbloquear();        
+    item->desbloquear();        
 
     cout << "Apos derrotar o inimigo, voce encontra um brilho na agua...\n";
-    cout << "Você se aproxima e encontra o" << cristal->getNome() << "\n";
-    cout << cristal->getDescricao() << "\n";
+    cout << "Você se aproxima e encontra o" << item->getNome() << "\n";
+    cout << item->getDescricao() << "\n";
     cout << "Voce deseja colocar o item no seu inventario (S/N)?\n";
 
     cin >> resposta;
@@ -153,25 +185,21 @@ void LagodasLagrimas::explorar(Jogador *jogador) {
     }
     if(resposta == "S") {
         cout << "Voce agora possui o Cristal da Agua!\n";
-        jogador->adicionarItemAoInventario(cristal);
+        jogador->adicionarItemAoInventario(item);
         cout << "Digite 'PURIFICAR' para salvar o lago!";
         cin >> purificar;
         while(purificar != "PURIFICAR") {
             cout << "Algo esta errado, tente novamente para concluir a missao!\n";
             cin >> purificar;
         }
-        jogador->usarItemDoInventario(cristal->getNome());
+        jogador->usarItemDoInventario(item->getNome());
         cout << "Voce acabou de restaurar o solo e o lago das lagrimas brilha novamente!\n";
     }
-
-    // Armadilha --- nao entendi essa pocao misterio. eu tenho que fazer esse item?
     cout << "Antes de sair do lago, voce precisa tomar a 'Pocao Misterio' para se fortalecer para o que vier, ou nao...\n";
-    LagoArmadilha *lagoArmadilha = new LagoArmadilha();
-    lagoArmadilha->ativar(jogador);
-    delete lagoArmadilha;
+    armadilha->ativar(jogador);
 
     // Concluir missão
-    missaoAtual->concluir(*jogador);
+    jogador->concluirMissao(missaoAtual);
     jogador->ganharExperiencia(50);
     jogador->subirNivel();
 }
@@ -184,7 +212,7 @@ void BaseIndustria::explorar(Jogador *jogador) {
     }
 
     // Infiltração e hackeamento dos sistemas de segurança mágicos
-    cout << "Você se aproxima do centro de controle da base...\n";
+    cout << "Voce se aproxima do centro de controle da base...\n";
     cout << "Para acessar a sala do General, você precisa desarmar os dispositivos de segurança para infiltrar-se com sucesso.\n";
     
     // O jogador precisa resolver quebra-cabeças para hackear e desarmar dispositivos
@@ -195,11 +223,8 @@ void BaseIndustria::explorar(Jogador *jogador) {
     delete industia;
 
     if (resolveu) {
-
-        Item* amuleto = new AmuletoDaEsperanca();
-        amuleto->desbloquear();
-        jogador->adicionarItemAoInventario(amuleto);
-        delete amuleto;
+        item->desbloquear();
+        jogador->adicionarItemAoInventario(item);
 
         // Inimigo: general
         cout << "Voce conseguiu hackear os sistemas e desativar os feitiços magicos! O caminho agora esta livre para a infiltracao.\n";
@@ -212,16 +237,12 @@ void BaseIndustria::explorar(Jogador *jogador) {
         cout << "Voce sente o peso da batalha, mas com a forca adquirida nas missoes anteriores, voce esta pronto para enfrenta-lo.\n";
         cout << "A luta sera difícil, mas se voce usar todas as suas habilidades e itens, pode conseguir derrota-lo e destruir a ameaça da Base Industria Sombria.\n";
         
-        
-        General *general= new General();
         // Aqui é onde o jogador deve usar o Amuleto da Esperança para restaurar a força
-        // Implementação do uso de habilidades e itens
             //...
-        iniciarBatalha(*jogador, *general);
-        delete general;
+        iniciarBatalha(*jogador, *inimigo);
 
         // Concluir missão
-        missaoAtual->concluir(*jogador);
+        jogador->concluirMissao(missaoAtual);
         jogador->ganharExperiencia(50);
         jogador->subirNivel();
         
@@ -235,7 +256,7 @@ void CoracaoDaFloresta::explorar(Jogador *jogador) {
     if (jogador->getMissaoAtual() == nullptr) {
         // Caso a missão ainda não tenha sido iniciada, vamos iniciar a missão
         jogador->iniciarMissao(missaoAtual);
-        cout << "Missão 'Renascer ou Cair' iniciada!\n";
+        cout << "Missao 'Renascer ou Cair' iniciada!\n";
     }
 
     cout << "Você chega ao Coração da Floresta. O ar está pesado, e a energia da natureza está se esvaindo.\n";
@@ -243,10 +264,8 @@ void CoracaoDaFloresta::explorar(Jogador *jogador) {
     cout << "Para restaurar a floresta, você precisa ativar os pedestais mágicos espalhados pela região.\n";
     cout << "Cada pedestal exige que você use as habilidades adquiridas nas fases anteriores.\n";
 
-    RainhaDasCinzas *rainha = new RainhaDasCinzas();
     // pensei em fazer aqui uma batalha mais complexa
-    iniciarBatalha(*jogador, *rainha);
-    delete rainha;
+    iniciarBatalha(*jogador, *inimigo);
 
     cout << "\nAgora, com a Rainha das Cinzas derrotada, você enfrenta uma escolha dificil...\n";
     cout << "A Rainha das Cinzas, antes de morrer, sussurra: 'Deixe para tras sua missão. Os humanos não carregam fardos... Seja como eles.'\n";
@@ -260,22 +279,22 @@ void CoracaoDaFloresta::explorar(Jogador *jogador) {
     cin >> escolha;
 
     if (escolha == "1") {
-        cout << "\nVocê decide salvar a floresta. Usando a **Semente Ancestral** e todas as habilidades adquiridas, você restaura o equilíbrio da natureza.\n";
-        cout << "Como guardiã definitiva da natureza, você vê a floresta florescer completamente, e a paz retorna ao mundo.\n";
+        cout << "\nVoce decide salvar a floresta. Usando a **Semente Ancestral** e todas as habilidades adquiridas, você restaura o equilíbrio da natureza.\n";
+        cout << "Como guardia definitiva da natureza, você vê a floresta florescer completamente, e a paz retorna ao mundo.\n";
         cout << "A energia da floresta flui através de você, tornando-se um ser imortal, um símbolo da restauração e da força da natureza.\n";
-        cout << "A missão 'Renascer ou Cair' foi completada com sucesso. A floresta está salva e sua jornada como guardiã continua.\n";
+        cout << "A missao 'Renascer ou Cair' foi completada com sucesso. A floresta está salva e sua jornada como guardiã continua.\n";
     } else if (escolha == "2") {
         cout << "\nVocê decide seguir o caminho da Rainha das Cinzas, se tornando humana e abandonando sua missão como guardiã da natureza.\n";
         cout << "Agora, você sente **sede, fome, ambição, medo** pela primeira vez, e o peso da humanidade se instala em seu coração.\n";
         cout << "Mas, ao perceber tarde demais que se tornou parte da destruição, você entende que **não há como voltar atrás**.\n";
         cout << "Você se torna parte da escuridão que corrompeu o mundo, e a natureza paga o preço pela sua escolha.\n";
-        cout << "A missão 'Renascer ou Cair' termina em tragédia. A floresta morreu, e você é agora parte do mal que ela produziu.\n";
+        cout << "A missao 'Renascer ou Cair' termina em tragedia. A floresta morreu, e você é agora parte do mal que ela produziu.\n";
     } else {
         cout << "\nEscolha invalida. A missao falhou. A floresta permanece em ruínas.\n";
     }
 
     // Conclusão da missão
-    missaoAtual->concluir(*jogador);
+    jogador->concluirMissao(missaoAtual);
     jogador->ganharExperiencia(100);
     jogador->subirNivel();
 }

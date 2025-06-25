@@ -6,7 +6,6 @@
 #include "Habilidade.h"
 
 using namespace std;
-
 class Jogador;
 
 class Missao{
@@ -24,14 +23,15 @@ class Missao{
         void iniciar() {
             cout << "Missao iniciada: " << titulo << "\n";
             cout << "Objetivo: " << descricao << "\n";
+            cout << "........................................................\n";
         }
 
-        virtual void concluir(Jogador& jogador) { 
+        virtual void concluir() { 
             concluida = true; 
-            cout << "\nMissão concluída: " << titulo << "\n";
+            cout << "\nMissao concluida: " << titulo << "\n";
             cout << "Habilidades desbloqueadas:\n";
-            jogador.adicionarHabilidade(habilidadeDefesa);
-            jogador.adicionarHabilidade(habilidadeAtaque);
+            cout << "   -> " <<getHabilidadeAtaque()->getNome() << endl;
+            cout << "   -> " <<getHabilidadeDefesa()->getNome() << endl;
         }
 
         Habilidade* getHabilidadeDefesa() { return habilidadeDefesa; }
@@ -48,20 +48,21 @@ class ResgatarFada : public Missao{
         ResgatarFada() : Missao("Retorno ao Santuario", "Ajude a fada ferida a voltar para o santuario.", 
             new EscudoDeLuz(), new DardoLuminoso()) {}
         
-        void concluir(Jogador& jogador) override {
-            Missao::concluir(jogador);
-            cout << "Voce resgatou a fada ferida e garantiu sua segurança!";
+        void concluir() override {
+            Missao::concluir();
+            cout << "\nA fada foi curada! Com suas forcas restauradas, ela retorna para o Santuario em seguranca.\n";
+            cout << "Voce a acompanha e sente que esta apenas no inicio de sua jornada...\n\n";
         }
 };
 
 // Clareira Corrompida
 class PurificarTerra : public Missao {
     public:
-        PurificarTerra() : Missao("Purificação da Clareira", "Desbloqueie a magia para restaurar a terra corrompida.", new RugidoDaNatureza(), new GarrasDaTerra()) {}
+        PurificarTerra() : Missao("Purificacao da Clareira", "Desbloqueie a magia para restaurar a terra corrompida.", new RugidoDaNatureza(), new GarrasDaTerra()) {}
 
-        void concluir(Jogador& jogador) override {
-            Missao::concluir(jogador);
-            cout << "Você restaurou a clareira! A natureza agradece.\n";
+        void concluir() override {
+            Missao::concluir();
+            cout << "Voce restaurou a clareira! A natureza agradece.\n";
         }
 };
 
@@ -70,9 +71,9 @@ class CurarLago : public Missao {
     public:
         CurarLago() : Missao("Cure o Lago das Lagrimas", "Afaste as almas perdidas para encontrar o cristal da água e curar o lago.", new ChuvaPurificadora(), new JorroEncantado()) {}
 
-        void concluir(Jogador& jogador) override {
-            Missao::concluir(jogador);
-            cout << "Você curou o lago!As almas perdidas encontram paz no renascimento do lago, sendo libertas enfim da dor.\n";
+        void concluir() override {
+            Missao::concluir();
+            cout << "Voce curou o lago!As almas perdidas encontram paz no renascimento do lago, sendo libertas enfim da dor.\n";
         }
 };
 
@@ -82,12 +83,15 @@ class SabotarIndustria : public Missao {
     public:
         SabotarIndustria() : Missao("Contra a Exploração", "Infiltre-se e sabote máquinas destrutivas.", new AuraDaResistencia(), new RajadaEnergetica()) {}
 
-        void concluir(Jogador& jogador) override {
-            Missao::concluir(jogador);
+        void concluir() override {
+            Missao::concluir();
             cout << "Você sabotou os sistemas industriais e derrotou o general!\n";
         }
 };
 
+// vai precisar separar as declarações que envolvem jogador e fazer isso apenas em Personagem.cpp ou Personagem.h
+// tipo o que eu fiz na funcao concluirMissao() -> criei
+// concluir() -> agora nao tem mais parametros de jogador
 
 // Coração da floresta
 class MissaoFinal : public Missao {
@@ -95,7 +99,7 @@ class MissaoFinal : public Missao {
         MissaoFinal() : Missao("O Destino da Floresta", "Ative os pedestais de energia pura para restaurar a floresta.", 
             new RenascimentoDaFloresta(), new ExplosaoCelestial()) {}
 
-        void Dialogo(Jogador& jogador) {
+        void Dialogo() {
             cout << "\n A Rainha das Cinzas está bem diante de você..\n\n";
             cout << "\nVocê lutou tanto pequena fada.. mas por quê?";
             cout << "\nSerá que não vê eles iram destruir a floresta novamente. Tudo será em vão";
@@ -111,41 +115,9 @@ class MissaoFinal : public Missao {
             cout <<"\nVenha comigo. Seja como eles.Você nunca teve escolha antes... mas agora tem.";
         }
 
-        void escolha(Jogador& jogador){
-            int escolha;
-
-            cout << "\nESCOLHA SEU DESTINO:";
-            cout << "\n1.Usar a semente Ancestral e salvar a floresta.";
-            cout <<"\n2.Aceitar a oferta da Rainha e se tornar humana.";
-            
-            cout << "Digite sua escolha (1 ou 2): ";
-            cin >> escolha;
-
-            if (escolha == 1) {
-                concluirSalvacao(jogador);
-            } else if (escolha == 2) {
-                concluirHumanidade(jogador);
-            } else {
-                cout << "Escolha inválida! A Rainha aguarda sua resposta...\n";
-            }
-        }
-
-        void concluirSalvacao(Jogador& jogador){
-            concluida = true;
-            cout << "Você salvou a floresta e restaurou o equilíbrio do mundo! Missão concluída.\n";
-            cout << "Habilidades desbloqueadas:\n";
-            jogador.adicionarHabilidade(habilidadeDefesa);
-            jogador.adicionarHabilidade(habilidadeAtaque);
-        }
-
-        void concluirHumanidade(Jogador& jogador){
-            concluida = true;
-            cout << "\nVocê escolheu abandonar sua missão...\n";
-            cout << "A Rainha sorri. \"Muito bem... bem-vinda ao mundo real.\"\n";
-            cout << "Você agora sente sede, fome, ambição e medo pela primeira vez.\n";
-            cout << "Mas agora é tarde. Você faz parte da destruição.\n";  
-        }
-
+        void escolha(Jogador& jogador);
+        void concluirSalvacao(Jogador& jogador);
+        void concluirHumanidade(Jogador& jogador);
 };
 
 

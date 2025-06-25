@@ -58,33 +58,27 @@ class BosqueDasFadas : public Cenario {
             "Voce deve reunir ingredientes para a Poção de Cura antes que seja tarde demais.",
             m, i, v) { };
             void explorar(Jogador*);
-
-            void iniciarBatalha(Jogador& jogador, Inimigo& inimigo);
 };
 class ClareiraCorrompida : public Cenario {
     public:
-        ClareiraCorrompida(Missao *m, Item *i, Inimigo *v) : Cenario("Clareira Corrompida", 
+        ClareiraCorrompida(Missao *m, Item *i, Inimigo *v, QuebraCabeca *q) : Cenario("Clareira Corrompida", 
             "Voce entra em uma clareira sombria onde a vegetação parece murchar. "
             "O chao esta coberto por uma neblina negra e as arvores tem uma aparencia retorcida. "
             "O ar esta pesado, e o ambiente parece pulsar com uma energia malignamente distorcida. "
             "A corrupção da terra pode ser sentida a cada passo. ",
-            m, i, v) { };
+            m, i, v, nullptr, q) { };
             void explorar(Jogador*);
-
-            void iniciarBatalha(Jogador& jogador, Inimigo& inimigo);
 };
 class LagodasLagrimas : public Cenario {  // como assim flor carnivora? o vilao nao era almas perdidas?
     public: 
-        LagodasLagrimas(Missao *m = nullptr, Item *i = nullptr, Inimigo *v = nullptr) : Cenario("Lago das Lagrimas", 
+        LagodasLagrimas(Missao *m, Item *i, Inimigo *v, Armadilha *a) : Cenario("Lago das Lagrimas", 
             "O Lago das Lágrimas, normalmente uma fonte de beleza serena, agora está secando e sua água parece desaparecer lentamente. "
             "A água do lago, que costumava brilhar com um tom azul etéreo, agora está turva e opaca. " 
             "A natureza ao redor também sofre, com as plantas murchando e os animais fugindo. "
             "Você sente que há algo errado com o coração do lago. "
             "Mas o inimigo, almas perdidas, bloqueiam o caminho, alimentando-se da fraqueza do lago para se tornarem mais fortes.",
-            m, i, v) { };
+            m, i, v, a) { };
             void explorar(Jogador*);
-
-            void iniciarBatalha(Jogador& jogador, Inimigo& inimigo);
 };
 class BaseIndustria : public Cenario {
     public:
@@ -97,8 +91,6 @@ class BaseIndustria : public Cenario {
         "A única esperança é o Amuleto da Esperança, que pode reverter os danos causados por essa interferência.",
         m, i, v) { };
         void explorar(Jogador*);
-
-        void iniciarBatalha(Jogador& jogador, Inimigo& inimigo);
 };
 class CoracaoDaFloresta : public Cenario {
     public:
@@ -111,7 +103,5 @@ class CoracaoDaFloresta : public Cenario {
             "Ao enfrentar a Rainha, você deve usar todo o poder acumulado para resistir à sua força destrutiva e restaurar o equilíbrio natural.",
             m, i, v) { };
         void explorar(Jogador*);
-
-        void iniciarBatalha(Jogador& jogador, Inimigo& inimigo);
 };
 #endif

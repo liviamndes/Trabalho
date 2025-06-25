@@ -13,14 +13,21 @@ class Habilidade{
     protected:
         string nome;
         string descricao;
+        bool desbloqueado;
     public:
         Habilidade(string n, string d) : nome{n}, descricao{d} {}
+        void desbloquear() { 
+            desbloqueado = true;
+            cout << "Habilidade desbloqueada: " << nome << "!\n";
+        }
+        bool estaDesbloqueada() const { return desbloqueado; }
         virtual ~Habilidade() {}
 
         virtual string getNome() const {return nome;}
         virtual string getDescricao() const {return descricao;}
 
         virtual void ativar(Jogador* jogador, Inimigo* inimigo) = 0;
+        
 };
 
 
@@ -29,7 +36,7 @@ class Habilidade{
 //Bosque das fadas
 class EscudoDeLuz : public Habilidade{
     public:
-        EscudoDeLuz() : Habilidade("Escudo de Luz", "Cria uma barreira mágica que reduz 25% do dano recebido por um turno."){}
+        EscudoDeLuz() : Habilidade("Escudo de Luz", "Cria uma barreira magica que reduz 25% do dano recebido por um turno."){}
        
         void ativar(Jogador* jogador, Inimigo* inimigo) override;
 };
@@ -37,7 +44,7 @@ class EscudoDeLuz : public Habilidade{
 //Clareira Corrompida
 class RugidoDaNatureza : public Habilidade {
     public:
-        RugidoDaNatureza() : Habilidade("Rugido da Natureza", "Garante resistência contra ataques fisicos e magicos por um turno.") {}
+        RugidoDaNatureza() : Habilidade("Rugido da Natureza", "Garante resistencia contra ataques fisicos e magicos por um turno.") {}
         void ativar(Jogador* jogador, Inimigo* inimigo) override;
 };
 
@@ -82,14 +89,14 @@ public:
 //Lago das Lagrimas
 class JorroEncantado : public Habilidade {
 public:
-    JorroEncantado() : Habilidade("Jorro Encantado", "Desencadeia um poderoso fluxo de água purificada.") {}
+    JorroEncantado() : Habilidade("Jorro Encantado", "Desencadeia um poderoso fluxo de agua purificada.") {}
     void ativar(Jogador* jogador, Inimigo* inimigo) override;
 };
 
 //Base Industrial
 class RajadaEnergetica : public Habilidade {
 public:
-    RajadaEnergetica() : Habilidade("Rajada Energética", "Dispara um feixe de energia concentrada.") {}
+    RajadaEnergetica() : Habilidade("Rajada Energetica", "Dispara um feixe de energia concentrada.") {}
     void ativar(Jogador* jogador, Inimigo* inimigo) override;
 };
 

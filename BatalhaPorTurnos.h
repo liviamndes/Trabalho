@@ -22,9 +22,9 @@ class BatalhaPorTurnos{
             jogador.aplicarRegeneracaoPorTurno();
 
             cout << "Sua vez!\nVida do jogador:" << jogador.getVida() << "\n";
-            cout << "Vida do" << inimigo.getNome() << ":" << inimigo.getVida() << "\n";
+            cout << "Vida do " << inimigo.getNome() << ": " << inimigo.getVida() << "\n";
             
-            cout << "Escolha sua acao: \n";
+            cout << "\n\n\n\n\n\n\n\n\nEscolha sua acao: \n";
             cout << "1 - Atacar\n";
             cout << "2 - Usar Item\n";
             cout << "3 - Usar habilidade(defesa ou ataque)\n";
@@ -47,18 +47,23 @@ class BatalhaPorTurnos{
                 }
                 break;
             case 3:
-                jogador.listarHabilidades();
-                cout << "Escolha a habilidade para usar: ";
-                int habilidadeEscolha;
-                cin >> habilidadeEscolha;
-                jogador.usarHabilidade(habilidadeEscolha, &jogador, &inimigo);
+                if(jogador.getTemHabilidade()) {
+                    jogador.listarHabilidades();
+                    cout << "Escolha a habilidade para usar: ";
+                    int habilidadeEscolha;
+                    cin >> habilidadeEscolha;
+                    jogador.usarHabilidade(habilidadeEscolha, &jogador, &inimigo);
+                }
+                else {
+                    cout << "Nenhuma habilidade desbloqueada.\n";
+                }
                 break;
             case 4: 
-                cout << "Você fugiu da batalha!\n";
+                cout << "Voce fugiu da batalha!\n";
                 batalhaEmAndamento = false;
                 break;
             default:
-                cout << "Escolha inválida!\n";
+                cout << "Escolha invalida!\n";
             }
 
             jogador.resetarModificadorDano();
@@ -72,13 +77,13 @@ class BatalhaPorTurnos{
         }
 
         void iniciar(){
-            cout << "\n----Início da batalha:" << jogador.getNome() << "vs" << inimigo.getNome() << "----\n";
+            cout << "\n----Inicio da batalha: " << jogador.getNome() << " vs " << inimigo.getNome() << " ----\n";
 
             while(batalhaEmAndamento){
                 turnoJogador();
 
                 if(inimigo.getVida() <= 0){
-                    cout<< "\nVocê derrotou o " << inimigo.getNome() << "!\n";
+                    cout<< "\nVoce derrotou o " << inimigo.getNome() << "!\n";
                     batalhaEmAndamento = false;
                     break;
                 }
@@ -86,10 +91,14 @@ class BatalhaPorTurnos{
                 turnoInimigo();
 
                 if (jogador.getVida() <= 0) {
-                cout << "\nVocê foi derrotado pelo " << inimigo.getNome() << "!\n";
-                batalhaEmAndamento = false;
-                break;
-            }
+                    cout << "\nVoce foi derrotado pelo " << inimigo.getNome() << "!\n";
+                    batalhaEmAndamento = false;
+                    cout << "Recuperando forcas...\n";
+                    jogador.recuperarVida(50); 
+                    cout << "\nPressione Enter para tentar novamente...\n";
+                    cin.get();
+                    break;
+                }
             }
 
             cout << "\n----Fim da Batalha---\n";

@@ -5,15 +5,16 @@
 
 using namespace std;
 
+#include "Inventario.h" 
+#include "Habilidade.h"
+#include "Missao.h"
+using namespace std;
+
+class Item;
 class Cenario;
 class Inimigo;
-class Item;
-class Missao;
 class QuebraCabeca;
-class Habilidade;
-
-template <typename T>
-class Inventario;
+template <typename T> class Inventario;
 
 class Personagem {
     protected:
@@ -43,9 +44,10 @@ class Jogador : public Personagem {
         float modificadorDano = 1.0;
         int turnosRegenerando = 0;
         int vidaPorTurno = 0;
+        bool temHabilidade = false;
     public:
         // construtor e destrutor
-        Jogador(string nome, int vida) : Personagem{nome, vida, 10, 5}, nivel{1}, experiencia{0}, cenarioAtual{nullptr} { 
+        Jogador(string nome, int vida) : Personagem{nome, vida, 10, 5}, nivel{1}, experiencia{0}, cenarioAtual{nullptr}, missaoAtual{nullptr} { 
             vidaMaxima = vida;
         }
         virtual ~Jogador() { };
@@ -53,20 +55,26 @@ class Jogador : public Personagem {
         // métodos do inventario
         void adicionarItemAoInventario(Item *item) { inv.addItem(item); }
         void listarItensDoInventario() { inv.listarItens(); }
-        void usarItemDoInventario(string nomeItem) { inv.usarItem(nomeItem); }
+        void usarItemDoInventario(string nomeItem) { inv.usarItem(nomeItem, this); }
 
         //metado de habilidade
         void adicionarHabilidade(Habilidade* habilidade) {
             habilidades.push_back(habilidade);
             cout << "Habilidade " << habilidade->getNome() << " adicionada ao jogador!\n";
         }
+        bool getTemHabilidade() { return temHabilidade; }
+        
         void listarHabilidades() {
-            cout << "\nHabilidades disponíveis:\n";
+            cout << "\nHabilidades disponiveis:\n";
             for (size_t i = 0; i < habilidades.size(); i++) {
-                cout << i+1 << " - " << habilidades[i]->getNome() << ": " << habilidades[i]->getDescricao() << endl;
+                if(habilidades[i]->estaDesbloqueada()) {
+                    cout << i+1 << " - " << habilidades[i]->getNome() << ": " << habilidades[i]->getDescricao() << endl;
+                    temHabilidade = true;
+                } 
             }
         }
         void usarHabilidade(int escolha, Jogador* jogador, Inimigo* inimigo) {
+            
             if (escolha >= 1 && escolha <= habilidades.size()) {
                 cout << "\nUsando habilidade: " << habilidades[escolha-1]->getNome() << endl;
                 habilidades[escolha-1]->ativar(jogador, inimigo);
@@ -78,6 +86,7 @@ class Jogador : public Personagem {
         // método de missao
         void iniciarMissao(Missao *missao) { missaoAtual = missao; missao->iniciar(); }
         Missao* getMissaoAtual() {return missaoAtual;}
+        void concluirMissao(Missao* missao);
 
         // método de quebra cabeça
         void definirQuebraCabeca(QuebraCabeca *qc) { quebraCabecaAtual = qc; }
@@ -119,7 +128,7 @@ class Morcego : public Inimigo {
         string tipo;
     public: 
         // construtor e destrutor
-        Morcego(string t = "Morcego") : Inimigo{25, 10, 1}, tipo{t} { nome = tipo;}
+        Morcego(string t = "Morcego") : Inimigo{25, 20, 1}, tipo{t} { nome = tipo;}
         ~Morcego() { };
 };
 class Fungo : public Inimigo {

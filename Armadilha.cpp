@@ -1,5 +1,8 @@
 #include "Armadilha.h"
 
+void Armadilha::ativar(Jogador* jogador) {
+    // método base vazio
+}
 void LagoArmadilha::ativar(Jogador *jogador) {
     int efeito = rand() % 100;  // número aleatório entre 0 e 99
     if (efeito < 30) {  // 30% de chance de cura

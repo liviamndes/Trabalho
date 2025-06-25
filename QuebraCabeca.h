@@ -22,6 +22,7 @@ class QuebraCabeca {
             : itens{i}, sequencia{s}, descricao{d}{ };
         virtual ~QuebraCabeca() { };
 
+        bool executarQuebraCabeca();
         string getDescricao() { return descricao; }
         static string normalizar(string);
         virtual bool resolver() = 0;

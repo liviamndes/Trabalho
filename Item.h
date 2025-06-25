@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class Jogador;
+class Jogador; 
 
 class Item {
     protected: 
@@ -18,14 +18,13 @@ class Item {
         Item(string n, string d) : nome{n}, descricao{d}, desbloqueado{false} {}
         virtual ~Item() {}
 
-
         string getNome() const {return nome;}
         string getDescricao() const {return descricao;}
         bool estaDesbloqueado() const {return desbloqueado;}
 
         void desbloquear(){
             desbloqueado = true;
-            cout << "Item:" << nome << " desbloqueado!\n";
+            cout << " -Item: " << nome << " desbloqueado!\n";
         }
         virtual void usar(Jogador* jogador) = 0;
 };

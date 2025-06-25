@@ -13,6 +13,7 @@
 
 using namespace std;
 
+class Jogador;
 
 //fiquei em duvida de em qual arquivo vai essa classe
 class ItemBloqueadoException : public std::exception {
@@ -42,7 +43,7 @@ class Inventario{
             }
             
             itens.push_back(item); //insere o item no vetor, função da biblioteca padrao vector
-            cout << "Item "<< item->getNome() << " adicionado ao inventário!\n";
+            cout << " -Item: "<< item->getNome() << " adicionado ao inventario!\n";
         }
 
         void listarItens(){
@@ -50,20 +51,20 @@ class Inventario{
                 cout << "Inventario vazio!" << "\n";
                 return;
             }
-            cout << "Itens no inventário:\n";
+            cout << "Itens no inventario:\n";
             for(auto item : itens)
-                cout << item->getNome() << "-" << item->getDescricao() <<"\n";
+                cout << item->getNome() << " - " << item->getDescricao() <<"\n";
         }
 
-        void usarItem(string &nomeItem){
+        void usarItem(string &nomeItem, Jogador* jogador){
             for(auto item : itens){
                 if(item->getNome() == nomeItem){
-                    item->usar();
+                    item->usar(jogador);
                     return;
                 }
             }
             cout << "Item nao encontrado!\n"; 
-        }
+        } 
 };  
 
 #endif

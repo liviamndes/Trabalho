@@ -16,7 +16,7 @@ string QuebraCabeca::normalizar(string str) {
 
     return str;
 }
-bool QuebraCabeca::resolver() {
+bool QuebraCabeca::executarQuebraCabeca() {
     cout << getDescricao() << "\n\n";
     cout << "Sequencia Inicial:\n";
     for(const auto& item : itens) {
@@ -56,3 +56,5 @@ bool QuebraCabeca::resolver() {
         }
     }
 }
+bool QuebraClareira::resolver() { return executarQuebraCabeca(); } 
+bool QuebraIndustria::resolver() { return executarQuebraCabeca(); }
