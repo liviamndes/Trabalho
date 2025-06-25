@@ -15,11 +15,14 @@ void Cenario::iniciarMissao(Jogador *jogador) {
     missaoAtual->iniciar();
 }
 
-void Cenario :: iniciarBatalha(Jogador& jogador, Inimigo& inimigo){
+ResultadoBatalha Cenario :: iniciarBatalha(Jogador& jogador, Inimigo& inimigo){
     BatalhaPorTurnos batalha(jogador, inimigo);
-    batalha.iniciar();
+    bool venceu = batalha.iniciar();
 
-    if (inimigo.getVida() <= 0) {
+    ResultadoBatalha resultado;
+    resultado.venceu = venceu;
+    resultado.fugiu = batalha.fuga();
+    if (venceu) {
         Habilidade* novaHabilidadeDefesa = nullptr;
         Habilidade* novaHabilidadeAtaque = nullptr;
 
@@ -47,13 +50,15 @@ void Cenario :: iniciarBatalha(Jogador& jogador, Inimigo& inimigo){
         if (novaHabilidadeDefesa != nullptr && novaHabilidadeAtaque != nullptr ) {
             novaHabilidadeDefesa->desbloquear();
             novaHabilidadeAtaque->desbloquear();
-            
+
             cout << "\nParabens! Voce desbloqueou a habilidade de defesa: " << novaHabilidadeDefesa->getNome() << "!\n";
             cout << "Parabens! Voce desbloqueou a habilidade de ataque: " << novaHabilidadeAtaque->getNome() << "!\n";
             jogador.adicionarHabilidade(novaHabilidadeDefesa);
             jogador.adicionarHabilidade(novaHabilidadeAtaque);
         }
     }
+
+    return resultado;
 }
 
 void BosqueDasFadas::explorar(Jogador* jogador) {
@@ -122,13 +127,14 @@ void BosqueDasFadas::explorar(Jogador* jogador) {
     cout << "Prepare se para a batalha!\n";
     cout << "------------------------------------------------------------------------\n\n";
     
-    bool venceu = false;   
-    while(!venceu) {
-        iniciarBatalha(*jogador, *inimigo);  
-        if(jogador->getVida() >= 0 && inimigo->getVida() <= 0) {
-            venceu = true;
+    ResultadoBatalha resultado;
+
+    do {
+        resultado = iniciarBatalha(*jogador, *inimigo);
+        if (resultado.fugiu) {
+            break;  // Sai do loop se fugiu
         }
-    }
+    } while (!resultado.venceu);
 }
 
 void ClareiraCorrompida::explorar(Jogador *jogador) {
@@ -141,8 +147,14 @@ void ClareiraCorrompida::explorar(Jogador *jogador) {
 
     // Quebra cabeça
     jogador->definirQuebraCabeca(quebra);
-    bool resolveu = jogador->resolverQuebraCabecaAtual();
+    bool resolveu = false;
 
+    try {
+        resolveu = jogador->resolverQuebraCabecaAtual();
+    } catch (QuebraCabecaNaoResolvidoException& e) {
+        cout << e.what() << "\n";
+        cout << "Tente novamente.\n";
+    }
     // tem que ver quando que ele vai usar esses itens 
     // Receber item de recompensa
     if(resolveu) {

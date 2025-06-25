@@ -54,7 +54,7 @@ class Jogador : public Personagem {
 
         // métodos do inventario
         void adicionarItemAoInventario(Item *item) { inv.addItem(item); }
-        void listarItensDoInventario() { inv.listarItens(); }
+        bool listarItensDoInventario() { inv.listarItens(); }
         void usarItemDoInventario(string nomeItem) { inv.usarItem(nomeItem, this); }
 
         //metado de habilidade

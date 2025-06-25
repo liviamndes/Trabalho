@@ -18,6 +18,10 @@ class Missao;
 
 using namespace std;
 
+struct ResultadoBatalha {
+    bool venceu;
+    bool fugiu;
+};
 
 class Cenario{
     protected:
@@ -45,7 +49,7 @@ class Cenario{
         void iniciarMissao(Jogador* jogador);
 
         //metado batalha
-        void iniciarBatalha(Jogador& jogador, Inimigo& inimigo);
+        ResultadoBatalha iniciarBatalha(Jogador& jogador, Inimigo& inimigo);
 };
 class BosqueDasFadas : public Cenario {
     public:

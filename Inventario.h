@@ -34,7 +34,7 @@ class Inventario{
                 delete itens[i];
             }
         }
-
+        vector<T*> getItens() const { return itens; }
         void addItem(T* item){
             if (!item->estaDesbloqueado()) {
                  if (!item->estaDesbloqueado()) {
@@ -46,20 +46,25 @@ class Inventario{
             cout << " -Item: "<< item->getNome() << " adicionado ao inventario!\n";
         }
 
-        void listarItens(){
+        bool listarItens(){
             if(itens.empty()){
                 cout << "Inventario vazio!" << "\n";
-                return;
+                return false;
             }
             cout << "Itens no inventario:\n";
             for(auto item : itens)
                 cout << item->getNome() << " - " << item->getDescricao() <<"\n";
+            return true;
         }
 
         void usarItem(string &nomeItem, Jogador* jogador){
-            for(auto item : itens){
-                if(item->getNome() == nomeItem){
-                    item->usar(jogador);
+            for(auto it = itens.begin(); it != itens.end(); ++it){
+                if((*it)->getNome() == nomeItem){
+                    (*it)->usar(jogador);
+                    delete *it;
+                    itens.erase(it);
+
+                    cout << "O item foi consumido e removido do inventario.\n";
                     return;
                 }
             }
