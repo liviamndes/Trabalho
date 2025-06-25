@@ -68,7 +68,7 @@ int main() {
     
     //4.Definir cenario Lago das Lagrimas(FASE 3)
     cout << "\n=============================================\n";
-    cout << "             Fase 3: Lago das Lagrimas           ";
+    cout << "             Fase 3: Lago das Lagrimas           \n";
     cout << "=============================================\n\n";
     Missao* missaoLago = new CurarLago();
     Item* cristalAgua = new CristalDaAgua();
@@ -84,6 +84,9 @@ int main() {
     delete almas;
 
     //5.Definir Cenario Base Industrial(FASE 4)
+    cout << "\n=============================================\n";
+    cout << "             Fase 4: Base da Industria          ";
+    cout << "=============================================\n\n";
     Missao* missaoIndustria = new SabotarIndustria();
     Item* amuleto = new AmuletoDaEsperanca();
     Inimigo* general = new General();
@@ -97,6 +100,9 @@ int main() {
     delete general;
 
     //Definir Cenario Coração da Floresta (FASE 5 - final)
+    cout << "\n=============================================\n";
+    cout << "             Fase 5: Coracao da Floresta         ";
+    cout << "=============================================\n\n";
     Missao* missaoFinal = new MissaoFinal();
     Item* cristalVida = new CristalDaVida();
     Inimigo* rainha = new RainhaDasCinzas();

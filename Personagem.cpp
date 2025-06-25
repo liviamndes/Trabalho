@@ -26,7 +26,7 @@ void Jogador::sofrerDano(int perda) {
     perda = perda * modificadorDano;
     vida-= perda;
     if(vida <= 0)
-        cout << "Voce foi derrotado... Esta morto!\n";
+        cout << "\nVoce foi derrotado";
     else {
         cout << "\nVoce sofreu " << perda << " de dano!\n";
         cout << "Vida restante: " << vida << "\n";
@@ -39,15 +39,13 @@ void Jogador:: atacar(Inimigo& inimigo){
 void Jogador::ganharExperiencia(int xp) {
     experiencia += xp;
     cout << "Voce ganhou " << xp << " pontos de experiencia. Total: " << experiencia << "\n";
-
-    while (experiencia >= nivel * 100) {
-        experiencia -= nivel * 100;
-        subirNivel();
-    }
 }
 void Jogador::subirNivel() {
     nivel++;
     cout << "Parabens! Voce chegou ao nivel " << nivel << "!\n";
+    ataque = ataque + (5*nivel);
+    cout << "Seu ataque agora gera " << ataque << " de dano no inimigo.\n";
+
 }
 void Jogador:: recuperarVida(int quant){
     vida += quant;

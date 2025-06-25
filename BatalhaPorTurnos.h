@@ -55,7 +55,7 @@ class BatalhaPorTurnos{
             case 3:
                 if(jogador.getTemHabilidade()) {
                     jogador.listarHabilidades();
-                    cout << "Escolha a habilidade para usar: ";
+                    cout << "Escolha a habilidade para usar pelo indice: ";
                     int habilidadeEscolha;
                     cin >> habilidadeEscolha;
                     jogador.usarHabilidade(habilidadeEscolha, &jogador, &inimigo);
@@ -92,20 +92,21 @@ class BatalhaPorTurnos{
                 if(inimigo.getVida() <= 0){
                     cout<< "\nVoce derrotou o " << inimigo.getNome() << "!\n";
                     batalhaEmAndamento = false;
-                    cout << "\n----Fim da Batalha---\n";
+                    cout << "\n\n----Fim da Batalha---\n\n";
+
                     return true;
                 }
 
                 turnoInimigo();
 
                 if (jogador.getVida() <= 0) {
-                    cout << "\nVoce foi derrotado pelo " << inimigo.getNome() << "!\n";
+                    cout << "pelo fungo!";
+                    cout << "\n\n---- Fim da Batalha ----\n\n";
                     batalhaEmAndamento = false;
                     cout << "Recuperando forcas...\n";
                     jogador.recuperarVida(50); 
                     cout << "\nPressione Enter para tentar novamente...\n";
                     cin.get();
-                    cout << "\n---- Fim da Batalha ----\n";
                     return false;
                 }
             }

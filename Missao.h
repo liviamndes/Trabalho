@@ -31,9 +31,6 @@ class Missao{
             cout << "\n====================================================\n";
             cout << "          Missao concluida: " << titulo << "          \n";
             cout << "====================================================\n";
-            cout << "Habilidades desbloqueadas:\n";
-            cout << "   -> " <<getHabilidadeAtaque()->getNome() << endl;
-            cout << "   -> " <<getHabilidadeDefesa()->getNome() << endl;
         }
 
         Habilidade* getHabilidadeDefesa() { return habilidadeDefesa; }
