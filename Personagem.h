@@ -62,9 +62,14 @@ class Jogador : public Personagem {
             habilidades.push_back(habilidade);
             cout << "Habilidade " << habilidade->getNome() << " adicionada ao jogador!\n";
         }
-        bool getTemHabilidade() { return temHabilidade; }
+        bool getTemHabilidade() { 
+            for (auto* h : habilidades)
+                if (h->estaDesbloqueada()) return true;
+            return false; 
+        }
         
         void listarHabilidades() {
+            
             cout << "\nHabilidades disponiveis:\n";
             for (size_t i = 0; i < habilidades.size(); i++) {
                 if(habilidades[i]->estaDesbloqueada()) {
@@ -136,7 +141,7 @@ class Fungo : public Inimigo {
         string tipo;
     public: 
         // construtor e destrutor
-        Fungo(string t = "Fungo") : Inimigo{100, 40, 15}, tipo{t} { nome = tipo;}
+        Fungo(string t = "Fungo") : Inimigo{40, 40, 15}, tipo{t} { nome = tipo;}
         ~Fungo() { };
 };
 class AlmasPerdidas : public Inimigo {

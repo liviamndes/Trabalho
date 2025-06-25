@@ -11,19 +11,24 @@ string QuebraCabeca::normalizar(string str) {
     while (!str.empty() && isspace(str.front())) str.erase(str.begin());
     while (!str.empty() && isspace(str.back())) str.pop_back();
 
+    for (char& c : str) {
+        if ((unsigned char)c == 0xA0) c = ' '; // NBSP
+    }
+
     // Converte para minúsculas
     transform(str.begin(), str.end(), str.begin(), ::tolower);
 
     return str;
 }
 bool QuebraCabeca::executarQuebraCabeca() {
+    cout << "\n========== DESAFIO: QUEBRA-CABECA ==========\n";
     cout << getDescricao() << "\n\n";
     cout << "Sequencia Inicial:\n";
     for(const auto& item : itens) {
         cout << "- " << item << "\n";
     }
 
-    int tentativaAtual = 0;
+    static int tentativaAtual = 0;
     while(true) {
         cout << "\nTentativa " << tentativaAtual + 1 << "\n";
 

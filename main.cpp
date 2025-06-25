@@ -67,7 +67,9 @@ int main() {
 
     
     //4.Definir cenario Lago das Lagrimas(FASE 3)
-    cout << "\n--- Fase 3: Lago das Lagrimas ---\n";
+    cout << "\n=============================================\n";
+    cout << "             Fase 3: Lago das Lagrimas           ";
+    cout << "=============================================\n\n";
     Missao* missaoLago = new CurarLago();
     Item* cristalAgua = new CristalDaAgua();
     Inimigo* almas = new AlmasPerdidas();

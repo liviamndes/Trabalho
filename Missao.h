@@ -27,8 +27,10 @@ class Missao{
         }
 
         virtual void concluir() { 
-            concluida = true; 
-            cout << "\nMissao concluida: " << titulo << "\n";
+            concluida = true;
+            cout << "\n====================================================\n";
+            cout << "          Missao concluida: " << titulo << "          \n";
+            cout << "====================================================\n";
             cout << "Habilidades desbloqueadas:\n";
             cout << "   -> " <<getHabilidadeAtaque()->getNome() << endl;
             cout << "   -> " <<getHabilidadeDefesa()->getNome() << endl;

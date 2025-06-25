@@ -16,18 +16,11 @@ bool Jogador::resolverQuebraCabecaAtual() {
     bool resolveu = quebraCabecaAtual->resolver();
 
     if(resolveu) {
-        cout << "Voce resolveu o quebra-cabeca com sucesso!\n";
+        cout << "\n...........................................\n";
+        cout << "      Quebra-cabeca resolvido com sucesso!   \n";
+        cout << "...........................................\n";
         ganharExperiencia(25); 
-
-        if (missaoAtual) {
-            missaoAtual->concluir();
-            return true;
-        }
-        
-    } else {
-        cout << "Você falhou em resolver o quebra-cabeca.\n";
-        return false;
-    }
+    } 
 }
 void Jogador::sofrerDano(int perda) {
     perda = perda * modificadorDano;
