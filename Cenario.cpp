@@ -351,7 +351,10 @@ void BaseIndustria::explorar(Jogador *jogador)
     // Infiltração e hackeamento dos sistemas de segurança mágicos
     cout << "Voce se aproxima do centro de controle da base...\n";
     cout << "Para acessar a sala do General, voce precisa desarmar os dispositivos de seguranca para infiltrar se com sucesso.\n";
-
+    
+    cout << "\n\nPressione ENTER para continuar...\n\n";
+    cin.ignore();
+    cin.get();
     // O jogador precisa resolver quebra-cabeças para hackear e desarmar dispositivos
     cout << "Desarmando os feitiços magicos e hackeando os sistemas de segurança...\n";
     jogador->definirQuebraCabeca(quebra);
