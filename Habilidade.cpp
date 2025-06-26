@@ -60,7 +60,7 @@ void DardoLuminoso :: ativar(Jogador* jogador, Inimigo* inimigo){
 void GarrasDaTerra :: ativar(Jogador* jogador, Inimigo* inimigo){
     if (inimigo != nullptr) {
         int dano = 25;
-        cout << "Voce usou as Garras da Terra! Espinhos mágicos causam dano >>"<< dano <<"<< no inimigo!" << endl;
+        cout << "Voce usou as Garras da Terra! Espinhos magicos causam dano >>"<< dano <<"<< no inimigo!" << endl;
         inimigo->sofrerDano(dano);
     }
 }
@@ -69,7 +69,7 @@ void GarrasDaTerra :: ativar(Jogador* jogador, Inimigo* inimigo){
 void JorroEncantado :: ativar(Jogador* jogador, Inimigo* inimigo){
    if (inimigo != nullptr) {
         int dano = 35;
-        cout << "Voce usou o Jorro Encantado! Um poderoso fluxo de água purificada atinge o inimigo!" << endl;
+        cout << "Voce usou o Jorro Encantado! Um poderoso fluxo de agua purificada atinge o inimigo!" << endl;
         inimigo->sofrerDano(dano);
     } 
 }
@@ -78,7 +78,7 @@ void JorroEncantado :: ativar(Jogador* jogador, Inimigo* inimigo){
 void RajadaEnergetica :: ativar(Jogador* jogador, Inimigo* inimigo){
     if (inimigo != nullptr) {
         int dano = 40;
-        cout << "Voce usou a Rajada Energética! Um feixe de energia concentrada atinge o inimigo!" << endl;
+        cout << "Voce usou a Rajada Energetica! Um feixe de energia concentrada atinge o inimigo!" << endl;
         inimigo->sofrerDano(dano);
     }    
 }
@@ -87,7 +87,7 @@ void RajadaEnergetica :: ativar(Jogador* jogador, Inimigo* inimigo){
 void ExplosaoCelestial :: ativar(Jogador* jogador, Inimigo* inimigo){
    if (inimigo != nullptr) {
         int dano = 50;
-        cout << "Voce usou a Explosão Celestial! Uma onda de luz divina causa grande dano no inimigo!" << endl;
+        cout << "Voce usou a Explosao Celestial! Uma onda de luz divina causa grande dano no inimigo!" << endl;
         inimigo->sofrerDano(dano);
     } 
 }

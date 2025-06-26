@@ -8,11 +8,6 @@
 #include "Armadilha.h"
 
 bool Jogador::resolverQuebraCabecaAtual() {
-    if (!quebraCabecaAtual) {
-        cout << "Nenhum quebra-cabeca atribuido ao jogador.\n";
-        return false;
-    }
-
     bool resolveu = quebraCabecaAtual->resolver();
 
     if(resolveu) {
@@ -22,11 +17,17 @@ bool Jogador::resolverQuebraCabecaAtual() {
         ganharExperiencia(25); 
     } 
 }
+void Jogador::setModificadorDano(float modificador) {
+    modificadorDano = modificador;
+}
+void Jogador::resetarModificadorDano() {
+    modificadorDano = 1.0;
+}
 void Jogador::sofrerDano(int perda) {
     perda = perda * modificadorDano;
     vida-= perda;
     if(vida <= 0)
-        cout << "\nVoce foi derrotado";
+        cout << "\nVoce foi derrotado.";
     else {
         cout << "\nVoce sofreu " << perda << " de dano!\n";
         cout << "Vida restante: " << vida << "\n";
@@ -54,12 +55,6 @@ void Jogador:: recuperarVida(int quant){
 }
 int Jogador::getMaxVida() const {
     return vidaMaxima;
-}
-void Jogador::setModificadorDano(float modificador) {
-    modificadorDano = modificador;
-}
-void Jogador::resetarModificadorDano() {
-    modificadorDano = 1.0;
 }
 void Jogador::iniciarEfeitoRegeneracao(int vidaPorTurno_, int duracaoTurnos) {
     vidaPorTurno = vidaPorTurno_;

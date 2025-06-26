@@ -4,7 +4,7 @@
 void PocaoCura :: usar(Jogador* jogador){
     if (estaDesbloqueado()) {
         cout << "\nVoce usou a " << getNome() << endl; 
-        jogador->recuperarVida(50);  // Recupera 50 de vida no jogador
+        jogador->recuperarVida(30);  // Recupera 50 de vida no jogador
     } else {
         cout << "\nA " << getNome() << " ainda esta bloqueada!\n";
     }
@@ -22,6 +22,7 @@ void SementeAncestral :: usar(Jogador* jogador){
 void CristalDaAgua :: usar(Jogador* jogador){
     if (estaDesbloqueado()) { 
         cout << "\nO Cristal da Agua purificou sua energia!\n";
+        jogador->recuperarVida(35); 
 
     } else {
         cout << "\nO Cristal da Agua ainda esta bloqueado!\n";

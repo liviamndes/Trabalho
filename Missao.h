@@ -61,7 +61,7 @@ class PurificarTerra : public Missao {
 
         void concluir() override {
             Missao::concluir();
-            cout << "Voce restaurou a clareira! A natureza agradece.\n";
+            cout << "Voce restaurou a clareira! A natureza agradece.\n\n";
         }
 };
 
@@ -72,7 +72,7 @@ class CurarLago : public Missao {
 
         void concluir() override {
             Missao::concluir();
-            cout << "Voce curou o lago!As almas perdidas encontram paz no renascimento do lago, sendo libertas enfim da dor.\n";
+            cout << "Voce curou o lago!As almas perdidas encontram paz no renascimento do lago, sendo libertas enfim da dor.\n\n";
         }
 };
 
@@ -84,13 +84,9 @@ class SabotarIndustria : public Missao {
 
         void concluir() override {
             Missao::concluir();
-            cout << "Voce sabotou os sistemas industriais e derrotou o general!\n";
+            cout << "Voce sabotou os sistemas industriais e derrotou o general!\n\n";
         }
 };
-
-// vai precisar separar as declarações que envolvem jogador e fazer isso apenas em Personagem.cpp ou Personagem.h
-// tipo o que eu fiz na funcao concluirMissao() -> criei
-// concluir() -> agora nao tem mais parametros de jogador
 
 // Coração da floresta
 class MissaoFinal : public Missao {
