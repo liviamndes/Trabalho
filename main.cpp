@@ -90,8 +90,8 @@ int main() {
     Missao* missaoIndustria = new SabotarIndustria();
     Item* amuleto = new AmuletoDaEsperanca();
     Inimigo* general = new General();
-
-    BaseIndustria base{missaoIndustria, amuleto, general};
+    QuebraCabeca *quebraInd = new QuebraIndustria();
+    BaseIndustria base{missaoIndustria, amuleto, general, quebraInd};
     jogador.setCenario(&base);
     base.explorar(&jogador);
 
