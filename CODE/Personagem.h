@@ -151,7 +151,7 @@ class AlmasPerdidas : public Inimigo {
         string tipo;
     public: 
         // construtor e destrutor
-        AlmasPerdidas(string t = "Almas Perdidas") : Inimigo{75, 30, 10}, tipo{t} { nome = tipo;}
+        AlmasPerdidas(string t = "Almas Perdidas") : Inimigo{75, 35, 10}, tipo{t} { nome = tipo;}
         ~AlmasPerdidas() { };
 };
 class General : public Inimigo {
