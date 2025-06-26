@@ -1,4 +1,3 @@
-//p eu conseguir enviar
 #include <iostream>
 #include "Personagem.h"
 #include "Cenario.h"
@@ -61,7 +60,6 @@ ResultadoBatalha Cenario ::iniciarBatalha(Jogador &jogador, Inimigo &inimigo)
         {
             novaHabilidadeDefesa->desbloquear();
             novaHabilidadeAtaque->desbloquear();
-
         }
     }
 
@@ -265,8 +263,9 @@ void LagodasLagrimas::explorar(Jogador *jogador)
     cout << "\nAs margens do lago exalam tristeza...\n";
     cout << "As aguas estao turvas e geladas, e uma nevoa cobre tudo ao redor.\n";
     cout << "De repente, uma presenca gelada o envolve...\n";
-    
+
     cout << "\n\nPressione ENTER para continuar...\n\n";
+    cin.ignore();
     cin.get();
 
     // Enfrentando inimigo: Almas perdias
@@ -292,20 +291,20 @@ void LagodasLagrimas::explorar(Jogador *jogador)
 
     // Jogador recebe recompensa
     string resposta, purificar;
-    item->desbloquear();
 
     cout << "Voce encontra um brilho na agua...\n";
-    cout << "Voce se aproxima e encontra o" << item->getNome() << "\n";
+    cout << "Voce se aproxima e encontra o " << item->getNome() << "\n";
     cout << item->getDescricao() << "\n";
+    item->desbloquear();
     cout << "Voce deseja colocar o item no seu inventario? (S/N): ";
 
     cin >> resposta;
-    while (resposta != "S" && resposta != "s")
+    while (resposta != "S" && resposta != "s" && resposta != "N" && resposta != "n")
     {
         cout << "Insira uma resposta valida. Deseja pegar o item? (S/N):";
         cin >> resposta;
     }
-    if (resposta == "S")
+    if (resposta == "S" || resposta == "s")
     {
         cout << "Voce agora possui o Cristal da Agua!\n";
         jogador->adicionarItemAoInventario(item);
@@ -320,6 +319,28 @@ void LagodasLagrimas::explorar(Jogador *jogador)
         cout << "\nUma luz azulada invade o lago...\n";
         cout << "As aguas se purificam e a nevoa desaparece.\n";
         cout << "O Lago das Lagrimas brilha novamente!\n";
+    }else{
+        cout << "Tem certeza?Esse item pode ser essencial para salvar o lago.\n";
+        cout << "Deseja recosiderar e pegar o item ? (S/N)\n";
+        cin >> resposta;
+        if (resposta == "S" || resposta == "s"){
+            cout << "Saiba que voce tomou a decisão certa.";
+            jogador->adicionarItemAoInventario(item);
+            cout << "\nDigite 'PURIFICAR' para salvar o lago: ";
+            cin >> purificar;
+            while (purificar != "PURIFICAR")
+            {
+                cout << "Algo esta errado, tente novamente para concluir a missao!\n";
+                cin >> purificar;
+            }
+            jogador->usarItemDoInventario(item->getNome());
+            cout << "\nUma luz azulada invade o lago...\n";
+            cout << "As aguas se purificam e a nevoa desaparece.\n";
+            cout << "O Lago das Lagrimas brilha novamente!\n";
+        }else{
+            cout << "Entendido. Voce decidiu seguir sem o Cristal da Agua.\n";
+        }
+
     }
 
     cout << "\n\nPressione ENTER para continuar...\n\n";
@@ -377,43 +398,41 @@ void BaseIndustria::explorar(Jogador *jogador)
 
     cout << "\n\nPressione ENTER para continuar...\n\n";
     cin.get();
-    
-    if (resolveu)
+
+    item->desbloquear();
+    jogador->adicionarItemAoInventario(item);
+
+    cout << "\n\nPressione ENTER para continuar...\n\n";
+    cin.get();
+
+    // Inimigo: general
+    cout << "Voce conseguiu hackear os sistemas e desativar os feiticos magicos! O caminho agora esta livre para a infiltracao.\n";
+    cout << "Mas, ao chegar mais perto do centro de controle, você percebe que algo esta errado...\n";
+    cout << "O General da Base Industria Sombria estava esperando por voce o tempo todo. Ele e o comandante das forcas de seguranca da base e possui grande poder, tanto tecnologico quanto magico.\n";
+    cout << "Com sua presenca imponente e sua tecnologia avancada, ele ira lutar ate o fim para proteger os segredos da base.\n";
+    cout << "Voce precisa se preparar para uma batalha intensa contra ele, que usa feiticarias e tecnologias para aumentar sua forca. Prepare se!\n";
+
+    cout << "O General usa sua magia para invocar um escudo impenetravel ao redor de si, e sistemas automaticos começam a atacar de todas as direcoes!\n";
+    cout << "Voce sente o peso da batalha, mas com a forca adquirida nas missoes anteriores, voce esta pronto para enfrenta lo.\n";
+    cout << "A luta sera dificil, mas se voce usar todas as suas habilidades e itens, pode conseguir derrota lo e destruir a ameaca da Base Industria Sombria.\n";
+
+    ResultadoBatalha resultado;
+    do
     {
-        item->desbloquear();
-        jogador->adicionarItemAoInventario(item);
-        
-        // Inimigo: general
-        cout << "Voce conseguiu hackear os sistemas e desativar os feiticos magicos! O caminho agora esta livre para a infiltracao.\n";
-        cout << "Mas, ao chegar mais perto do centro de controle, você percebe que algo esta errado...\n";
-        cout << "O General da Base Industria Sombria estava esperando por voce o tempo todo. Ele e o comandante das forcas de seguranca da base e possui grande poder, tanto tecnologico quanto magico.\n";
-        cout << "Com sua presenca imponente e sua tecnologia avancada, ele ira lutar ate o fim para proteger os segredos da base.\n";
-        cout << "Voce precisa se preparar para uma batalha intensa contra ele, que usa feiticarias e tecnologias para aumentar sua forca. Prepare se!\n";
-
-        cout << "O General usa sua magia para invocar um escudo impenetravel ao redor de si, e sistemas automaticos começam a atacar de todas as direcoes!\n";
-        cout << "Voce sente o peso da batalha, mas com a forca adquirida nas missoes anteriores, voce esta pronto para enfrenta lo.\n";
-        cout << "A luta sera dificil, mas se voce usar todas as suas habilidades e itens, pode conseguir derrota lo e destruir a ameaca da Base Industria Sombria.\n";
-
-        ResultadoBatalha resultado;
-        do
+        resultado = iniciarBatalha(*jogador, *inimigo);
+        if (resultado.fugiu)
         {
-            resultado = iniciarBatalha(*jogador, *inimigo);
-            if (resultado.fugiu)
-            {
-                cout << "\nVoce escapou por pouco... mas o perigo ainda esta a solta.\n";
-                break; // Sai do loop se fugiu
-            }
-        } while (!resultado.venceu);
+            cout << "\nVoce escapou por pouco... mas o perigo ainda esta a solta.\n";
+            break; // Sai do loop se fugiu
+        }
+    } while (!resultado.venceu);
 
-        // Concluir missão
-        jogador->concluirMissao(missaoAtual);
-        jogador->ganharExperiencia(50);
-        jogador->subirNivel();
-    }
-    else
-    {
-        cout << "Tente novamente\n";
-    }
+    cout << "\n\nPressione ENTER para continuar...\n\n";
+    cin.get();
+    // Concluir missão
+    jogador->concluirMissao(missaoAtual);
+    jogador->ganharExperiencia(50);
+    jogador->subirNivel();
 }
 void CoracaoDaFloresta::explorar(Jogador *jogador)
 {
@@ -428,7 +447,6 @@ void CoracaoDaFloresta::explorar(Jogador *jogador)
     cout << "A Rainha das Cinzas corrompeu a floresta e controla a terra com sua magia negra.\n";
     cout << "Para restaurar a floresta, voce precisa ativar os pedestais magicos espalhados pela regiao.\n";
     cout << "Cada pedestal exige que voce use as habilidades adquiridas nas fases anteriores.\n";
-
 
     ResultadoBatalha resultado;
     do

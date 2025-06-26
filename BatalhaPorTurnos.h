@@ -92,6 +92,7 @@ class BatalhaPorTurnos{
                 if(inimigo.getVida() <= 0){
                     cout<< "\nVoce derrotou o " << inimigo.getNome() << "!\n";
                     batalhaEmAndamento = false;
+                    jogador.recuperarVida(50); 
                     cout << "\n\n----Fim da Batalha---\n\n";
 
                     return true;
@@ -100,7 +101,7 @@ class BatalhaPorTurnos{
                 turnoInimigo();
 
                 if (jogador.getVida() <= 0) {
-                    cout << "pelo fungo!";
+                    cout << "pelo " << inimigo.getNome() << "!\n" ;
                     cout << "\n\n---- Fim da Batalha ----\n\n";
                     batalhaEmAndamento = false;
                     cout << "Recuperando forcas...\n";
