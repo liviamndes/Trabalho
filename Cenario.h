@@ -86,19 +86,19 @@ class LagodasLagrimas : public Cenario {  // como assim flor carnivora? o vilao 
 };
 class BaseIndustria : public Cenario {
     public:
-        BaseIndustria(Missao *m = nullptr, Item *i = nullptr, Inimigo *v = nullptr) : Cenario("Base da Industria", 
+        BaseIndustria(Missao *m, Item *i, Inimigo *v, QuebraCabeca *q) : Cenario("Base da Industria", 
         "Você entra em uma imensa base industrial, onde máquinas gigantescas e tecnologia arcana estão em pleno funcionamento. "
         "O som de engrenagens e tubos de vapor ecoa por toda a instalação, criando uma atmosfera de total mecanização. "
         "O General da Exploração controla a área e está atrás de manipular a magia e a tecnologia para seus próprios fins. "
         "Para impedir seus planos, você precisa hackear sistemas de segurança mágicos, desarmar dispositivos e sabotar a máquina central. "
         "Mas a interferência do General torna o ambiente ainda mais perigoso. "
         "A única esperança é o Amuleto da Esperança, que pode reverter os danos causados por essa interferência.",
-        m, i, v) { };
+        m, i, v, nullptr, q) { };
         void explorar(Jogador*);
 };
 class CoracaoDaFloresta : public Cenario {
     public:
-        CoracaoDaFloresta(Missao *m = nullptr, Item *i = nullptr, Inimigo *v = nullptr) : Cenario("Coracao da Floresta",
+        CoracaoDaFloresta(Missao *m, Item *i, Inimigo *v) : Cenario("Coracao da Floresta",
             "Você chega ao centro da floresta, onde a natureza é mais vibrante e poderosa. "
             "O ar aqui parece mais fresco, e a luz solar brilha diretamente através das copas das árvores, criando um campo de luz dourada. "
             "No entanto, algo está prestes a mudar. "
