@@ -104,6 +104,7 @@ class BatalhaPorTurnos{
                     cout << "\n\n---- Fim da Batalha ----\n\n";
                     batalhaEmAndamento = false;
                     cout << "Recuperando forcas...\n";
+                    jogador.setVida(0);
                     jogador.recuperarVida(50); 
                     cout << "\nPressione Enter para tentar novamente...\n";
                     cin.get();

@@ -27,11 +27,7 @@ bool QuebraCabeca::executarQuebraCabeca() {
     for(const auto& item : itens) {
         cout << "- " << item << "\n";
     }
-
-    static int tentativaAtual = 0;
     while(true) {
-        cout << "\nTentativa " << tentativaAtual + 1 << "\n";
-
         vector<string> resposta;
         string entrada;
 
@@ -56,7 +52,6 @@ bool QuebraCabeca::executarQuebraCabeca() {
         if(correta) {
             return true;
         } else {
-            tentativaAtual++;
             throw QuebraCabecaNaoResolvidoException();
         }
     }

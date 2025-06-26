@@ -103,6 +103,7 @@ class Jogador : public Personagem {
         Cenario* getCenario() { return cenarioAtual; }
 
         //metado batalha
+        void setVida(int v) { vida = v; } 
         void atacar(Inimigo& inimigo);
         void sofrerDano(int);
         void ganharExperiencia(int);
