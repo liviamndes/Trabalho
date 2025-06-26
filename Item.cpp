@@ -22,7 +22,7 @@ void SementeAncestral :: usar(Jogador* jogador){
 void CristalDaAgua :: usar(Jogador* jogador){
     if (estaDesbloqueado()) { 
         cout << "\nO Cristal da Agua purificou sua energia!\n";
-        jogador->recuperarVida(35); 
+        jogador->recuperarVida(70); // vida mais alta pq tem a opção de nao pegar
 
     } else {
         cout << "\nO Cristal da Agua ainda esta bloqueado!\n";

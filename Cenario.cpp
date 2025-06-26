@@ -184,8 +184,6 @@ void ClareiraCorrompida::explorar(Jogador *jogador)
     // Quebra cabeça
     jogador->definirQuebraCabeca(quebra);
     bool resolveu = false;
-    
-    cout << "\n\nteste1";
 
     while (resolveu == false)
     {
@@ -225,7 +223,7 @@ void ClareiraCorrompida::explorar(Jogador *jogador)
             }
             else
             {
-                cout << "\nSem o aproveitamento da" << item->getNome() << ", a clareira continua corrompida...\n";
+                cout << "\nSem o aproveitamento da " << item->getNome() << ", a clareira continua corrompida...\n";
                 cout << "Voce sente que ainda ha algo a ser feito.\n";
             }
         }
@@ -409,7 +407,6 @@ void BaseIndustria::explorar(Jogador *jogador)
     {
         try
         {
-            cout << "teste\n\n";
             resolveu = jogador->resolverQuebraCabecaAtual();
         }
         catch (QuebraCabecaNaoResolvidoException &e)
@@ -419,9 +416,6 @@ void BaseIndustria::explorar(Jogador *jogador)
             cin.get();
         }
     }
-
-    cout << "\n\nPressione ENTER para continuar...\n\n";
-    cin.get();
 
     item->desbloquear();
     jogador->adicionarItemAoInventario(item);
@@ -493,11 +487,11 @@ void CoracaoDaFloresta::explorar(Jogador *jogador)
         }
     } while (!resultado.venceu);
 
-    cout << "\nAgora, com a Rainha das Cinzas derrotada, você enfrenta uma escolha dificil...\n";
+    cout << "\nAgora, com a Rainha das Cinzas derrotada, voce enfrenta uma escolha dificil...\n";
     cout << "A Rainha das Cinzas, antes de morrer, sussurra: 'Deixe para tras sua missao. Os humanos nao carregam fardos... Seja como eles.'\n";
     cout << "Voce pode escolher: \n";
     cout << "1. **Salvar a floresta** - Usar a **Semente Ancestral** e **todas as habilidades adquiridas** para restaurar o equilíbrio e renascer como guardia definitiva da natureza.\n";
-    cout << "2. **Se corromper e se tornar humana** - Deixar para trás a missao e seguir a Rainha das Cinzas, tornando se humana e abandonando seu papel como guardia da natureza.\n";
+    cout << "2. **Se corromper e se tornar humana** - Deixar para tras a missao e seguir a Rainha das Cinzas, tornando se humana e abandonando seu papel como guardia da natureza.\n";
 
     // Receber a escolha do jogador
     string escolha;

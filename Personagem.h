@@ -134,7 +134,7 @@ class Morcego : public Inimigo {
         string tipo;
     public: 
         // construtor e destrutor
-        Morcego(string t = "Morcego") : Inimigo{25, 20, 1}, tipo{t} { nome = tipo;}
+        Morcego(string t = "Morcego") : Inimigo{30, 20, 1}, tipo{t} { nome = tipo;}
         ~Morcego() { };
 };
 class Fungo : public Inimigo {
@@ -142,7 +142,7 @@ class Fungo : public Inimigo {
         string tipo;
     public: 
         // construtor e destrutor
-        Fungo(string t = "Fungo") : Inimigo{40, 40, 15}, tipo{t} { nome = tipo;}
+        Fungo(string t = "Fungo") : Inimigo{45, 40, 15}, tipo{t} { nome = tipo;}
         ~Fungo() { };
 };
 class AlmasPerdidas : public Inimigo {
@@ -166,7 +166,7 @@ class RainhaDasCinzas : public Inimigo {
         string tipo;
     public: 
         // construtor e destrutor
-        RainhaDasCinzas(string t = "Rainha Das Cinzas") : Inimigo{200, 100, 30}, tipo{t} { nome = tipo;}
+        RainhaDasCinzas(string t = "Rainha Das Cinzas") : Inimigo{200, 80, 30}, tipo{t} { nome = tipo;}
         ~RainhaDasCinzas() { };  
 };
 
