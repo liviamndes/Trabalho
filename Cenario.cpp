@@ -333,7 +333,6 @@ void LagodasLagrimas::explorar(Jogador *jogador)
                 cout << "Algo esta errado, tente novamente para concluir a missao!\n";
                 cin >> purificar;
             }
-            jogador->usarItemDoInventario(item->getNome());
             cout << "\nUma luz azulada invade o lago...\n";
             cout << "As aguas se purificam e a nevoa desaparece.\n";
             cout << "O Lago das Lagrimas brilha novamente!\n";
@@ -349,8 +348,9 @@ void LagodasLagrimas::explorar(Jogador *jogador)
 
     // Armadilha final
     cout << "\nAntes de sair do lago, voce encontra uma 'Pocao Misterio' flutuando na margem...\n";
+    cout << "\nAs cores mudam: ora azul profunda, ora vermelha intensa, como se escondesse segredos.";
     cout << "Talvez ela te fortaleca... ou nao.\n";
-    cout << "Voce a toma, mesmo sem saber o efeito.\n";
+    cout << "Sem saber se eh presente ou armadilha do destino voce bebe a 'Pocao Misterio'\n";
     armadilha->ativar(jogador);
 
     cout << "\n\nPressione ENTER para continuar...\n\n";
@@ -358,7 +358,7 @@ void LagodasLagrimas::explorar(Jogador *jogador)
 
     // Concluir missão
     jogador->concluirMissao(missaoAtual);
-    jogador->ganharExperiencia(50);
+    jogador->ganharExperiencia(30);
     jogador->subirNivel();
 }
 void BaseIndustria::explorar(Jogador *jogador)
@@ -375,7 +375,7 @@ void BaseIndustria::explorar(Jogador *jogador)
     cout << "Para acessar a sala do General, voce precisa desarmar os dispositivos de seguranca para infiltrar se com sucesso.\n";
 
     // O jogador precisa resolver quebra-cabeças para hackear e desarmar dispositivos
-    cout << "Desarmando os feitiços magicos e hackeando os sistemas de segurança...\n";
+    cout << "Desarmando os feiticos magicos e hackeando os sistemas de seguranca...\n";
 
     cout << "\n\nPressione ENTER para continuar...\n\n";
     cin.get();

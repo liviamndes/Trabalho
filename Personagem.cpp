@@ -27,7 +27,7 @@ void Jogador::sofrerDano(int perda) {
     perda = perda * modificadorDano;
     vida-= perda;
     if(vida <= 0)
-        cout << "\nVoce foi derrotado";
+        cout << "\nVoce foi derrotado.";
     else {
         cout << "\nVoce sofreu " << perda << " de dano!\n";
         cout << "Vida restante: " << vida << "\n";
