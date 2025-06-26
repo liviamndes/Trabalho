@@ -178,15 +178,19 @@ void ClareiraCorrompida::explorar(Jogador *jogador)
     // Quebra cabeça
     jogador->definirQuebraCabeca(quebra);
     bool resolveu = false;
+    
+    cout << "\n\nteste1";
 
     while (resolveu == false)
     {
         try
         {
+            cout << "\n\ntest2";
             resolveu = jogador->resolverQuebraCabecaAtual();
         }
         catch (QuebraCabecaNaoResolvidoException &e)
         {
+            cout << "\n\nteste3";
             cout << e.what() << "\n";
             cout << "Aperte ENTER para tentar novamente.\n";
             cin.get();
@@ -356,9 +360,9 @@ void LagodasLagrimas::explorar(Jogador *jogador)
     cin.get();
 
     // Concluir missão
-    jogador->concluirMissao(missaoAtual);
     jogador->ganharExperiencia(30);
     jogador->subirNivel();
+    jogador->concluirMissao(missaoAtual);
 }
 void BaseIndustria::explorar(Jogador *jogador)
 {
@@ -377,14 +381,18 @@ void BaseIndustria::explorar(Jogador *jogador)
     cout << "Desarmando os feiticos magicos e hackeando os sistemas de seguranca...\n";
 
     cout << "\n\nPressione ENTER para continuar...\n\n";
+    cin.ignore();
     cin.get();
 
     jogador->definirQuebraCabeca(quebra);
     bool resolveu = false;
+    cout << "teste\n\n";
+
     while (resolveu == false)
     {
         try
         {
+            cout << "teste\n\n";
             resolveu = jogador->resolverQuebraCabecaAtual();
         }
         catch (QuebraCabecaNaoResolvidoException &e)
