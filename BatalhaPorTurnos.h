@@ -72,14 +72,13 @@ class BatalhaPorTurnos{
             default:
                 cout << "Escolha invalida!\n";
             }
-
-            jogador.resetarModificadorDano();
         }
 
         void turnoInimigo() {
         if (batalhaEmAndamento && inimigo.getVida()>0) {
             cout << "\n\n--- Turno do " << inimigo.getNome() << " ---\n";
             inimigo.atacar(jogador);
+            jogador.resetarModificadorDano();
         }
         }
 

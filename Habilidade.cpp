@@ -7,7 +7,7 @@
 void EscudoDeLuz :: ativar(Jogador* jogador, Inimigo* inimigo){
     if(jogador!= nullptr){
         cout << "Voce usou o Escudo de Luz! Dano reduzido em 25% neste turno." << endl;
-        jogador->setModificadorDano(0.75);
+        jogador->setModificadorDano(1.0);
     }
 }
 
@@ -15,7 +15,7 @@ void EscudoDeLuz :: ativar(Jogador* jogador, Inimigo* inimigo){
 void RugidoDaNatureza :: ativar(Jogador* jogador, Inimigo* inimigo){
     if(jogador != nullptr){
         cout << "Voce usou o Rugido da Natureza! Resistência aumentada contra ataques físicos e mágicos." << endl;   
-        jogador->setModificadorDano(0.3);
+        jogador->setModificadorDano(0.4);
     }
 }
 
@@ -50,7 +50,7 @@ void RenascimentoDaFloresta :: ativar(Jogador* jogador, Inimigo* inimigo){
 //Bosque das Fadas
 void DardoLuminoso :: ativar(Jogador* jogador, Inimigo* inimigo){
      if (inimigo != nullptr) {
-        int dano = 30;
+        int dano = 25;
         cout << "Voce usou o Dardo Luminoso! Flechas de luz atingem o inimigo!" << endl;
         inimigo->sofrerDano(dano);
     }
@@ -59,7 +59,7 @@ void DardoLuminoso :: ativar(Jogador* jogador, Inimigo* inimigo){
 //Clareira Corrompida
 void GarrasDaTerra :: ativar(Jogador* jogador, Inimigo* inimigo){
     if (inimigo != nullptr) {
-        int dano = 25;
+        int dano =30;
         cout << "Voce usou as Garras da Terra! Espinhos magicos causam dano >>"<< dano <<"<< no inimigo!" << endl;
         inimigo->sofrerDano(dano);
     }
@@ -68,7 +68,7 @@ void GarrasDaTerra :: ativar(Jogador* jogador, Inimigo* inimigo){
 //Lago das Lagrimas
 void JorroEncantado :: ativar(Jogador* jogador, Inimigo* inimigo){
    if (inimigo != nullptr) {
-        int dano = 35;
+        int dano = 45;
         cout << "Voce usou o Jorro Encantado! Um poderoso fluxo de agua purificada atinge o inimigo!" << endl;
         inimigo->sofrerDano(dano);
     } 
@@ -77,7 +77,7 @@ void JorroEncantado :: ativar(Jogador* jogador, Inimigo* inimigo){
 //Base Industrial
 void RajadaEnergetica :: ativar(Jogador* jogador, Inimigo* inimigo){
     if (inimigo != nullptr) {
-        int dano = 40;
+        int dano = 70;
         cout << "Voce usou a Rajada Energetica! Um feixe de energia concentrada atinge o inimigo!" << endl;
         inimigo->sofrerDano(dano);
     }    
@@ -86,7 +86,7 @@ void RajadaEnergetica :: ativar(Jogador* jogador, Inimigo* inimigo){
 //Coração da Floresta
 void ExplosaoCelestial :: ativar(Jogador* jogador, Inimigo* inimigo){
    if (inimigo != nullptr) {
-        int dano = 50;
+        int dano = 110;
         cout << "Voce usou a Explosao Celestial! Uma onda de luz divina causa grande dano no inimigo!" << endl;
         inimigo->sofrerDano(dano);
     } 

@@ -178,19 +178,15 @@ void ClareiraCorrompida::explorar(Jogador *jogador)
     // Quebra cabeça
     jogador->definirQuebraCabeca(quebra);
     bool resolveu = false;
-    
-    cout << "\n\nteste1";
 
     while (resolveu == false)
     {
         try
         {
-            cout << "\n\ntest2";
             resolveu = jogador->resolverQuebraCabecaAtual();
         }
         catch (QuebraCabecaNaoResolvidoException &e)
         {
-            cout << "\n\nteste3";
             cout << e.what() << "\n";
             cout << "Aperte ENTER para tentar novamente.\n";
             cin.get();
@@ -221,7 +217,7 @@ void ClareiraCorrompida::explorar(Jogador *jogador)
             }
             else
             {
-                cout << "\nSem o aproveitamento da" << item->getNome() << ", a clareira continua corrompida...\n";
+                cout << "\nSem o aproveitamento da " << item->getNome() << ", a clareira continua corrompida...\n";
                 cout << "Voce sente que ainda ha algo a ser feito.\n";
             }
         }
@@ -386,13 +382,11 @@ void BaseIndustria::explorar(Jogador *jogador)
 
     jogador->definirQuebraCabeca(quebra);
     bool resolveu = false;
-    cout << "teste\n\n";
 
     while (resolveu == false)
     {
         try
         {
-            cout << "teste\n\n";
             resolveu = jogador->resolverQuebraCabecaAtual();
         }
         catch (QuebraCabecaNaoResolvidoException &e)
@@ -403,9 +397,6 @@ void BaseIndustria::explorar(Jogador *jogador)
         }
     }
 
-    cout << "\n\nPressione ENTER para continuar...\n\n";
-    cin.get();
-
     item->desbloquear();
     jogador->adicionarItemAoInventario(item);
 
@@ -414,13 +405,13 @@ void BaseIndustria::explorar(Jogador *jogador)
 
     // Inimigo: general
     cout << "Voce conseguiu hackear os sistemas e desativar os feiticos magicos! O caminho agora esta livre para a infiltracao.\n";
-    cout << "Mas, ao chegar mais perto do centro de controle, você percebe que algo esta errado...\n";
+    cout << "Mas, ao chegar mais perto do centro de controle, voce percebe que algo esta errado...\n";
     cout << "O General da Base Industria Sombria estava esperando por voce o tempo todo. Ele e o comandante das forcas de seguranca da base e possui grande poder, tanto tecnologico quanto magico.\n";
     cout << "Com sua presenca imponente e sua tecnologia avancada, ele ira lutar ate o fim para proteger os segredos da base.\n";
     cout << "Voce precisa se preparar para uma batalha intensa contra ele, que usa feiticarias e tecnologias para aumentar sua forca. Prepare se!\n";
 
-    cout << "O General usa sua magia para invocar um escudo impenetravel ao redor de si, e sistemas automaticos começam a atacar de todas as direcoes!\n";
-    cout << "Voce sente o peso da batalha, mas com a forca adquirida nas missoes anteriores, voce esta pronto para enfrenta lo.\n";
+    cout << "O General usa sua magia para invocar um escudo impenetravel ao redor de si, e sistemas automaticos comecam a atacar de todas as direcoes!\n";
+    cout << "Voce sente o peso da batalha, mas com a forca adquirida nas missoes anteriores, voce esta pronto para enfrenta-lo.\n";
     cout << "A luta sera dificil, mas se voce usar todas as suas habilidades e itens, pode conseguir derrota lo e destruir a ameaca da Base Industria Sombria.\n";
 
     ResultadoBatalha resultado;
@@ -450,7 +441,7 @@ void CoracaoDaFloresta::explorar(Jogador *jogador)
         jogador->iniciarMissao(missaoAtual);
     }
 
-    cout << "Voce chega ao Coração da Floresta. O ar esta pesado, e a energia da natureza esta se esvaindo.\n";
+    cout << "Voce chega ao Coracao da Floresta. O ar esta pesado, e a energia da natureza esta se esvaindo.\n";
     cout << "A Rainha das Cinzas corrompeu a floresta e controla a terra com sua magia negra.\n";
     cout << "Para restaurar a floresta, voce precisa ativar os pedestais magicos espalhados pela regiao.\n";
     cout << "Cada pedestal exige que voce use as habilidades adquiridas nas fases anteriores.\n";
@@ -466,11 +457,11 @@ void CoracaoDaFloresta::explorar(Jogador *jogador)
         }
     } while (!resultado.venceu);
 
-    cout << "\nAgora, com a Rainha das Cinzas derrotada, você enfrenta uma escolha dificil...\n";
+    cout << "\nAgora, com a Rainha das Cinzas derrotada, voce enfrenta uma escolha dificil...\n";
     cout << "A Rainha das Cinzas, antes de morrer, sussurra: 'Deixe para tras sua missao. Os humanos nao carregam fardos... Seja como eles.'\n";
     cout << "Voce pode escolher: \n";
     cout << "1. **Salvar a floresta** - Usar a **Semente Ancestral** e **todas as habilidades adquiridas** para restaurar o equilíbrio e renascer como guardia definitiva da natureza.\n";
-    cout << "2. **Se corromper e se tornar humana** - Deixar para trás a missao e seguir a Rainha das Cinzas, tornando se humana e abandonando seu papel como guardia da natureza.\n";
+    cout << "2. **Se corromper e se tornar humana** - Deixar para tras a missao e seguir a Rainha das Cinzas, tornando se humana e abandonando seu papel como guardia da natureza.\n";
 
     // Receber a escolha do jogador
     string escolha;
@@ -481,7 +472,7 @@ void CoracaoDaFloresta::explorar(Jogador *jogador)
     {
         cout << "\nVoce decide salvar a floresta. Usando a **Semente Ancestral** e todas as habilidades adquiridas, voce restaura o equilibrio da natureza.\n";
         cout << "Como guardia definitiva da natureza, voce ve a floresta florescer completamente, e a paz retorna ao mundo.\n";
-        cout << "A energia da floresta flui através de voce, tornando-se um ser imortal, um simbolo da restauracao e da força da natureza.\n";
+        cout << "A energia da floresta flui atraves de voce, tornando-se um ser imortal, um simbolo da restauracao e da forca da natureza.\n";
         cout << "A missao 'Renascer ou Cair' foi completada com sucesso. A floresta esta salva e sua jornada como guardia continua.\n";
     }
     else if (escolha == "2")

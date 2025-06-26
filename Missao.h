@@ -80,7 +80,7 @@ class CurarLago : public Missao {
 // Base industrial
 class SabotarIndustria : public Missao {
     public:
-        SabotarIndustria() : Missao("Contra a Exploração", "Infiltre-se e sabote maquinas destrutivas.", new AuraDaResistencia(), new RajadaEnergetica()) {}
+        SabotarIndustria() : Missao("Contra a Exploracao", "Infiltre-se e sabote maquinas destrutivas.", new AuraDaResistencia(), new RajadaEnergetica()) {}
 
         void concluir() override {
             Missao::concluir();
