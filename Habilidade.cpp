@@ -6,6 +6,7 @@
 //Bosque das Fadas
 void EscudoDeLuz :: ativar(Jogador* jogador, Inimigo* inimigo){
     if(jogador!= nullptr){
+        
         cout << "Voce usou o Escudo de Luz! Dano reduzido em 25% neste turno." << endl;
         jogador->setModificadorDano(0.75);
     }

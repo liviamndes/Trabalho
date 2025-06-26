@@ -61,10 +61,13 @@ class Inventario{
             for(auto it = itens.begin(); it != itens.end(); ++it){
                 if((*it)->getNome() == nomeItem){
                     (*it)->usar(jogador);
+                    delete *it;               
+                    itens.erase(it);         
+                    cout << "O item/habilidade foi consumido e removido do inventario.\n";
                     return;
                 }
             }
-            cout << "Item nao encontrado!\n"; 
+            cout << "Item ou habilidade nao encontrado!\n"; 
         } 
 };  
 

@@ -49,7 +49,7 @@ class ResgatarFada : public Missao{
         
         void concluir() override {
             Missao::concluir();
-            cout << "\nA fada foi curada! Com suas forcas restauradas, ela retorna para o Santuario em seguranca.\n";
+            cout << "\nVoce derrotou o inimigo e a fada foi curada!\n Com suas forcas restauradas, ela retorna para o Santuario em seguranca.\n";
             cout << "Voce a acompanha e sente que esta apenas no inicio de sua jornada...\n\n";
         }
 };
@@ -84,7 +84,7 @@ class SabotarIndustria : public Missao {
 
         void concluir() override {
             Missao::concluir();
-            cout << "Voce sabotou os sistemas industriais e derrotou o general!\n\n";
+            cout << "Voce sabotou os sistemas industriaisl!\n\n";
         }
 };
 

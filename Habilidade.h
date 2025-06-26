@@ -20,6 +20,7 @@ class Habilidade{
             desbloqueado = true;
             cout << "Habilidade desbloqueada: " << nome << "!\n";
         }
+        
         bool estaDesbloqueada() const { return desbloqueado; }
         virtual ~Habilidade() {}
 

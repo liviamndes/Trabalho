@@ -32,7 +32,7 @@ class Item {
 //(Bosque das fadas)
 class PocaoCura : public Item{
     public:
-        PocaoCura() : Item("Pocao de Cura", "Recupera X HP e neutraliza venenos"){}
+        PocaoCura() : Item("Pocao de Cura", "Recupera HP e neutraliza venenos"){}
         void usar(Jogador* jogador) override;
 };
 

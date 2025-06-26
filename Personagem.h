@@ -83,6 +83,7 @@ class Jogador : public Personagem {
             if (escolha >= 1 && escolha <= habilidades.size()) {
                 cout << "\nUsando habilidade: " << habilidades[escolha-1]->getNome() << endl;
                 habilidades[escolha-1]->ativar(jogador, inimigo);
+                habilidades.erase(habilidades.begin() + (escolha - 1));
             } else {
                 cout << "Escolha invalida.\n";
             }
