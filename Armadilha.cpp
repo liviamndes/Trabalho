@@ -1,9 +1,11 @@
 #include "Armadilha.h"
+#include <ctime>
 
 void Armadilha::ativar(Jogador* jogador) {
     // método base vazio
 }
 void LagoArmadilha::ativar(Jogador *jogador) {
+    srand(time(NULL));
     int efeito = rand() % 100;  // número aleatório entre 0 e 99
     if (efeito < 30) {  // 30% de chance de cura
         cout << "A Pocao Misterio teve um efeito positivo! Você recuperou 50 de vida.\n";

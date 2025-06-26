@@ -315,7 +315,6 @@ void LagodasLagrimas::explorar(Jogador *jogador)
             cout << "Algo esta errado, tente novamente para concluir a missao!\n";
             cin >> purificar;
         }
-        jogador->usarItemDoInventario(item->getNome());
         cout << "\nUma luz azulada invade o lago...\n";
         cout << "As aguas se purificam e a nevoa desaparece.\n";
         cout << "O Lago das Lagrimas brilha novamente!\n";
