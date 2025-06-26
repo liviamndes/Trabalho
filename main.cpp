@@ -117,7 +117,7 @@ int main() {
 
     //Fim do Jogo
     cout << "\n=== FIM DE JOGO ===\n";
-    cout << "Obrigado por jogar, " << jogador.getNome() << "! :)\n"
+    cout << "Obrigado por jogar, " << jogador.getNome() << "! :)\n";
 
     return 0;
 }
